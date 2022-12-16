@@ -23,18 +23,13 @@
 @import "layouts/body";
 @import "layouts/wrapper";
 @import "layouts/header";
+@import "layouts/catalog";
 @import "layouts/footer";
 
 
 
+
 //componets
-@import "components/promo";
-@import "components/navigation";
-@import "components/questions";
-@import "components/answers";
-@import "components/current";
-@import "components/description";
-@import "components/next";
-@import "components/win";
-@import "components/new-game";
+@import "components/product-cards";
+
 
