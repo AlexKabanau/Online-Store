@@ -36,7 +36,7 @@ const baseConfig = {
     path: path.resolve(__dirname, "dist"),
   },
   plugins: [
-    new FaviconsWebpackPlugin("./src/img/favicon-32x32.png"),
+    new FaviconsWebpackPlugin("./src/img/icons8-online-store-16.png"),
     new EslingPlugin({ extensions: "ts" }),
     new CleanWebpackPlugin(),
     // eslint-disable-next-line no-undef

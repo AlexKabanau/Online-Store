@@ -1,5 +1,5 @@
 .main-header {
-  padding-bottom: 60px;
+  // padding-bottom: 60px;
   background-color: $basic-grey;
   color: $basic-black;
   @extend %font-add;
@@ -111,6 +111,7 @@ a.full-cart {
 .header-inner p {
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 .description {
@@ -148,49 +149,3 @@ a.full-cart {
     background-repeat: no-repeat;
   }
 }
-
-.header-contacts {
-  font-size: 1.4rem;
-  line-height: 2.4rem;
-  color: $basic-darkgrey;
-  margin-left: 93px;
-}
-
-.header-contacts p {
-  text-align: center;
-}
-
-.site-nav-wrapper {
-  background-color: var(--basic-darkgrey);
-  height: 60px;
-  box-sizing: border-box;
-  padding: 0 25px;
-  box-shadow: 0 -5px 0 0 var(--basic-extragrey) inset;
-}
-
-.site-nav {
-  display: flex;
-  
-}
-
-.site-nav-item {
-  flex-grow: 1;
-}
-
-.site-nav-item a {
-  display: block;
-  text-align: center;
-  padding-top: 16px;
-  padding-bottom: 15px;
-}
-
-.site-nav a:hover,
-.site-nav a:focus {
-  background-color: var(--basic-extragrey);
-}
-
-.site-nav a:active {
-  background-color: #1D2739;
-  color: rgba(255,255,255,0.5);
-}
-
