@@ -45,12 +45,12 @@ const baseConfig = {
       filename: "index.html",
     }),
     new HtmlWebpackPlugin({
-      filename: "page.html",
-      template: path.resolve(__dirname, "./src/page.html"),
+      filename: "card.html",
+      template: path.resolve(__dirname, "./src/card.html"),
     }),
     new HtmlWebpackPlugin({
-      filename: "winner.html",
-      template: path.resolve(__dirname, "./src/winner.html"),
+      filename: "item.html",
+      template: path.resolve(__dirname, "./src/item.html"),
     }),
     new MiniCssExtractPlugin({
       filename: "style.css",
