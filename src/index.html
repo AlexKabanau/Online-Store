@@ -375,5 +375,72 @@
 </div>
 
 </footer>
+
+<section class="modal modal-payment">
+  <h2 class="visually-hidden">Напишите нам</h2>
+  <form class="payment-form" action="https://echo.htmlacademy.ru" method="post">
+
+    <div class="container">
+      <div class="payment-info">
+        <div class="payment-name">
+          <label for="payment-name-input">Ваше имя:</label>
+          <input name="name" type="text" id="payment-name-input" placeholder="Имя Фамилия">
+        </div>
+
+        <div class="payment-email">
+          <label for="payment-email-input">Ваш e-mail:</label>
+          <input name="email" type="email" id="payment-email-input" placeholder="email@example.com">
+        </div>
+
+        <div class="payment-address">
+          <label for="payment-address-input">Адрес:</label>
+          <input name="address" type="text" id="payment-address-input" placeholder="Address">
+        </div>
+
+        <div class="payment-phone">
+          <label for="payment-phone-input">Телефон:</label>
+          <input name="phone" type="tel" id="payment-phone-input" placeholder="Phone">
+        </div>
+
+        <div class="payment-card-info">
+          <h3 class="payment-card-info_title">Credit card</h3>
+          <div class="payment-card-number">
+            <label for="payment-card-number-input">
+              <img src="./img/2443.webp" alt="">
+            </label>
+            <input name="card-number" type="number" id="payment-card-number-input" placeholder="Number">
+          </div>
+
+          <div class="payment-card-valid">
+            <label for="payment-card-valid-input">
+              Valid:
+            </label>
+            <input name="card-valid" type="number" id="payment-card-valid-input" placeholder="Valid">
+          </div>
+
+          <div class="payment-card-CVV">
+            <label for="payment-card-CVV-input">
+              CVV code:
+            </label>
+            <input name="card-CVV" type="number" id="payment-card-CVV-input" placeholder="CVV">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal-wrapper">
+      <div class="container">
+        <button class="button" type="submit">Оплатить
+        </button>
+      </div>
+    </div>
+
+  </form>
+  <button class="modal-close" type="button">
+    <span class="visually-hidden">Закрыть</span>
+  </button>
+</section>
 </body>
 </html>

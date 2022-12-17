@@ -1,0 +1,105 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  border-top: 7px solid $basic-red;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+.modal-close {
+  width: 21px;
+  height: 21px;
+  border: none;
+  background: 0 0 url(../img/modal-close.svg) no-repeat;
+  position: absolute;
+  top: 21px;
+  right: 11px;
+  cursor: pointer;
+}
+
+.modal-payment {
+  width: 620px;
+  height: 568px;
+  background-color: $basic-white;
+  display: none;
+  // display: block;
+}
+
+.modal-payment .container {
+  width: 460px;
+}
+
+.modal-payment input {
+  font-family: PT Sans, "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 24px;
+  padding: 7px 12px;
+  border: 2px solid $basic-greylight;
+  border-radius: 2px;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 11px;
+}
+
+.modal-payment label {
+  @extend %font-add;
+  @include font(1.8rem, 2.4rem);
+  margin-bottom: 11px;
+}
+
+.modal-payment .button {
+  border: none;
+  vertical-align: top;
+  padding: 0;
+  padding-top: 11px;
+  padding-bottom: 9px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.payment-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 13px;
+  margin-top: 15px;
+  margin-bottom: 37px;
+}
+
+.payment-letter {
+  grid-column: 1 / -1;
+}
+
+.payment-card-info {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 13px;
+  &_title {
+    @extend %font-add;
+    @include font(1.8rem, 2.4rem);
+    margin: 0;
+  }
+
+}
+
+
+.payment-card-number {
+  grid-column: 1 / -1;
+  & img {
+    width: 10%;
+  }
+}
+
+
+.modal-wrapper {
+  background-color: #F4F4F4;
+  padding: 37px 0;
+}
+
