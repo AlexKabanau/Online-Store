@@ -1,17 +1,18 @@
-// .footer {
-//   border: 2px solid $color-border;
-//   border-radius: 10px;
-//   padding: 0;
-// }
-.copyright {
-  border: 2px solid $color-border;
-  border-radius: 10px;
-  padding: 15px 10px 17px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
+.footer {
+  background-color: $basic-darkgrey;
+  @extend %font-add;
+  @include font(1.8rem, 2.4rem);
 }
-.copyright__info__link:hover {
-  color: $color-hovered-link;
+.copyright {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.copyright__info {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.copyright img {
+  width: 120px;
 }

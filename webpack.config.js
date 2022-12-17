@@ -36,21 +36,13 @@ const baseConfig = {
     path: path.resolve(__dirname, "dist"),
   },
   plugins: [
-    new FaviconsWebpackPlugin("./src/img/favicon-32x32.png"),
+    new FaviconsWebpackPlugin("./src/img/icons8-online-store-16.png"),
     new EslingPlugin({ extensions: "ts" }),
     new CleanWebpackPlugin(),
     // eslint-disable-next-line no-undef
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "./src/index.html"),
       filename: "index.html",
-    }),
-    new HtmlWebpackPlugin({
-      filename: "card.html",
-      template: path.resolve(__dirname, "./src/card.html"),
-    }),
-    new HtmlWebpackPlugin({
-      filename: "item.html",
-      template: path.resolve(__dirname, "./src/item.html"),
     }),
     new MiniCssExtractPlugin({
       filename: "style.css",
