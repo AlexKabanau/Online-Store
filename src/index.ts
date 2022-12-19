@@ -1,6 +1,9 @@
-import productsData from "./components/data";
-import drawFilters from "./components/drawCatalog";
+// import productsData from "./components/data";
+// import Filter from "./components/main/Filter";
+import App from "./components/app";
 // drawFilters();
 
-drawFilters();
+const app = new App();
+app.run();
+
 // console.log(productsData);
