@@ -56,7 +56,6 @@
 }
   .product__title {
     padding-left: 30px;
-    padding-right: 60px;
     height: 40px;
     display: flex;
     align-items: center;
@@ -168,3 +167,19 @@
         @extend %font-add;
         font-style: italic;
       }
+.recommend-prod__title {
+    padding-left: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, $basic-darkblue, $basic-white);
+    font-size: 2rem;
+    text-transform: uppercase;
+    @extend %font-add;
+    font-style: italic;
+}
+.recommend-prod__block {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 30px;
+}
