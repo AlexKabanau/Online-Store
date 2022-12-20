@@ -1,18 +1,11 @@
 import productsData from "../data";
-import Componets from "../Componets";
+import Components from "../Components";
 
-class Filter extends Componets {
+class Filter extends Components {
   constructor(tagName: string, className: string, id: string) {
     super(tagName, className, id);
   }
   renderFilter() {
-    const catalogPage: HTMLElement = document.createElement("section");
-    catalogPage.className = "catalog-page";
-
-    const catalogGrid: HTMLDivElement = document.createElement("div");
-    catalogGrid.className = "catalog-grid container";
-    catalogPage.append(catalogGrid);
-
     const filter: HTMLElement = document.createElement("section");
     filter.className = "filter";
 
@@ -148,11 +141,7 @@ class Filter extends Componets {
     form.append(filterButton);
     filter.append(form);
 
-    catalogGrid.append(filter);
-
-    catalogPage.append(catalogGrid);
-
-    this.container.append(catalogPage);
+    this.container.append(filter);
   }
   render() {
     this.renderFilter();

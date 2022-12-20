@@ -1,9 +1,9 @@
 // import productsData from "../data";
-import Componets from "../Componets";
+import Components from "../Components";
 import { ProductItemData } from "../../types";
 // import data from "../data";
 
-class Catalog extends Componets {
+class Catalog extends Components {
   constructor(
     tagName: string,
     className: string,
@@ -13,13 +13,6 @@ class Catalog extends Componets {
     super(tagName, className, id, data);
   }
   renderCatalog(data: Array<ProductItemData>) {
-    const catalogPage: HTMLElement = document.createElement("section");
-    catalogPage.className = "catalog-page";
-
-    const catalogGrid: HTMLDivElement = document.createElement("div");
-    catalogGrid.className = "catalog-grid container";
-    catalogPage.append(catalogGrid);
-
     const section: HTMLElement = document.createElement("section");
 
     const title: HTMLHeadingElement = document.createElement("h2");
@@ -132,11 +125,8 @@ class Catalog extends Componets {
     }
 
     section.append(productList);
-    catalogGrid.append(section);
 
-    catalogPage.append(catalogGrid);
-
-    this.container.append(catalogPage);
+    this.container.append(section);
   }
   render(data: Array<ProductItemData>) {
     this.renderCatalog(data);

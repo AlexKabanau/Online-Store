@@ -1,5 +1,5 @@
 import { ProductItemData } from "../types";
-class Componets {
+class Components {
   container: HTMLElement;
 
   constructor(
@@ -18,4 +18,4 @@ class Componets {
   }
 }
 
-export default Componets;
+export default Components;
