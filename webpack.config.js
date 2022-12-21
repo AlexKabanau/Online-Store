@@ -44,6 +44,14 @@ const baseConfig = {
       template: path.resolve(__dirname, "./src/index.html"),
       filename: "index.html",
     }),
+    new HtmlWebpackPlugin({
+      template: "./src/components/product-page/productPage.html",
+      filename: "productPage.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/components/master/master.html",
+      filename: "master.html",
+    }),
     new MiniCssExtractPlugin({
       filename: "style.css",
     })
