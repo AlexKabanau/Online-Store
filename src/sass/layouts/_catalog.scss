@@ -194,18 +194,18 @@ fieldset.property-filter {
   margin-left: auto;
 }
 
-.sort-button[name="price"] {
-  margin-right: 70px;
+.sort-button[name="price_up"],
+.sort-button[name="price_down"] {
+  margin-right: 40px;
 }
 
-.sort-button[name="type"] {
-  margin-right: 65px;
+.sort-button[name="rating_up"],
+.sort-button[name="rating_down"] {
+  margin-right: 30px;
 }
-.sort-button[name="func"] {
-  margin-right: 46px;
-}
-.sort-button[name="up"] {
-  margin-right: 21px;
+.sort-button[name="discount_up"],
+.sort-button[name="discount_down"] {
+  margin-right: 20px;
 }
 
 .sort-button {
@@ -235,25 +235,27 @@ fieldset.property-filter {
   }
 }
 
-.sort-dir-button svg{
+.sort-button svg{
   width: 11px;
   height: 10px;
   vertical-align: middle;
 }
 
-.sort-dir-button[name="down"] svg{
+.sort-button[name="price_down"] svg,
+.sort-button[name="rating_down"] svg,
+.sort-button[name="discount_down"] svg{
   transform: rotate(180deg);
 }
 
-.sort-dir-button.active path {
+.sort-button.active path {
   fill: $basic-red;
 }
 
-.sort-dir-button.active {
+.sort-button.active {
   cursor: default;
 }
 
-.sort-dir-button:not(.active):hover path {
+.sort-button:not(.active):hover path {
   fill: $basic-black;
 }
 
