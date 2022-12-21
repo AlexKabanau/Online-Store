@@ -1,4 +1,4 @@
-import IComponent from "../core/templates/icomponent";
+import IComponent from "../templates/icomponent";
 import { PageIds } from "../app";
 
 const Buttons = [

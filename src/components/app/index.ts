@@ -1,4 +1,4 @@
-import Page from "../core/templates/page";
+import Page from "../templates/page";
 import MainPage from "../master";
 import ProductPage from "../product-page";
 import CartPage from "../cart-page";
