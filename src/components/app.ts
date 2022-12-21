@@ -1,23 +1,19 @@
 // import productsData from "./components/data";
-import Filter from "./main/Filter";
-import Catalog from "./main/catalog";
-import productsData from "./data";
+// import Filter from "./main/Filter";
+// import Catalog from "./main/catalog";
+// import productsData from "./data";
+import Main from "./main/main";
 class App {
   container: HTMLElement = document.body;
 
-  filter: Filter;
-  catalog: Catalog;
+  main: Main;
 
   constructor() {
-    this.filter = new Filter("main", "main", "main");
-    this.catalog = new Catalog("main", "main", "main", productsData);
+    this.main = new Main("main", "main", "main");
   }
 
   run() {
-    if (this.container) {
-      this.container.append(this.filter.render());
-      this.container.append(this.catalog.render(productsData));
-    }
+    this.container.append(this.main.render());
   }
 }
 
