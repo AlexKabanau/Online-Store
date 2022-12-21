@@ -45,8 +45,12 @@ const baseConfig = {
       filename: "index.html",
     }),
     new HtmlWebpackPlugin({
-      template: "./src/productPage.html",
+      template: "./src/components/product-page/productPage.html",
       filename: "productPage.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/components/master/master.html",
+      filename: "master.html",
     }),
     new MiniCssExtractPlugin({
       filename: "style.css",
