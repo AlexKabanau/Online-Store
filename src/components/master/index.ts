@@ -32,7 +32,7 @@ class MainPage extends Page {
   }
 
   render() {
-    // this.renderMain();
+    this.renderMain();
     return this.container;
   }
 }
