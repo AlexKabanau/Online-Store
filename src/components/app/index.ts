@@ -46,8 +46,8 @@ class App {
   }
 
   constructor() {
-    this.initialPage = new MainPage("main-page");
     this.links = new Links("links", "links");
+    this.initialPage = new MainPage("main-page");
   }
 
   run() {
