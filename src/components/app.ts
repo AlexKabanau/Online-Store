@@ -2,7 +2,7 @@
 // import Filter from "./main/Filter";
 // import Catalog from "./main/catalog";
 // import productsData from "./data";
-import Main from "./main/main";
+import Main from "./master/main";
 class App {
   container: HTMLElement = document.body;
 

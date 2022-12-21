@@ -1,3 +1,4 @@
+// import Page from "../core/templates/page";
 import Page from "../templates/page";
 import Filter from "./Filter";
 import Catalog from "./catalog";
@@ -31,7 +32,11 @@ class MainPage extends Page {
   }
 
   render() {
+<<<<<<< HEAD
     this.renderMain();
+=======
+    // this.renderMain();
+>>>>>>> 2609e31 (add: try to add catalog page)
     return this.container;
   }
 }
