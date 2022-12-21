@@ -77,6 +77,7 @@ class Catalog extends Components {
     for (let i = 0; i < data.length; i++) {
       const li: HTMLLIElement = document.createElement("li");
       li.className = "product-card";
+      li.id = `item${data[i].id}Id`;
 
       const liTitle: HTMLHeadingElement = document.createElement("h3");
       liTitle.innerText = data[i].title;
