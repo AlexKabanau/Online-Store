@@ -37,22 +37,27 @@ class Filter extends Components {
 
     const sliderControl: HTMLDivElement = document.createElement("div");
     sliderControl.className = "sliders_control";
-
-    const inputMax: HTMLInputElement = document.createElement("input");
-    inputMax.id = "fromSlider";
-    inputMax.type = "range";
-    inputMax.value = "10";
-    inputMax.min = "0";
-    inputMax.max = "100";
-    sliderControl.append(inputMax);
+    const pricesArray: Array<number> = productsData.map((el) =>
+      Number(el.price)
+    );
+    const minPrice: number = Math.min(...pricesArray);
+    const maxPrice: number = Math.max(...pricesArray);
 
     const inputMin: HTMLInputElement = document.createElement("input");
-    inputMin.id = "toSlider";
+    inputMin.id = "fromPriceSlider";
     inputMin.type = "range";
-    inputMin.value = "40";
-    inputMin.min = "0";
-    inputMin.max = "100";
+    inputMin.value = "510";
+    inputMin.min = "300";
+    inputMin.max = "1000";
     sliderControl.append(inputMin);
+
+    const inputMax: HTMLInputElement = document.createElement("input");
+    inputMax.id = "toPriceSlider";
+    inputMax.type = "range";
+    inputMax.value = "590";
+    inputMax.min = "300";
+    inputMax.max = "1000";
+    sliderControl.append(inputMax);
     rangeContainer.append(sliderControl);
 
     const formControl: HTMLElement = document.createElement("div");
@@ -72,10 +77,10 @@ class Filter extends Components {
     formControlContainerTimeInput.className =
       "form_control_container__time__input";
     formControlContainerTimeInput.type = "number";
-    formControlContainerTimeInput.id = "fromInput";
-    formControlContainerTimeInput.value = "10";
-    formControlContainerTimeInput.min = "0";
-    formControlContainerTimeInput.max = "100";
+    formControlContainerTimeInput.id = "fromPriceInput";
+    formControlContainerTimeInput.value = `${minPrice}`;
+    formControlContainerTimeInput.min = `${minPrice}`;
+    formControlContainerTimeInput.max = `${maxPrice}`;
     formControlContainer.append(formControlContainerTimeInput);
     formControl.append(formControlContainer);
 
@@ -95,10 +100,10 @@ class Filter extends Components {
     formControlContainerTimeInput2.className =
       "form_control_container__time__input";
     formControlContainerTimeInput2.type = "number";
-    formControlContainerTimeInput2.id = "toInput";
-    formControlContainerTimeInput2.value = "40";
-    formControlContainerTimeInput2.min = "0";
-    formControlContainerTimeInput2.max = "100";
+    formControlContainerTimeInput2.id = "toPriceInput";
+    formControlContainerTimeInput2.value = `${maxPrice}`;
+    formControlContainerTimeInput2.min = `${minPrice}`;
+    formControlContainerTimeInput2.max = `${maxPrice}`;
     formControlContainer2.append(formControlContainerTimeInput2);
     formControl.append(formControlContainer2);
     rangeContainer.append(formControl);
