@@ -17,59 +17,134 @@ class Filter extends Components {
     form.action = "";
 
     /* range controls */
-    const priceFilter: HTMLFieldSetElement = document.createElement("fieldset");
-    priceFilter.className = "price-filter";
+    // const priceFilter: HTMLFieldSetElement = document.createElement("fieldset");
+    // priceFilter.className = "price-filter";
+
+    // const priceLegend: HTMLLegendElement = document.createElement("legend");
+    // priceLegend.innerText = "Price";
+    // priceFilter.append(priceLegend);
+
+    /* dual range */
+
+    const rangeContainer: HTMLFieldSetElement = document.createElement(
+      "fieldset"
+    );
+    rangeContainer.className = "range_container";
 
     const priceLegend: HTMLLegendElement = document.createElement("legend");
     priceLegend.innerText = "Price";
-    priceFilter.append(priceLegend);
+    rangeContainer.append(priceLegend);
 
-    const rangeControls: HTMLDivElement = document.createElement("div");
-    rangeControls.className = "range-controls";
+    const sliderControl: HTMLDivElement = document.createElement("div");
+    sliderControl.className = "sliders_control";
 
-    const scale: HTMLDivElement = document.createElement("div");
-    scale.className = "scale";
+    const inputMax: HTMLInputElement = document.createElement("input");
+    inputMax.id = "fromSlider";
+    inputMax.type = "range";
+    inputMax.value = "10";
+    inputMax.min = "0";
+    inputMax.max = "100";
+    sliderControl.append(inputMax);
 
-    const bar: HTMLDivElement = document.createElement("div");
-    bar.className = "bar";
-    bar.style.width = "79%";
-    bar.style.marginLeft = "0%";
-    scale.append(bar);
+    const inputMin: HTMLInputElement = document.createElement("input");
+    inputMin.id = "toSlider";
+    inputMin.type = "range";
+    inputMin.value = "40";
+    inputMin.min = "0";
+    inputMin.max = "100";
+    sliderControl.append(inputMin);
+    rangeContainer.append(sliderControl);
 
-    const firstToggle: HTMLDivElement = document.createElement("div");
-    firstToggle.className = "toggle";
-    firstToggle.tabIndex = 0;
-    firstToggle.style.left = "5%";
-    scale.append(firstToggle);
+    const formControl: HTMLElement = document.createElement("div");
+    formControl.className = "form_control price-controls";
 
-    const secondToggle: HTMLDivElement = document.createElement("div");
-    secondToggle.className = "toggle";
-    secondToggle.tabIndex = 0;
-    secondToggle.style.left = "84%";
-    scale.append(secondToggle);
-    rangeControls.append(scale);
-    priceFilter.append(rangeControls);
+    const formControlContainer: HTMLElement = document.createElement("div");
+    formControlContainer.className = "form_control_container";
 
-    const priceControls: HTMLDivElement = document.createElement("div");
-    priceControls.className = "price-controls";
+    const formControlContainerTime: HTMLElement = document.createElement("div");
+    formControlContainerTime.className = "form_control_container__time";
+    formControlContainerTime.innerText = "Min";
+    formControlContainer.append(formControlContainerTime);
 
-    const minPrice: HTMLInputElement = document.createElement("input");
-    minPrice.type = "text";
-    minPrice.name = "min-price";
-    minPrice.value = "0";
-    priceControls.appendChild(minPrice);
+    const formControlContainerTimeInput: HTMLInputElement = document.createElement(
+      "input"
+    );
+    formControlContainerTimeInput.className =
+      "form_control_container__time__input";
+    formControlContainerTimeInput.type = "number";
+    formControlContainerTimeInput.id = "fromInput";
+    formControlContainerTimeInput.value = "10";
+    formControlContainerTimeInput.min = "0";
+    formControlContainerTimeInput.max = "100";
+    formControlContainer.append(formControlContainerTimeInput);
+    formControl.append(formControlContainer);
 
-    const priceControlsSpan: HTMLSpanElement = document.createElement("span");
-    priceControlsSpan.innerText = "-";
-    priceControls.append(priceControlsSpan);
+    const formControlContainer2: HTMLElement = document.createElement("div");
+    formControlContainer2.className = "form_control_container";
 
-    const maxPrice: HTMLInputElement = document.createElement("input");
-    maxPrice.type = "text";
-    maxPrice.name = "max-price";
-    maxPrice.value = "30000";
-    priceControls.appendChild(maxPrice);
-    priceFilter.append(priceControls);
-    form.append(priceFilter);
+    const formControlContainerTime2: HTMLElement = document.createElement(
+      "div"
+    );
+    formControlContainerTime2.className = "form_control_container__time";
+    formControlContainerTime2.innerText = "Max";
+    formControlContainer2.append(formControlContainerTime2);
+
+    const formControlContainerTimeInput2: HTMLInputElement = document.createElement(
+      "input"
+    );
+    formControlContainerTimeInput2.className =
+      "form_control_container__time__input";
+    formControlContainerTimeInput2.type = "number";
+    formControlContainerTimeInput2.id = "toInput";
+    formControlContainerTimeInput2.value = "40";
+    formControlContainerTimeInput2.min = "0";
+    formControlContainerTimeInput2.max = "100";
+    formControlContainer2.append(formControlContainerTimeInput2);
+    formControl.append(formControlContainer2);
+    rangeContainer.append(formControl);
+
+    form.append(rangeContainer);
+
+    // const bar: HTMLDivElement = document.createElement("div");
+    // bar.className = "bar";
+    // bar.style.width = "79%";
+    // bar.style.marginLeft = "0%";
+    // scale.append(bar);
+
+    // const firstToggle: HTMLDivElement = document.createElement("div");
+    // firstToggle.className = "toggle";
+    // firstToggle.tabIndex = 0;
+    // firstToggle.style.left = "5%";
+    // scale.append(firstToggle);
+
+    // const secondToggle: HTMLDivElement = document.createElement("div");
+    // secondToggle.className = "toggle";
+    // secondToggle.tabIndex = 0;
+    // secondToggle.style.left = "84%";
+    // scale.append(secondToggle);
+    // rangeControls.append(scale);
+    // priceFilter.append(rangeControls);
+
+    // const priceControls: HTMLDivElement = document.createElement("div");
+    // priceControls.className = "price-controls";
+
+    // const minPrice: HTMLInputElement = document.createElement("input");
+    // minPrice.type = "text";
+    // minPrice.name = "min-price";
+    // minPrice.value = "0";
+    // priceControls.appendChild(minPrice);
+
+    // const priceControlsSpan: HTMLSpanElement = document.createElement("span");
+    // priceControlsSpan.innerText = "-";
+    // priceControls.append(priceControlsSpan);
+
+    // const maxPrice: HTMLInputElement = document.createElement("input");
+    // maxPrice.type = "text";
+    // maxPrice.name = "max-price";
+    // maxPrice.value = "30000";
+    // priceControls.appendChild(maxPrice);
+    // priceFilter.append(priceControls);
+    // form.append(priceFilter);
 
     /* checkbox */
     const producersFilter: HTMLFieldSetElement = document.createElement(
