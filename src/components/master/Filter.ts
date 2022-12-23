@@ -17,17 +17,23 @@ class Filter extends Components {
     form.action = "";
 
     /* range controls */
-    const priceFilter: HTMLFieldSetElement = document.createElement("fieldset");
-    priceFilter.className = "price-filter";
+    // const priceFilter: HTMLFieldSetElement = document.createElement("fieldset");
+    // priceFilter.className = "price-filter";
 
-    const priceLegend: HTMLLegendElement = document.createElement("legend");
-    priceLegend.innerText = "Price";
-    priceFilter.append(priceLegend);
+    // const priceLegend: HTMLLegendElement = document.createElement("legend");
+    // priceLegend.innerText = "Price";
+    // priceFilter.append(priceLegend);
 
     /* dual range */
 
-    const rangeContainer: HTMLDivElement = document.createElement("div");
+    const rangeContainer: HTMLFieldSetElement = document.createElement(
+      "fieldset"
+    );
     rangeContainer.className = "range_container";
+
+    const priceLegend: HTMLLegendElement = document.createElement("legend");
+    priceLegend.innerText = "Price";
+    rangeContainer.append(priceLegend);
 
     const sliderControl: HTMLDivElement = document.createElement("div");
     sliderControl.className = "sliders_control";
@@ -50,7 +56,7 @@ class Filter extends Components {
     rangeContainer.append(sliderControl);
 
     const formControl: HTMLElement = document.createElement("div");
-    formControl.className = "form_control";
+    formControl.className = "form_control price-controls";
 
     const formControlContainer: HTMLElement = document.createElement("div");
     formControlContainer.className = "form_control_container";
