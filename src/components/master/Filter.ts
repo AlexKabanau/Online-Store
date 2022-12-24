@@ -25,86 +25,188 @@ class Filter extends Components {
     // priceFilter.append(priceLegend);
 
     /* dual range */
-
-    const rangeContainer: HTMLFieldSetElement = document.createElement(
+    //PRICE
+    const rangePriceContainer: HTMLFieldSetElement = document.createElement(
       "fieldset"
     );
-    rangeContainer.className = "range_container";
+    rangePriceContainer.className = "range_container";
 
     const priceLegend: HTMLLegendElement = document.createElement("legend");
     priceLegend.innerText = "Price";
-    rangeContainer.append(priceLegend);
+    rangePriceContainer.append(priceLegend);
 
-    const sliderControl: HTMLDivElement = document.createElement("div");
-    sliderControl.className = "sliders_control";
+    const sliderPriceControl: HTMLDivElement = document.createElement("div");
+    sliderPriceControl.className = "sliders_control";
 
-    const inputMax: HTMLInputElement = document.createElement("input");
-    inputMax.id = "fromSlider";
-    inputMax.type = "range";
-    inputMax.value = "10";
-    inputMax.min = "0";
-    inputMax.max = "100";
-    sliderControl.append(inputMax);
+    const inputMinPrice: HTMLInputElement = document.createElement("input");
+    inputMinPrice.id = "fromPriceSlider";
+    inputMinPrice.type = "range";
+    inputMinPrice.value = "0";
+    inputMinPrice.min = "0";
+    inputMinPrice.max = "100";
+    sliderPriceControl.append(inputMinPrice);
 
-    const inputMin: HTMLInputElement = document.createElement("input");
-    inputMin.id = "toSlider";
-    inputMin.type = "range";
-    inputMin.value = "40";
-    inputMin.min = "0";
-    inputMin.max = "100";
-    sliderControl.append(inputMin);
-    rangeContainer.append(sliderControl);
+    const inputMaxPrice: HTMLInputElement = document.createElement("input");
+    inputMaxPrice.id = "toPriceSlider";
+    inputMaxPrice.type = "range";
+    inputMaxPrice.value = "100";
+    inputMaxPrice.min = "0";
+    inputMaxPrice.max = "100";
+    sliderPriceControl.append(inputMaxPrice);
+    rangePriceContainer.append(sliderPriceControl);
 
-    const formControl: HTMLElement = document.createElement("div");
-    formControl.className = "form_control price-controls";
-
-    const formControlContainer: HTMLElement = document.createElement("div");
-    formControlContainer.className = "form_control_container";
-
-    const formControlContainerTime: HTMLElement = document.createElement("div");
-    formControlContainerTime.className = "form_control_container__time";
-    formControlContainerTime.innerText = "Min";
-    formControlContainer.append(formControlContainerTime);
-
-    const formControlContainerTimeInput: HTMLInputElement = document.createElement(
-      "input"
+    const pricesArray: Array<number> = productsData.map((el) =>
+      Number(el.price)
     );
-    formControlContainerTimeInput.className =
-      "form_control_container__time__input";
-    formControlContainerTimeInput.type = "number";
-    formControlContainerTimeInput.id = "fromInput";
-    formControlContainerTimeInput.value = "10";
-    formControlContainerTimeInput.min = "0";
-    formControlContainerTimeInput.max = "100";
-    formControlContainer.append(formControlContainerTimeInput);
-    formControl.append(formControlContainer);
+    const minPrice: number = Math.min(...pricesArray);
+    const maxPrice: number = Math.max(...pricesArray);
+    const formPriceControl: HTMLElement = document.createElement("div");
+    formPriceControl.className = "form_control price-controls";
 
-    const formControlContainer2: HTMLElement = document.createElement("div");
-    formControlContainer2.className = "form_control_container";
-
-    const formControlContainerTime2: HTMLElement = document.createElement(
+    const formPriceControlContainer: HTMLElement = document.createElement(
       "div"
     );
-    formControlContainerTime2.className = "form_control_container__time";
-    formControlContainerTime2.innerText = "Max";
-    formControlContainer2.append(formControlContainerTime2);
+    formPriceControlContainer.className = "form_control_container";
 
-    const formControlContainerTimeInput2: HTMLInputElement = document.createElement(
+    const formPriceControlContainerTime: HTMLElement = document.createElement(
+      "div"
+    );
+    formPriceControlContainerTime.className = "form_control_container__time";
+    formPriceControlContainerTime.innerText = "Min";
+    formPriceControlContainer.append(formPriceControlContainerTime);
+
+    const formPriceControlContainerTimeInput: HTMLInputElement = document.createElement(
       "input"
     );
-    formControlContainerTimeInput2.className =
+    formPriceControlContainerTimeInput.className =
       "form_control_container__time__input";
-    formControlContainerTimeInput2.type = "number";
-    formControlContainerTimeInput2.id = "toInput";
-    formControlContainerTimeInput2.value = "40";
-    formControlContainerTimeInput2.min = "0";
-    formControlContainerTimeInput2.max = "100";
-    formControlContainer2.append(formControlContainerTimeInput2);
-    formControl.append(formControlContainer2);
-    rangeContainer.append(formControl);
+    formPriceControlContainerTimeInput.type = "number";
+    formPriceControlContainerTimeInput.id = "fromPriceInput";
+    formPriceControlContainerTimeInput.value = `${minPrice}`;
+    formPriceControlContainerTimeInput.min = `${minPrice}`;
+    formPriceControlContainerTimeInput.max = `${maxPrice}`;
+    formPriceControlContainer.append(formPriceControlContainerTimeInput);
+    formPriceControl.append(formPriceControlContainer);
 
-    form.append(rangeContainer);
+    const formPriceControlContainer2: HTMLElement = document.createElement(
+      "div"
+    );
+    formPriceControlContainer2.className = "form_control_container";
 
+    const formPriceControlContainerTime2: HTMLElement = document.createElement(
+      "div"
+    );
+    formPriceControlContainerTime2.className = "form_control_container__time";
+    formPriceControlContainerTime2.innerText = "Max";
+    formPriceControlContainer2.append(formPriceControlContainerTime2);
+
+    const formPriceControlContainerTimeInput2: HTMLInputElement = document.createElement(
+      "input"
+    );
+    formPriceControlContainerTimeInput2.className =
+      "form_control_container__time__input";
+    formPriceControlContainerTimeInput2.type = "number";
+    formPriceControlContainerTimeInput2.id = "toPriceInput";
+    formPriceControlContainerTimeInput2.value = `${maxPrice}`;
+    formPriceControlContainerTimeInput2.min = `${minPrice}`;
+    formPriceControlContainerTimeInput2.max = `${maxPrice}`;
+    formPriceControlContainer2.append(formPriceControlContainerTimeInput2);
+    formPriceControl.append(formPriceControlContainer2);
+    rangePriceContainer.append(formPriceControl);
+
+    form.append(rangePriceContainer);
+
+    //STOCK
+
+    const rangeStockContainer: HTMLFieldSetElement = document.createElement(
+      "fieldset"
+    );
+    rangeStockContainer.className = "range_container";
+
+    const stockLegend: HTMLLegendElement = document.createElement("legend");
+    stockLegend.innerText = "Stock";
+    rangeStockContainer.append(stockLegend);
+
+    const sliderStockControl: HTMLDivElement = document.createElement("div");
+    sliderStockControl.className = "sliders_control";
+
+    const inputMinStock: HTMLInputElement = document.createElement("input");
+    inputMinStock.id = "fromStockSlider";
+    inputMinStock.type = "range";
+    inputMinStock.value = "0";
+    inputMinStock.min = "0";
+    inputMinStock.max = "100";
+    sliderStockControl.append(inputMinStock);
+
+    const inputMaxStock: HTMLInputElement = document.createElement("input");
+    inputMaxStock.id = "toStockSlider";
+    inputMaxStock.type = "range";
+    inputMaxStock.value = "100";
+    inputMaxStock.min = "0";
+    inputMaxStock.max = "100";
+    sliderStockControl.append(inputMaxStock);
+    rangeStockContainer.append(sliderStockControl);
+
+    const stockArray: Array<number> = productsData.map((el) =>
+      Number(el.stock)
+    );
+    const minStock: number = Math.min(...stockArray);
+    const maxStock: number = Math.max(...stockArray);
+    const formStockControl: HTMLElement = document.createElement("div");
+    formStockControl.className = "form_control price-controls";
+
+    const formStockControlContainer: HTMLElement = document.createElement(
+      "div"
+    );
+    formStockControlContainer.className = "form_control_container";
+
+    const formStockControlContainerTime: HTMLElement = document.createElement(
+      "div"
+    );
+    formStockControlContainerTime.className = "form_control_container__time";
+    formStockControlContainerTime.innerText = "Min";
+    formStockControlContainer.append(formStockControlContainerTime);
+
+    const formStockControlContainerTimeInput: HTMLInputElement = document.createElement(
+      "input"
+    );
+    formStockControlContainerTimeInput.className =
+      "form_control_container__time__input";
+    formStockControlContainerTimeInput.type = "number";
+    formStockControlContainerTimeInput.id = "fromStockInput";
+    formStockControlContainerTimeInput.value = `${minStock}`;
+    formStockControlContainerTimeInput.min = `${minStock}`;
+    formStockControlContainerTimeInput.max = `${maxStock}`;
+    formStockControlContainer.append(formStockControlContainerTimeInput);
+    formStockControl.append(formStockControlContainer);
+
+    const formStockControlContainer2: HTMLElement = document.createElement(
+      "div"
+    );
+    formStockControlContainer2.className = "form_control_container";
+
+    const formStockControlContainerTime2: HTMLElement = document.createElement(
+      "div"
+    );
+    formStockControlContainerTime2.className = "form_control_container__time";
+    formStockControlContainerTime2.innerText = "Max";
+    formStockControlContainer2.append(formStockControlContainerTime2);
+
+    const formStockControlContainerTimeInput2: HTMLInputElement = document.createElement(
+      "input"
+    );
+    formStockControlContainerTimeInput2.className =
+      "form_control_container__time__input";
+    formStockControlContainerTimeInput2.type = "number";
+    formStockControlContainerTimeInput2.id = "toStockInput";
+    formStockControlContainerTimeInput2.value = `${maxStock}`;
+    formStockControlContainerTimeInput2.min = `${minStock}`;
+    formStockControlContainerTimeInput2.max = `${maxStock}`;
+    formStockControlContainer2.append(formStockControlContainerTimeInput2);
+    formStockControl.append(formStockControlContainer2);
+    rangeStockContainer.append(formStockControl);
+
+    form.append(rangeStockContainer);
     // const bar: HTMLDivElement = document.createElement("div");
     // bar.className = "bar";
     // bar.style.width = "79%";

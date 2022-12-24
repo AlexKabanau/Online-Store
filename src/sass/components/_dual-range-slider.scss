@@ -78,7 +78,8 @@ input[type="range"] {
   pointer-events: none;
 }
 
-#fromSlider {
+#fromPriceSlider,
+#fromStockSlider {
   height: 0;
   z-index: 1;
 }
