@@ -1,4 +1,3 @@
-// import Page from "../core/templates/page";
 import Page from "../templates/page";
 import Filter from "./Filter";
 import Catalog from "./catalog";
