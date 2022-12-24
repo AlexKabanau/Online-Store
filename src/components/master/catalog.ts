@@ -46,8 +46,8 @@ class Catalog extends Components {
           break;
         case 2:
           button.className = "sort-button sort-type-button";
-          button.name = "func";
-          button.innerText = "func";
+          button.name = "discount";
+          button.innerText = "discount";
           break;
         case 3:
           button.className = "sort-button sort-dir-button";
