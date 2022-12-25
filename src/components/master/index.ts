@@ -16,9 +16,6 @@ class MainPage extends Page {
   searchProp: {
     sortOptions: string;
   };
-  searchProp: {
-    sortOptions: string;
-  };
 
   constructor(id: string) {
     super(id);
