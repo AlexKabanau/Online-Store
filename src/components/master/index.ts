@@ -16,6 +16,9 @@ class MainPage extends Page {
   searchProp: {
     sortOptions: string;
   };
+  searchProp: {
+    sortOptions: string;
+  };
 
   constructor(id: string) {
     super(id);
@@ -95,6 +98,16 @@ class MainPage extends Page {
   // }
 
   render() {
+    // const promise = new Promise<HTMLElement>((resolve) => {
+    //   this.renderMain();
+    //   resolve(this.container);
+    // });
+    // promise.then(
+    //   // console.log("123");
+    //   // this.afterRender();
+    //   // this.container;
+    // );
+
     // const promise = new Promise<HTMLElement>((resolve) => {
     //   this.renderMain();
     //   resolve(this.container);
