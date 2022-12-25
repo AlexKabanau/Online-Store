@@ -1,6 +1,7 @@
 // import productsData from "../data";
 import Components from "../Components";
 import { ProductItemData } from "../../types";
+import handlers from "./handlers";
 // import data from "../data";
 
 class Catalog extends Components {
@@ -8,9 +9,11 @@ class Catalog extends Components {
     tagName: string,
     className: string,
     id: string,
-    data: Array<ProductItemData>
+    data: Array<ProductItemData>,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    handlers: Object
   ) {
-    super(tagName, className, id, data);
+    super(tagName, className, id, data, handlers);
   }
   renderCatalog(data: Array<ProductItemData>) {
     const section: HTMLElement = document.createElement("section");
@@ -38,16 +41,25 @@ class Catalog extends Components {
           button.className = "sort-button sort-type-button";
           button.name = "price";
           button.innerText = "price";
+          button.onclick = function (el) {
+            handlers.click(el.target as HTMLButtonElement);
+          };
           break;
         case 1:
           button.className = "sort-button sort-type-button";
-          button.name = "type";
-          button.innerText = "type";
+          button.name = "rating";
+          button.innerText = "rating";
+          button.onclick = function (el) {
+            handlers.click(el.target as HTMLButtonElement);
+          };
           break;
         case 2:
           button.className = "sort-button sort-type-button";
           button.name = "discount";
           button.innerText = "discount";
+          button.onclick = function (el) {
+            handlers.click(el.target as HTMLButtonElement);
+          };
           break;
         case 3:
           button.className = "sort-button sort-dir-button";
