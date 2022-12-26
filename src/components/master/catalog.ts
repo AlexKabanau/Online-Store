@@ -16,12 +16,12 @@ class Catalog extends Components {
     super(tagName, className, id, data, handlers);
   }
   renderCatalog(data: Array<ProductItemData>) {
-    const section: HTMLElement = document.createElement("section");
+    // const section: HTMLElement = document.createElement("section");
 
     const title: HTMLHeadingElement = document.createElement("h2");
     title.className = "visually-hidden";
     title.innerText = "Catalog";
-    section.append(title);
+    this.container.append(title);
 
     const sort: HTMLElement = document.createElement("div");
     sort.className = "sort";
@@ -82,7 +82,7 @@ class Catalog extends Components {
       sortButtonList.append(li);
     }
     sort.append(sortButtonList);
-    section.append(sort);
+    this.container.append(sort);
 
     const productList: HTMLElement = document.createElement("ul");
     productList.className = "product-list";
@@ -137,9 +137,7 @@ class Catalog extends Components {
       productList.append(li);
     }
 
-    section.append(productList);
-
-    this.container.append(section);
+    this.container.append(productList);
   }
   render(data: Array<ProductItemData>) {
     this.renderCatalog(data);
