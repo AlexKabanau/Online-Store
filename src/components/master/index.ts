@@ -1,5 +1,6 @@
 // import Page from "../core/templates/page";
 import Page from "../templates/page";
+// import Filter from "./Filter";
 import Filter from "./filter";
 import Catalog from "./catalog";
 import Sort from "./sort";
@@ -12,6 +13,7 @@ class MainPage extends Page {
   filter: Filter;
   sort: Sort;
   catalog: Catalog;
+  _data: Array<ProductItemData>;
   static TextObject = {
     MainTitle: "Main Page",
   };
@@ -21,6 +23,7 @@ class MainPage extends Page {
 
   constructor(id: string) {
     super(id);
+    this._data = productsData.sort(() => Math.random() - 0.5);
     this.filter = new Filter("section", "filter", "filter");
     this.sort = new Sort("div", "sort", "sort", productsData, handlers);
     this.catalog = new Catalog(
@@ -34,7 +37,7 @@ class MainPage extends Page {
       sortOptions: "",
     };
   }
-  renderMain(_data: Array<ProductItemData> = productsData) {
+  renderMain(_data: Array<ProductItemData>) {
     const catalogPage: HTMLElement = document.createElement("section");
     catalogPage.className = "catalog-page";
 
@@ -52,51 +55,9 @@ class MainPage extends Page {
 
     this.container.append(catalogPage);
   }
-  // afterRender() {
-  //   // setTimeout(() => {
-  //   const priceSort: HTMLButtonElement | null = document.querySelector(
-  //     '.sort-button[name="price"]'
-  //   );
-  //   // if (!priceSort) {
-  //   //   console.log("check");
-  //   // } else {
-  //   //   console.log(priceSort);
-  //   // }
-  //   priceSort?.addEventListener("click", this.checkFilter);
-  //   // }, 0);
-  //   // const priceSort: HTMLButtonElement | null = document.querySelector(
-  //   //   '.sort-button[name="price"]'
-  //   // );
-  //   // if (!priceSort) {
-  //   //   console.log("check");
-  //   // }
-  // }
 
   render() {
-    // const promise = new Promise<HTMLElement>((resolve) => {
-    //   this.renderMain();
-    //   resolve(this.container);
-    // });
-    // promise.then(
-    //   // console.log("123");
-    //   // this.afterRender();
-    //   // this.container;
-    // );
-
-    // const promise = new Promise<HTMLElement>((resolve) => {
-    //   this.renderMain();
-    //   resolve(this.container);
-    // });
-    // promise.then(
-    //   // console.log("123");
-    //   // this.afterRender();
-    //   // this.container;
-    // );
-
-    this.renderMain();
-    // setTimeout(() => {
-    //   this.afterRender();
-    // }, 0);
+    this.renderMain(this._data);
     return this.container;
   }
 }
