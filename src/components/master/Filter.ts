@@ -1,5 +1,6 @@
 import productsData from "../data";
 import Components from "../Components";
+import handlers from "./handlers";
 
 class Filter extends Components {
   constructor(tagName: string, className: string, id: string) {
@@ -12,6 +13,12 @@ class Filter extends Components {
 
     const form: HTMLFormElement = document.createElement("form");
     form.action = "";
+    form.addEventListener("change", (el) => {
+      handlers.change(el.target as HTMLInputElement);
+    });
+    // form.onchange = function(el) {
+    //   handlers.change(el.target as HTMLInputElement);
+    // };
 
     /* range controls */
     /* dual range */

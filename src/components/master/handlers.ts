@@ -5,13 +5,13 @@ const handlers = {
   click(_el: HTMLButtonElement) {
     console.log("click on ", _el);
     console.log(_el instanceof HTMLButtonElement);
+    const result: Array<ProductItemData> = productsData;
 
     switch (_el instanceof HTMLButtonElement) {
       case true:
         // eslint-disable-next-line no-case-declarations
         const element: HTMLButtonElement = _el;
         // eslint-disable-next-line no-case-declarations
-        const result: Array<ProductItemData> = productsData;
         switch (element.name) {
           case "price":
             result.sort((a: ProductItemData, b: ProductItemData) => {
@@ -52,6 +52,22 @@ const handlers = {
       case false:
         break;
     }
+  },
+  change(_el: HTMLInputElement) {
+    // console.log("click on ", _el);
+    // console.log(_el instanceof HTMLInputElement);
+    const propArr: Array<string> = [];
+    propArr.push(_el.id.split("").splice(15).join(""));
+    console.log(propArr);
+    //arr.filter((item) => item > 0);
+    const result: Array<ProductItemData> = productsData;
+    // for (item in propArr) {
+    //   if ( === `{$item}`) {}
+    // }
+    // if () {}
+    const answer = result.filter((item) => item.brand === `${_el.name}`);
+    console.log(answer);
+    document.write("<b>Привет из JS</b>");
   },
 };
 

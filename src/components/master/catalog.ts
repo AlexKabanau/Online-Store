@@ -1,7 +1,7 @@
 // import productsData from "../data";
 import Components from "../Components";
 import { ProductItemData } from "../../types";
-import handlers from "./handlers";
+// import handlers from "./handlers";
 // import data from "../data";
 
 class Catalog extends Components {
