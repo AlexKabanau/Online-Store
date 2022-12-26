@@ -2,6 +2,7 @@
 import Page from "../templates/page";
 import Filter from "./filter";
 import Catalog from "./catalog";
+import Sort from "./sort";
 import productsData from "../data";
 import { ProductItemData } from "../../types";
 import handlers from "./handlers";
@@ -9,6 +10,7 @@ import handlers from "./handlers";
 
 class MainPage extends Page {
   filter: Filter;
+  sort: Sort;
   catalog: Catalog;
   static TextObject = {
     MainTitle: "Main Page",
@@ -20,10 +22,11 @@ class MainPage extends Page {
   constructor(id: string) {
     super(id);
     this.filter = new Filter("section", "filter", "filter");
+    this.sort = new Sort("div", "sort", "sort", productsData, handlers);
     this.catalog = new Catalog(
-      "section",
-      "catalog",
-      "catalog",
+      "ul",
+      "product-list",
+      "product-list",
       productsData,
       handlers
     );
@@ -31,37 +34,6 @@ class MainPage extends Page {
       sortOptions: "",
     };
   }
-  // checkFilter = (event: Event) => {
-  //   console.log("check");
-  //   const priceSort: HTMLButtonElement | null = document.querySelector(
-  //     '.sort-button[name="price"]'
-  //   );
-  //   console.log(priceSort?.name);
-  //   // console.log(this.searchProp);
-
-  //   // if (priceSort) {
-  //   //   this.searchProp.sortOptions = priceSort.name;
-  //   // }
-
-  //   const result: Array<ProductItemData> = productsData;
-
-  //   switch (priceSort?.name) {
-  //     case "price":
-  //       result.sort((a: ProductItemData, b: ProductItemData) => {
-  //         if (Number(a.price) > Number(b.price)) {
-  //           return -1;
-  //         }
-  //         if (Number(a.price) < Number(b.price)) {
-  //           return 1;
-  //         }
-  //         return 0;
-  //       });
-  //       break;
-  //   }
-  //   console.log(result);
-  //   // this.renderMain(result);
-  // };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   renderMain(_data: Array<ProductItemData> = productsData) {
     const catalogPage: HTMLElement = document.createElement("section");
     catalogPage.className = "catalog-page";
@@ -69,7 +41,13 @@ class MainPage extends Page {
     const catalogGrid: HTMLDivElement = document.createElement("div");
     catalogGrid.className = "catalog-grid container";
     catalogGrid.append(this.filter.render());
-    catalogGrid.append(this.catalog.render(_data));
+
+    const section: HTMLElement = document.createElement("section");
+
+    section.append(this.sort.render());
+    section.append(this.catalog.render(_data));
+
+    catalogGrid.append(section);
     catalogPage.append(catalogGrid);
 
     this.container.append(catalogPage);
