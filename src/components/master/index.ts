@@ -1,7 +1,7 @@
 // import Page from "../core/templates/page";
 import Page from "../templates/page";
-// import Filter from "./Filter";
-import Filter from "./filter";
+import Filter from "./Filter";
+// import Filter from "./filter";
 import Catalog from "./catalog";
 import Sort from "./sort";
 import productsData from "../data";
@@ -57,6 +57,7 @@ class MainPage extends Page {
     this.container.append(catalogPage);
   }
   afterRender() {
+    //PRICE
     const sortPrice: HTMLElement | null = document.querySelector(
       '.sort-button[name="price"]'
     );
@@ -68,6 +69,46 @@ class MainPage extends Page {
           return -1;
         }
         if (Number(a.price) < Number(b.price)) {
+          return 1;
+        }
+        return 0;
+      });
+      console.log(result);
+      this.reRender(result);
+    });
+
+    //RATING
+    const sortRating: HTMLElement | null = document.querySelector(
+      '.sort-button[name="rating"]'
+    );
+    sortRating?.addEventListener("click", (el) => {
+      console.log(el.target);
+      const result: Array<ProductItemData> = this._data;
+      result.sort((a: ProductItemData, b: ProductItemData) => {
+        if (Number(a.rating) > Number(b.rating)) {
+          return -1;
+        }
+        if (Number(a.rating) < Number(b.rating)) {
+          return 1;
+        }
+        return 0;
+      });
+      console.log(result);
+      this.reRender(result);
+    });
+
+    //DISCOUNT
+    const sortDiscount: HTMLElement | null = document.querySelector(
+      '.sort-button[name="discount"]'
+    );
+    sortDiscount?.addEventListener("click", (el) => {
+      console.log(el.target);
+      const result: Array<ProductItemData> = this._data;
+      result.sort((a: ProductItemData, b: ProductItemData) => {
+        if (Number(a.discountPercentage) > Number(b.discountPercentage)) {
+          return -1;
+        }
+        if (Number(a.discountPercentage) < Number(b.discountPercentage)) {
           return 1;
         }
         return 0;
