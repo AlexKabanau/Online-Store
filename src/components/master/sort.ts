@@ -1,6 +1,6 @@
 import Components from "../Components";
 import { ProductItemData } from "../../types";
-import handlers from "./handlers";
+// import handlers from "./handlers";
 
 class Sort extends Components {
   constructor(
@@ -30,25 +30,25 @@ class Sort extends Components {
           button.className = "sort-button sort-type-button";
           button.name = "price";
           button.innerText = "price";
-          button.onclick = function (el) {
-            handlers.click(el.target as HTMLButtonElement);
-          };
+          // button.onclick = function (el) {
+          //   handlers.click(el.target as HTMLButtonElement);
+          // };
           break;
         case 1:
           button.className = "sort-button sort-type-button";
           button.name = "rating";
           button.innerText = "rating";
-          button.onclick = function (el) {
-            handlers.click(el.target as HTMLButtonElement);
-          };
+          // button.onclick = function (el) {
+          //   handlers.click(el.target as HTMLButtonElement);
+          // };
           break;
         case 2:
           button.className = "sort-button sort-type-button";
           button.name = "discount";
           button.innerText = "discount";
-          button.onclick = function (el) {
-            handlers.click(el.target as HTMLButtonElement);
-          };
+          // button.onclick = function (el) {
+          //   handlers.click(el.target as HTMLButtonElement);
+          // };
           break;
         case 3:
           button.className = "sort-button sort-dir-button";

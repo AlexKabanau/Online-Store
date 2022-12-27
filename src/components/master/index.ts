@@ -46,6 +46,7 @@ class MainPage extends Page {
     catalogGrid.append(this.filter.render());
 
     const section: HTMLElement = document.createElement("section");
+    section.className = "forRender";
 
     section.append(this.sort.render());
     section.append(this.catalog.render(_data));
@@ -55,9 +56,43 @@ class MainPage extends Page {
 
     this.container.append(catalogPage);
   }
+  afterRender() {
+    const sortPrice: HTMLElement | null = document.querySelector(
+      '.sort-button[name="price"]'
+    );
+    sortPrice?.addEventListener("click", (el) => {
+      console.log(el.target);
+      const result: Array<ProductItemData> = this._data;
+      result.sort((a: ProductItemData, b: ProductItemData) => {
+        if (Number(a.price) > Number(b.price)) {
+          return -1;
+        }
+        if (Number(a.price) < Number(b.price)) {
+          return 1;
+        }
+        return 0;
+      });
+      console.log(result);
+      this.reRender(result);
+    });
+  }
+  reRender(arr: Array<ProductItemData>) {
+    const section: HTMLElement | null = document.querySelector(".forRender");
+    const productList: HTMLElement | null = document.querySelector(
+      ".product-list"
+    );
+    if (productList) {
+      productList.innerHTML = "";
+    }
+    // console.log(productList);
+    section?.append(this.catalog.render(arr));
+  }
 
   render() {
     this.renderMain(this._data);
+    setTimeout(() => {
+      this.afterRender();
+    }, 0);
     return this.container;
   }
 }
