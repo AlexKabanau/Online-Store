@@ -3,17 +3,30 @@ import Components from "../Components";
 import { TCards } from "../../types";
 import CardProduct from "../master/cardProduct";
 
+let arr: number[];
+
 class Catalog {
-  private cardProduct(): CardProduct;
+  protected container: HTMLElement;
+  cardProduct: CardProduct;
+
+  orderCards() {
+    arr = [];
+    while(arr.length < 6) {
+        let number = Math.floor(Math.random()*7);
+        if(!arr.includes(number) && number !== 0) {
+            arr.push(number)
+        }
+    }
+  }
+
   constructor(
-    /*tagName: string,
-    className: string,
-    id: string,
-    data: Array<ProductItemData>,
-    this.cardProduct = new CardProduct*/) {
+    tageName: string,
+    //this.cardProduct = new CardProduct()
+    ) {
   }
 
   renderSort() {
+    this.container = document.createElement(tageName);
     const sort: HTMLElement = document.createElement("div");
     sort.className = "sort";
 
