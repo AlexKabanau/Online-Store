@@ -1,5 +1,5 @@
-import { ProductItemData } from "../types/index";
-const productsData: Array<ProductItemData> = [
+import { TCards } from "../types/index";
+const productsData: TCards = [
   {
     id: 1,
     title: "iPhone 9",

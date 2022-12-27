@@ -1,4 +1,4 @@
-interface ProductItemData {
+export interface Card {
   id: number;
   title: string;
   description: string;
@@ -11,6 +11,9 @@ interface ProductItemData {
   thumbnail: string;
   images: Array<string>;
 }
-type CallBackType<T> = (data: T) => void;
+ 
+//type CallBackType<T> = (data: T) => void;
+type TCards = Card[];
+type TCallBack = (data: TCards) => void;
 
-export { ProductItemData, CallBackType };
+export { TCards, TCallBack };

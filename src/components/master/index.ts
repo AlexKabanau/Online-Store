@@ -3,7 +3,7 @@ import Page from "../templates/page";
 import Filter from "./Filter";
 import Catalog from "./catalog";
 import productsData from "../data";
-// import Components from "../Components";
+import Components from "../Components";
 
 class MainPage extends Page {
   filter: Filter;
