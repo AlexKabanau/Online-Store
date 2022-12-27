@@ -6,9 +6,6 @@ import CardProduct from "../master/cardProduct";
 let arr: number[];
 
 class Catalog {
-  protected container: HTMLElement;
-  cardProduct: CardProduct;
-
   orderCards() {
     arr = [];
     while(arr.length < 6) {
@@ -18,10 +15,11 @@ class Catalog {
         }
     }
   }
+  console.log(arr);
 
   constructor(
     tageName: string,
-    //this.cardProduct = new CardProduct()
+    //this.cardProduct = new CardProduct;
     ) {
   }
 
@@ -85,7 +83,8 @@ class Catalog {
     
     const productList: HTMLElement = document.createElement("ul");
     productList.className = "product-list";
-    productList.append(this.rendercardProduct.render());
+    arr.forEach
+    productList.append(createCardProduct(1));
 
     catalogWrapper.append(productList);
     this.container.append(catalogWrapper);
