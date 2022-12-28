@@ -558,18 +558,10 @@ class MainPage extends Page {
   }
 
   render() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    this.renderMain();
-=======
-    // this.renderMain();
->>>>>>> 2609e31 (add: try to add catalog page)
-=======
     this.renderMain(this._data);
     setTimeout(() => {
       this.afterRender();
     }, 0);
->>>>>>> 8da8b86 (add: add id for item)
     return this.container;
   }
 }
