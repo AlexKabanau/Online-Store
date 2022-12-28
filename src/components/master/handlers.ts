@@ -47,7 +47,7 @@ const handlers = {
             });
             break;
         }
-        console.log(result);
+        // console.log(result);
         break;
       case false:
         break;
@@ -58,16 +58,16 @@ const handlers = {
     // console.log(_el instanceof HTMLInputElement);
     const propArr: Array<string> = [];
     propArr.push(_el.id.split("").splice(15).join(""));
-    console.log(propArr);
+    // console.log(propArr);
     //arr.filter((item) => item > 0);
-    const result: Array<ProductItemData> = productsData;
+    // const result: Array<ProductItemData> = productsData;
     // for (item in propArr) {
     //   if ( === `{$item}`) {}
     // }
     // if () {}
-    const answer = result.filter((item) => item.brand === `${_el.name}`);
-    console.log(answer);
-    document.write("<b>Привет из JS</b>");
+    // const answer = result.filter((item) => item.brand === `${_el.name}`);
+    // console.log(answer);
+    // document.write("<b>Привет из JS</b>");
   },
 };
 

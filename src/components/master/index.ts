@@ -72,8 +72,8 @@ class MainPage extends Page {
     const sortPriceDown: HTMLElement | null = document.querySelector(
       '.sort-button[name="price_down"]'
     );
-    sortPriceDown?.addEventListener("click", (el) => {
-      console.log(el.target);
+    sortPriceDown?.addEventListener("click", () => {
+      // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.price) > Number(b.price)) {
           return -1;
@@ -83,15 +83,15 @@ class MainPage extends Page {
         }
         return 0;
       });
-      console.log(result);
+      // console.log(result);
       this.reRender(result);
     });
 
     const sortPriceUp: HTMLElement | null = document.querySelector(
       '.sort-button[name="price_up"]'
     );
-    sortPriceUp?.addEventListener("click", (el) => {
-      console.log(el.target);
+    sortPriceUp?.addEventListener("click", () => {
+      // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.price) > Number(b.price)) {
           return 1;
@@ -101,7 +101,7 @@ class MainPage extends Page {
         }
         return 0;
       });
-      console.log(result);
+      // console.log(result);
       this.reRender(result);
     });
 
@@ -109,8 +109,8 @@ class MainPage extends Page {
     const sortRatingDown: HTMLElement | null = document.querySelector(
       '.sort-button[name="rating_down"]'
     );
-    sortRatingDown?.addEventListener("click", (el) => {
-      console.log(el.target);
+    sortRatingDown?.addEventListener("click", () => {
+      // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.rating) > Number(b.rating)) {
           return -1;
@@ -120,15 +120,15 @@ class MainPage extends Page {
         }
         return 0;
       });
-      console.log(result);
+      // console.log(result);
       this.reRender(result);
     });
 
     const sortRatingUp: HTMLElement | null = document.querySelector(
       '.sort-button[name="rating_up"]'
     );
-    sortRatingUp?.addEventListener("click", (el) => {
-      console.log(el.target);
+    sortRatingUp?.addEventListener("click", () => {
+      // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.rating) > Number(b.rating)) {
           return 1;
@@ -138,7 +138,7 @@ class MainPage extends Page {
         }
         return 0;
       });
-      console.log(result);
+      // console.log(result);
       this.reRender(result);
     });
 
@@ -146,8 +146,8 @@ class MainPage extends Page {
     const sortDiscountDown: HTMLElement | null = document.querySelector(
       '.sort-button[name="discount_down"]'
     );
-    sortDiscountDown?.addEventListener("click", (el) => {
-      console.log(el.target);
+    sortDiscountDown?.addEventListener("click", () => {
+      // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.discountPercentage) > Number(b.discountPercentage)) {
           return -1;
@@ -157,15 +157,15 @@ class MainPage extends Page {
         }
         return 0;
       });
-      console.log(result);
+      // console.log(result);
       this.reRender(result);
     });
 
     const sortDiscountUp: HTMLElement | null = document.querySelector(
       '.sort-button[name="discount_up"]'
     );
-    sortDiscountUp?.addEventListener("click", (el) => {
-      console.log(el.target);
+    sortDiscountUp?.addEventListener("click", () => {
+      // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.discountPercentage) > Number(b.discountPercentage)) {
           return 1;
@@ -175,7 +175,7 @@ class MainPage extends Page {
         }
         return 0;
       });
-      console.log(result);
+      // console.log(result);
       this.reRender(result);
     });
 
@@ -192,7 +192,7 @@ class MainPage extends Page {
         switch (input.type) {
           //CHECKBOX
           case "checkbox":
-            console.log("checkbox");
+            // console.log("checkbox");
             // eslint-disable-next-line no-case-declarations
             const checkboxes: NodeListOf<HTMLInputElement> = form.querySelectorAll(
               ".filter-checkbox"
@@ -206,7 +206,7 @@ class MainPage extends Page {
                 // this._searchProp.brandOptions.push(checkboxes[i].name);
               }
             }
-            console.log(arrCheckbox);
+            // console.log(arrCheckbox);
             // if (arrCheckbox.length > 0) {
             //   result = this._data.filter((el) =>
             //     arrCheckbox.includes(el.brand)
@@ -219,14 +219,14 @@ class MainPage extends Page {
             break;
           //RADIO
           case "radio":
-            console.log("radio");
-            console.log(input.id.split("").splice(13).join(""));
-            console.log(result);
+            // console.log("radio");
+            // console.log(input.id.split("").splice(13).join(""));
+            // console.log(result);
             this._searchProp.propOptions = input.id
               .split("")
               .splice(13)
               .join("");
-            console.log(this._searchProp.propOptions);
+            // console.log(this._searchProp.propOptions);
             // result = result.filter(
             //   (el) => el.category === input.id.split("").splice(13).join("")
             // );
@@ -262,7 +262,7 @@ class MainPage extends Page {
       if (this._searchProp.brandOptions.length > 0) {
         if (this._searchProp.propOptions.length > 0) {
           //brand and prop
-          console.log("brand and prop");
+          // console.log("brand and prop");
           result = this._data.filter((element) => {
             if (
               element.price >= this._searchProp.minPrice &&
@@ -279,7 +279,7 @@ class MainPage extends Page {
           });
         } else {
           result = this._data.filter((element) => {
-            console.log("brand");
+            // console.log("brand");
             //only brand
             if (
               element.price >= this._searchProp.minPrice &&
@@ -296,7 +296,7 @@ class MainPage extends Page {
         }
       } else if (this._searchProp.propOptions.length > 0) {
         //only prop
-        console.log("prop");
+        // console.log("prop");
         result = this._data.filter((element) => {
           if (
             element.price >= this._searchProp.minPrice &&
@@ -312,7 +312,7 @@ class MainPage extends Page {
         });
       } else {
         //all
-        console.log("all");
+        // console.log("all");
         result = this._data.filter((element) => {
           if (
             element.price >= this._searchProp.minPrice &&
