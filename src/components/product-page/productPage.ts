@@ -13,7 +13,8 @@ class ProductCardPage {
     this.container = document.createElement(tageName);
     this.container.classList.add(className);
     this.id = id;
-    n = Number(id.slice(4).slice(-2));
+    console.log(id);
+    n = Number(id.slice(4, -2));
     console.log(n);
   }
 
@@ -72,7 +73,7 @@ class ProductCardPage {
     productImages.append(imagesSlider);
     const productSale: HTMLElement = document.createElement("div");
     productSale.className = "images-product__sale";
-    productSale.innerText = `${productsData[n].discountPercentage}`;
+    productSale.innerText = `${productsData[n].discountPercentage} %`;
     imagesSlider.append(productSale);
     const imageMainSlider: HTMLElement = document.createElement("div");
     imageMainSlider.className = "images-product__mainslide";
@@ -88,13 +89,28 @@ class ProductCardPage {
     const imagesSliderCatalog: HTMLElement = document.createElement("div");
     imagesSliderCatalog.className = "images-product__catalog";
     productImages.append(imagesSliderCatalog);
-    /*imagesCatalog.forEach((elem) => {
+    const imagesCatalog = [...productsData[n].images].slice(0, -1);
+    console.log(imagesCatalog);
+    for (let i = 0; i < imagesCatalog.length; i++) {
       const imageItemWrapper: HTMLElement = document.createElement("div");
       imageItemWrapper.className = "images-product__wrapper";
       imagesSliderCatalog.append(imageItemWrapper);
       const imageItem: HTMLImageElement = document.createElement("img");
       imageItem.classList.add("images-product__item");
-      imageItem.src = `${productsData[n].images[elem]}`;
+      imageItem.src = `${imagesCatalog[i]}`;
+      console.log(imagesCatalog[i]);
+      imageItem.alt = "photo";
+      imageItemWrapper.append(imageItem);
+    }
+    /*imagesCatalog.forEach((el: string) => {
+      let elem = Number(el);
+      const imageItemWrapper: HTMLElement = document.createElement("div");
+      imageItemWrapper.className = "images-product__wrapper";
+      imagesSliderCatalog.append(imageItemWrapper);
+      const imageItem: HTMLImageElement = document.createElement("img");
+      imageItem.classList.add("images-product__item");
+      imageItem.src = `${imagesCatalog[elem]}`;
+      console.log(imagesCatalog[elem]);
       imageItem.alt = "photo";
       imageItemWrapper.append(imageItem);
     });*/
@@ -106,7 +122,7 @@ class ProductCardPage {
     bodyProduct.append(bodyTopProduct);
     const bodyProductStock: HTMLElement = document.createElement("div");
     bodyProductStock.className = "body-product__stock";
-    productSale.innerText = "In stock";
+    bodyProductStock.innerText = "In stock";
     bodyTopProduct.append(bodyProductStock);
     const bodyProductPrice: HTMLElement = document.createElement("div");
     bodyProductPrice.className = "body-product__price";
@@ -115,11 +131,11 @@ class ProductCardPage {
     productPriceOld.className = "product-price__old";
     productPriceOld.innerText = `${Math.round(
       (100 * productsData[n].price) / (100 - productsData[n].discountPercentage)
-    )}`;
+    )} $`;
     bodyProductPrice.append(productPriceOld);
     const productPriceCur: HTMLElement = document.createElement("div");
     productPriceCur.className = "product-price";
-    productPriceCur.innerText = `${productsData[n].price}`;
+    productPriceCur.innerText = `${productsData[n].price} $`;
     bodyProductPrice.append(productPriceCur);
     const bodyBottomProduct: HTMLElement = document.createElement("div");
     bodyBottomProduct.className = "body-product__bottom";

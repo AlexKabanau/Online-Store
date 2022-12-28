@@ -12,7 +12,7 @@ class ProductPage extends Page {
     this.productCardPage = new ProductCardPage(
       "div",
       "prodpage-container",
-      "item1Id"
+      "item3Id"
     );
   }
 
