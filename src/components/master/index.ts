@@ -29,13 +29,12 @@ class MainPage extends Page {
     super(id);
     this._data = productsData.sort(() => Math.random() - 0.5);
     this.filter = new Filter("section", "filter", "filter");
-    this.sort = new Sort("div", "sort", "sort", productsData, handlers);
+    this.sort = new Sort("div", "sort", "sort", productsData);
     this.catalog = new Catalog(
       "ul",
       "product-list",
       "product-list",
-      productsData,
-      handlers
+      productsData
     );
     this._searchProp = {
       brandOptions: [],

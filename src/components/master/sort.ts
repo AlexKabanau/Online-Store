@@ -7,11 +7,9 @@ class Sort extends Components {
     tagName: string,
     className: string,
     id: string,
-    data: Array<ProductItemData>,
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    handlers: Object
+    data: Array<ProductItemData>
   ) {
-    super(tagName, className, id, data, handlers);
+    super(tagName, className, id, data);
   }
 
   renderSort() {
