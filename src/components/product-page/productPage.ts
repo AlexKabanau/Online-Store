@@ -1,245 +1,176 @@
-//import productsData from "../data";
-import ICreateElement from "../templates/createElement";
+import productsData from "../data";
+//import ICreateElement from "../templates/createElement";
 
 /*function changeProduct(event) {
 
 }*/
-const imagesAllCatalog: string[] = [
-  "https://i.dummyjson.com/data/products/4/1.jpg",
-  "https://i.dummyjson.com/data/products/4/2.jpg",
-  "https://i.dummyjson.com/data/products/4/3.jpg",
-  "https://i.dummyjson.com/data/products/4/4.jpg",
-  "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-];
-//let imagesCatalog: string[] = imagesAllCatalog.splice(-1, 1);
-const imagesCatalog: string[] = [...imagesAllCatalog];
-imagesCatalog.pop();
-class ProductCardPage extends ICreateElement {
-  constructor(
-    tageName: string,
-    className: string,
-    id: string,
-    dataAttrName?: string,
-    dataAttrValue?: string,
-    textContent?: string
-  ) {
-    super(tageName, className, id, dataAttrName, dataAttrValue, textContent);
+let n: number;
+class ProductCardPage {
+  container: HTMLElement;
+  id: string;
+
+  constructor(tageName: string, className: string, id: string) {
+    this.container = document.createElement(tageName);
+    this.container.classList.add(className);
+    this.id = id;
+    n = Number(id.slice(4).slice(-2));
+    console.log(n);
   }
 
   renderBreadcrumbs() {
     const breadcrumbs = document.createElement("nav");
-    breadcrumbs.classList.add("prodpage__breadcrumbs");
-    const breadcrumbsList: HTMLElement = this.iCreateChildElement(
-      "ul",
-      "breadcrumbs__list",
-      breadcrumbs
-    );
-    const liHome = this.iCreateChildElement(
-      "ii",
-      "breadcrumbs__li",
-      breadcrumbsList
-    );
+    breadcrumbs.className = "prodpage__breadcrumbs";
+    const breadcrumbsList: HTMLElement = document.createElement("ul");
+    breadcrumbsList.className = "breadcrumbs__list";
+    breadcrumbs.append(breadcrumbsList);
+    const liHome: HTMLLIElement = document.createElement("li");
+    liHome.className = "breadcrumbs__li";
+    breadcrumbsList.append(liHome);
     const itemHome: HTMLAnchorElement = document.createElement("a");
     itemHome.classList.add("breadcrumbs__home");
     itemHome.href = "index.html";
     liHome.append(itemHome);
-    const liCategory = this.iCreateChildElement(
-      "li",
-      "breadcrumbs__li",
-      breadcrumbsList
-    );
-    const itemCategory: HTMLSpanElement = this.iCreateTextElement(
-      "span",
-      "breadcrumbs__item item__category",
-      "category"
-    );
+    const liCategory: HTMLLIElement = document.createElement("li");
+    liCategory.className = "breadcrumbs__li";
+    breadcrumbsList.append(liCategory);
+    const itemCategory: HTMLSpanElement = document.createElement("span");
+    itemCategory.className = "breadcrumbs__item item__category";
+    itemCategory.innerText = `${productsData[n].category}`;
     liCategory.append(itemCategory);
-    const liBrand = this.iCreateChildElement(
-      "li",
-      "breadcrumbs__li",
-      breadcrumbsList
-    );
-    const itemBrand: HTMLSpanElement = this.iCreateTextElement(
-      "span",
-      "breadcrumbs__item item__brand",
-      "brand"
-    );
+    const liBrand: HTMLLIElement = document.createElement("li");
+    liBrand.className = "breadcrumbs__li";
+    breadcrumbsList.append(liBrand);
+    const itemBrand: HTMLSpanElement = document.createElement("span");
+    itemBrand.className = "breadcrumbs__item item__brand";
+    itemBrand.innerText = `${productsData[n].brand}`;
     liBrand.append(itemBrand);
-    const liTitle = this.iCreateChildElement(
-      "li",
-      "breadcrumbs__li",
-      breadcrumbsList
-    );
-    const itemTitle: HTMLSpanElement = this.iCreateTextElement(
-      "span",
-      "breadcrumbs__item item__title",
-      "title"
-    );
+    const liTitle: HTMLLIElement = document.createElement("li");
+    liTitle.className = "breadcrumbs__li";
+    breadcrumbsList.append(liTitle);
+    const itemTitle: HTMLSpanElement = document.createElement("span");
+    itemTitle.className = "breadcrumbs__item item__title";
+    itemTitle.innerText = `${productsData[n].title}`;
     liTitle.append(itemTitle);
     this.container.append(breadcrumbs);
   }
 
   renderProductSection() {
     const productSection = document.createElement("section");
-    productSection.classList.add("product");
-    const titleProduct = this.iCreateTextElement(
-      "h2",
-      "product__title",
-      "iPhone 9"
-    );
+    productSection.className = "product";
+    const titleProduct: HTMLHeadingElement = document.createElement("h2");
+    titleProduct.className = "product__title";
+    titleProduct.innerText = `${productsData[n].title}`;
     productSection.append(titleProduct);
-    const productContainer = this.iCreateChildElement(
-      "div",
-      "product-container",
-      productSection
-    );
-    const productImages = this.iCreateChildElement(
-      "div",
-      "product__images images-product",
-      productContainer
-    );
-    const imagesSlider = this.iCreateChildElement(
-      "div",
-      "images-product__slider",
-      productImages
-    );
-    const productSale = this.iCreateTextElement(
-      "div",
-      "images-product__sale",
-      "-15%"
-    );
+    const productContainer: HTMLElement = document.createElement("div");
+    productContainer.className = "product-container";
+    productSection.append(productContainer);
+    const productImages: HTMLElement = document.createElement("div");
+    productImages.className = "product__images images-product";
+    productContainer.append(productImages);
+    const imagesSlider: HTMLElement = document.createElement("div");
+    imagesSlider.className = "images-product__slider";
+    productImages.append(imagesSlider);
+    const productSale: HTMLElement = document.createElement("div");
+    productSale.className = "images-product__sale";
+    productSale.innerText = `${productsData[n].discountPercentage}`;
     imagesSlider.append(productSale);
-    const imageMainSlider = this.iCreateChildElement(
-      "div",
-      "images-product__mainslide",
-      imagesSlider
-    );
+    const imageMainSlider: HTMLElement = document.createElement("div");
+    imageMainSlider.className = "images-product__mainslide";
+    imagesSlider.append(imageMainSlider);
+
     const imageMain: HTMLImageElement = document.createElement("img");
     imageMain.classList.add("mainslide__img");
-    imageMain.src = `${imagesAllCatalog[imagesAllCatalog.length - 1]}`;
+    imageMain.src = `${
+      productsData[n].images[productsData[n].images.length - 1]
+    }`;
     imageMain.alt = "photo";
     imageMainSlider.append(imageMain);
-    const imagesSliderCatalog = this.iCreateChildElement(
-      "div",
-      "images-product__catalog",
-      productImages
-    );
-    imagesCatalog.forEach((elem) => {
-      const imageItemWrapper = this.iCreateChildElement(
-        "div",
-        "images-product__wrapper",
-        imagesSliderCatalog
-      );
+    const imagesSliderCatalog: HTMLElement = document.createElement("div");
+    imagesSliderCatalog.className = "images-product__catalog";
+    productImages.append(imagesSliderCatalog);
+    /*imagesCatalog.forEach((elem) => {
+      const imageItemWrapper: HTMLElement = document.createElement("div");
+      imageItemWrapper.className = "images-product__wrapper";
+      imagesSliderCatalog.append(imageItemWrapper);
       const imageItem: HTMLImageElement = document.createElement("img");
       imageItem.classList.add("images-product__item");
-      imageItem.src = elem;
+      imageItem.src = `${productsData[n].images[elem]}`;
       imageItem.alt = "photo";
       imageItemWrapper.append(imageItem);
-    });
-    const bodyProduct = this.iCreateChildElement(
-      "div",
-      "product__to-card body-product",
-      productContainer
-    );
-    const bodyTopProduct = this.iCreateChildElement(
-      "div",
-      "body-product__top",
-      bodyProduct
-    );
-    const bodyProductStock = this.iCreateTextElement(
-      "div",
-      "body-product__stock",
-      "In stock"
-    );
+    });*/
+    const bodyProduct: HTMLElement = document.createElement("div");
+    bodyProduct.className = "product__to-card body-product";
+    productContainer.append(bodyProduct);
+    const bodyTopProduct: HTMLElement = document.createElement("div");
+    bodyTopProduct.className = "body-product__top";
+    bodyProduct.append(bodyTopProduct);
+    const bodyProductStock: HTMLElement = document.createElement("div");
+    bodyProductStock.className = "body-product__stock";
+    productSale.innerText = "In stock";
     bodyTopProduct.append(bodyProductStock);
-    const bodyProductPrice = this.iCreateChildElement(
-      "div",
-      "body-product__price",
-      bodyProduct
-    );
-    const productPriceOld = this.iCreateTextElement(
-      "div",
-      "product-price__old",
-      "645 $"
-    );
+    const bodyProductPrice: HTMLElement = document.createElement("div");
+    bodyProductPrice.className = "body-product__price";
+    bodyProduct.append(bodyProductPrice);
+    const productPriceOld: HTMLElement = document.createElement("div");
+    productPriceOld.className = "product-price__old";
+    productPriceOld.innerText = `${Math.round(
+      (100 * productsData[n].price) / (100 - productsData[n].discountPercentage)
+    )}`;
     bodyProductPrice.append(productPriceOld);
-    const productPriceCur = this.iCreateTextElement(
-      "div",
-      "product-price",
-      "549 $"
-    );
+    const productPriceCur: HTMLElement = document.createElement("div");
+    productPriceCur.className = "product-price";
+    productPriceCur.innerText = `${productsData[n].price}`;
     bodyProductPrice.append(productPriceCur);
-    const bodyBottomProduct = this.iCreateChildElement(
-      "div",
-      "body-product__bottom",
-      bodyProduct
-    );
-    const btnProductToCart = this.iCreateTextElement(
-      "button",
-      "button product-to-cart",
-      "Add to cart"
-    );
+    const bodyBottomProduct: HTMLElement = document.createElement("div");
+    bodyBottomProduct.className = "body-product__bottom";
+    bodyProduct.append(bodyBottomProduct);
+    const btnProductToCart: HTMLElement = document.createElement("button");
+    btnProductToCart.className = "button product-to-cart";
+    btnProductToCart.innerText = "Add to cart";
     bodyBottomProduct.append(btnProductToCart);
     const btnProductBuyNow: HTMLAnchorElement = document.createElement("a");
     btnProductBuyNow.className = "button product-buy-now";
     btnProductBuyNow.href = "#";
     btnProductBuyNow.innerText = "Buy now";
     bodyBottomProduct.append(btnProductBuyNow);
-    const productInfo = this.iCreateChildElement(
-      "div",
-      "product__info",
-      productContainer
-    );
-    const productInfoBrand = this.iCreateChildElement(
-      "div",
-      "product-info__item",
-      productInfo
-    );
-    const titleInfoBrand = this.iCreateTextElement(
-      "h3",
-      "title-info__brand",
-      "Brand:"
-    );
-    productInfoBrand.append(titleInfoBrand);
-    const valueInfoBrand = this.iCreateTextElement(
-      "p",
-      "value-info__brand",
-      "Apple"
-    );
+    const productInfo: HTMLElement = document.createElement("div");
+    productInfo.className = "product__info";
+    productContainer.append(productInfo);
+    const productInfoBrand: HTMLElement = document.createElement("div");
+    productInfoBrand.className = "product-info__item";
+    productInfo.append(productInfoBrand);
+    const titleInfoBrand: HTMLHeadingElement = document.createElement("h3");
+    titleInfoBrand.className = "title-info__brand";
+    titleInfoBrand.innerText = "Brand:";
+    const valueInfoBrand: HTMLParagraphElement = document.createElement("p");
+    valueInfoBrand.className = "value-info__brand";
+    valueInfoBrand.innerText = `${productsData[n].brand}`;
     productInfoBrand.append(valueInfoBrand);
-    const productInfoRating = this.iCreateChildElement(
-      "div",
-      "product-info__item",
-      productInfo
-    );
-    const titleInfoRating = this.iCreateTextElement(
-      "h3",
-      "title-info__rating",
-      "Rating:"
-    );
+    const productInfoRating: HTMLElement = document.createElement("div");
+    productInfoRating.className = "product-info__item";
+    productInfo.append(productInfoRating);
+    const titleInfoRating: HTMLHeadingElement = document.createElement("h3");
+    titleInfoRating.className = "title-info__rating";
+    titleInfoRating.innerText = "Rating:";
     productInfoRating.append(titleInfoRating);
-    const valueInfoRating = this.iCreateTextElement(
-      "p",
-      "value-info__rating",
-      "4.69"
-    );
+    const valueInfoRating: HTMLParagraphElement = document.createElement("p");
+    valueInfoRating.className = "value-info__rating";
+    valueInfoRating.innerText = `${productsData[n].rating}`;
     productInfoRating.append(valueInfoRating);
-    const productInfoDescription = this.iCreateChildElement(
-      "div",
-      "product-info__item",
-      productInfo
+    const productInfoDescription: HTMLElement = document.createElement("div");
+    productInfoDescription.className = "product-info__item";
+    productInfo.append(productInfoDescription);
+    const titleInfoDescription: HTMLHeadingElement = document.createElement(
+      "h3"
     );
-    const titleInfoDescription = this.iCreateTextElement(
-      "h3",
-      "title-info__description",
-      "Description:"
-    );
+    titleInfoDescription.className = "title-info__description";
+    titleInfoDescription.innerText = "Description:";
     productInfoDescription.append(titleInfoDescription);
-    const valueInfoDescription = this.iCreateTextElement(
-      "p",
-      "value-info__description",
-      "An apple mobile which is nothing like apple"
+    const valueInfoDescription: HTMLParagraphElement = document.createElement(
+      "p"
     );
+    valueInfoDescription.className = "value-info__description";
+    valueInfoDescription.innerText = `${productsData[n].description}`;
     productInfoDescription.append(valueInfoDescription);
 
     this.container.append(productSection);
