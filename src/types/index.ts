@@ -12,5 +12,6 @@ interface ProductItemData {
   images: Array<string>;
 }
 type CallBackType<T> = (data: T) => void;
+type TProductsItemData = ProductItemData[];
 
-export { ProductItemData, CallBackType };
+export { ProductItemData, CallBackType, TProductsItemData };
