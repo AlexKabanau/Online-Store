@@ -1,31 +1,27 @@
 import productsData from "../data";
 import Components from "../Components";
+// import handlers from "./handlers";
 
 class Filter extends Components {
   constructor(tagName: string, className: string, id: string) {
     super(tagName, className, id);
   }
   renderFilter() {
-    const filter: HTMLElement = document.createElement("section");
-    filter.className = "filter";
-
     const title: HTMLHeadingElement = document.createElement("h2");
     title.innerText = "Filter:";
-    filter.append(title);
+    this.container.append(title);
 
     const form: HTMLFormElement = document.createElement("form");
     form.action = "";
 
     /* range controls */
-    // const priceFilter: HTMLFieldSetElement = document.createElement("fieldset");
-    // priceFilter.className = "price-filter";
-
-    // const priceLegend: HTMLLegendElement = document.createElement("legend");
-    // priceLegend.innerText = "Price";
-    // priceFilter.append(priceLegend);
-
     /* dual range */
     //PRICE
+    const pricesArray: Array<number> = productsData.map((el) =>
+      Number(el.price)
+    );
+    const minPrice: number = Math.min(...pricesArray);
+    const maxPrice: number = Math.max(...pricesArray);
     const rangePriceContainer: HTMLFieldSetElement = document.createElement(
       "fieldset"
     );
@@ -37,29 +33,26 @@ class Filter extends Components {
 
     const sliderPriceControl: HTMLDivElement = document.createElement("div");
     sliderPriceControl.className = "sliders_control";
+    sliderPriceControl.innerHTML = `<input id="fromPriceSlider" type="range" value="${minPrice}" min="${minPrice}" max="${maxPrice}"/>
+    <input id="toPriceSlider" type="range" value="${maxPrice}" min="${minPrice}" max="${maxPrice}"/>`;
 
-    const inputMinPrice: HTMLInputElement = document.createElement("input");
-    inputMinPrice.id = "fromPriceSlider";
-    inputMinPrice.type = "range";
-    inputMinPrice.value = "0";
-    inputMinPrice.min = "0";
-    inputMinPrice.max = "100";
-    sliderPriceControl.append(inputMinPrice);
+    // const inputMinPrice: HTMLInputElement = document.createElement("input");
+    // inputMinPrice.id = "fromPriceSlider";
+    // inputMinPrice.type = "range";
+    // inputMinPrice.value = "280";
+    // inputMinPrice.min = "280";
+    // inputMinPrice.max = "1749";
+    // sliderPriceControl.append(inputMinPrice);
 
-    const inputMaxPrice: HTMLInputElement = document.createElement("input");
-    inputMaxPrice.id = "toPriceSlider";
-    inputMaxPrice.type = "range";
-    inputMaxPrice.value = "100";
-    inputMaxPrice.min = "0";
-    inputMaxPrice.max = "100";
-    sliderPriceControl.append(inputMaxPrice);
+    // const inputMaxPrice: HTMLInputElement = document.createElement("input");
+    // inputMaxPrice.id = "toPriceSlider";
+    // inputMaxPrice.type = "range";
+    // inputMaxPrice.value = "1749";
+    // inputMaxPrice.min = "280";
+    // inputMaxPrice.max = "1749";
+    // sliderPriceControl.append(inputMaxPrice);
     rangePriceContainer.append(sliderPriceControl);
 
-    const pricesArray: Array<number> = productsData.map((el) =>
-      Number(el.price)
-    );
-    const minPrice: number = Math.min(...pricesArray);
-    const maxPrice: number = Math.max(...pricesArray);
     const formPriceControl: HTMLElement = document.createElement("div");
     formPriceControl.className = "form_control price-controls";
 
@@ -117,6 +110,11 @@ class Filter extends Components {
     form.append(rangePriceContainer);
 
     //STOCK
+    const stockArray: Array<number> = productsData.map((el) =>
+      Number(el.stock)
+    );
+    const minStock: number = Math.min(...stockArray);
+    const maxStock: number = Math.max(...stockArray);
 
     const rangeStockContainer: HTMLFieldSetElement = document.createElement(
       "fieldset"
@@ -129,29 +127,26 @@ class Filter extends Components {
 
     const sliderStockControl: HTMLDivElement = document.createElement("div");
     sliderStockControl.className = "sliders_control";
+    sliderStockControl.innerHTML = `<input id="fromStockSlider" type="range" value="${minStock}" min="${minStock}" max="${maxStock}"/>
+    <input id="toStockSlider" type="range" value="${maxStock}" min="${minStock}" max="${maxStock}"/>`;
 
-    const inputMinStock: HTMLInputElement = document.createElement("input");
-    inputMinStock.id = "fromStockSlider";
-    inputMinStock.type = "range";
-    inputMinStock.value = "0";
-    inputMinStock.min = "0";
-    inputMinStock.max = "100";
-    sliderStockControl.append(inputMinStock);
+    // const inputMinStock: HTMLInputElement = document.createElement("input");
+    // inputMinStock.id = "fromStockSlider";
+    // inputMinStock.type = "range";
+    // inputMinStock.value = "0";
+    // inputMinStock.min = "0";
+    // inputMinStock.max = "100";
+    // sliderStockControl.append(inputMinStock);
 
-    const inputMaxStock: HTMLInputElement = document.createElement("input");
-    inputMaxStock.id = "toStockSlider";
-    inputMaxStock.type = "range";
-    inputMaxStock.value = "100";
-    inputMaxStock.min = "0";
-    inputMaxStock.max = "100";
-    sliderStockControl.append(inputMaxStock);
+    // const inputMaxStock: HTMLInputElement = document.createElement("input");
+    // inputMaxStock.id = "toStockSlider";
+    // inputMaxStock.type = "range";
+    // inputMaxStock.value = "100";
+    // inputMaxStock.min = "0";
+    // inputMaxStock.max = "100";
+    // sliderStockControl.append(inputMaxStock);
     rangeStockContainer.append(sliderStockControl);
 
-    const stockArray: Array<number> = productsData.map((el) =>
-      Number(el.stock)
-    );
-    const minStock: number = Math.min(...stockArray);
-    const maxStock: number = Math.max(...stockArray);
     const formStockControl: HTMLElement = document.createElement("div");
     formStockControl.className = "form_control price-controls";
 
@@ -207,46 +202,6 @@ class Filter extends Components {
     rangeStockContainer.append(formStockControl);
 
     form.append(rangeStockContainer);
-    // const bar: HTMLDivElement = document.createElement("div");
-    // bar.className = "bar";
-    // bar.style.width = "79%";
-    // bar.style.marginLeft = "0%";
-    // scale.append(bar);
-
-    // const firstToggle: HTMLDivElement = document.createElement("div");
-    // firstToggle.className = "toggle";
-    // firstToggle.tabIndex = 0;
-    // firstToggle.style.left = "5%";
-    // scale.append(firstToggle);
-
-    // const secondToggle: HTMLDivElement = document.createElement("div");
-    // secondToggle.className = "toggle";
-    // secondToggle.tabIndex = 0;
-    // secondToggle.style.left = "84%";
-    // scale.append(secondToggle);
-    // rangeControls.append(scale);
-    // priceFilter.append(rangeControls);
-
-    // const priceControls: HTMLDivElement = document.createElement("div");
-    // priceControls.className = "price-controls";
-
-    // const minPrice: HTMLInputElement = document.createElement("input");
-    // minPrice.type = "text";
-    // minPrice.name = "min-price";
-    // minPrice.value = "0";
-    // priceControls.appendChild(minPrice);
-
-    // const priceControlsSpan: HTMLSpanElement = document.createElement("span");
-    // priceControlsSpan.innerText = "-";
-    // priceControls.append(priceControlsSpan);
-
-    // const maxPrice: HTMLInputElement = document.createElement("input");
-    // maxPrice.type = "text";
-    // maxPrice.name = "max-price";
-    // maxPrice.value = "30000";
-    // priceControls.appendChild(maxPrice);
-    // priceFilter.append(priceControls);
-    // form.append(priceFilter);
 
     /* checkbox */
     const producersFilter: HTMLFieldSetElement = document.createElement(
@@ -297,7 +252,7 @@ class Filter extends Components {
       const li: HTMLLIElement = document.createElement("li");
       const input: HTMLInputElement = document.createElement("input");
       input.className = "filter-radio visually-hidden";
-      input.name = "Property1";
+      input.name = "Property";
       input.type = "radio";
       input.id = `filter-radio-${propertyArray[i]}`;
       li.append(input);
@@ -316,9 +271,8 @@ class Filter extends Components {
     filterButton.className = "filter-button";
     filterButton.type = "submit";
     form.append(filterButton);
-    filter.append(form);
 
-    this.container.append(filter);
+    this.container.append(form);
   }
   render() {
     this.renderFilter();
