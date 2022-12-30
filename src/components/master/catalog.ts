@@ -16,24 +16,25 @@ class Catalog extends Components {
   renderCatalog(data: Array<ProductItemData>) {
     // const section: HTMLElement = document.createElement("section");
 
-    const title: HTMLHeadingElement = document.createElement("h2");
-    title.className = "visually-hidden";
-    title.innerText = "Catalog";
-    this.container.append(title);
+    // const title: HTMLHeadingElement = document.createElement("h2");
+    // title.className = "visually-hidden";
+    // title.innerText = "Catalog";
+    // this.container.append(title);
 
-    const productList: HTMLElement = document.createElement("ul");
-    productList.className = "product-list";
-    for (let i = 0; i < data.length; i++) {
-      const li: HTMLLIElement = document.createElement("li");
-      li.className = "product-card";
-      li.id = `${data[i].id}`;
+    if (data.length > 0) {
+      // const productList: HTMLElement = document.createElement("ul");
+      // productList.className = "product-list";
+      for (let i = 0; i < data.length; i++) {
+        const li: HTMLLIElement = document.createElement("li");
+        li.className = "product-card";
+        li.id = `${data[i].id}`;
 
-      const liTitle: HTMLHeadingElement = document.createElement("h3");
-      liTitle.innerText = data[i].title;
-      li.append(liTitle);
+        const liTitle: HTMLHeadingElement = document.createElement("h3");
+        liTitle.innerText = data[i].title;
+        li.append(liTitle);
 
-      const buttonContainer: HTMLElement = document.createElement("div");
-      buttonContainer.className = "button-container";
+        const buttonContainer: HTMLElement = document.createElement("div");
+        buttonContainer.className = "button-container";
 
       const aBuy: HTMLAnchorElement = document.createElement("a");
       //aBuy.href = "#";
@@ -48,33 +49,36 @@ class Catalog extends Components {
       buttonContainer.append(aAbout);
       li.append(buttonContainer);
 
-      const imageContainer: HTMLElement = document.createElement("div");
-      imageContainer.className = "img-container";
+        const imageContainer: HTMLElement = document.createElement("div");
+        imageContainer.className = "img-container";
 
-      const image: HTMLImageElement = document.createElement("img");
-      image.src = data[i].thumbnail;
-      image.alt = data[i].title;
-      imageContainer.append(image);
-      li.append(imageContainer);
+        const image: HTMLImageElement = document.createElement("img");
+        image.src = data[i].thumbnail;
+        image.alt = data[i].title;
+        imageContainer.append(image);
+        li.append(imageContainer);
 
-      const oldPrice: HTMLParagraphElement = document.createElement("p");
-      oldPrice.className = "old-price";
-      const priceWithoutPercent = Math.round(
-        (100 * data[i].price) / (100 - data[i].discountPercentage)
-      );
-      oldPrice.innerText = `${priceWithoutPercent} $`;
-      li.append(oldPrice);
+        const oldPrice: HTMLParagraphElement = document.createElement("p");
+        oldPrice.className = "old-price";
+        const priceWithoutPercent = Math.round(
+          (100 * data[i].price) / (100 - data[i].discountPercentage)
+        );
+        oldPrice.innerText = `${priceWithoutPercent} $`;
+        li.append(oldPrice);
 
-      const aPrice: HTMLAnchorElement = document.createElement("a");
-      aPrice.href = "";
-      aPrice.className = "price";
-      aPrice.innerText = `${data[i].price} $`;
-      li.append(aPrice);
+        const aPrice: HTMLAnchorElement = document.createElement("a");
+        aPrice.href = "";
+        aPrice.className = "price";
+        aPrice.innerText = `${data[i].price} $`;
+        li.append(aPrice);
 
-      productList.append(li);
+        this.container.append(li);
+      }
+
+      // this.container.append(productList);
+    } else {
+      this.container.innerHTML = `<p class="no-items">Извените, совпадений не найдено</p>`;
     }
-
-    this.container.append(productList);
   }
   render(data: Array<ProductItemData>) {
     this.renderCatalog(data);
