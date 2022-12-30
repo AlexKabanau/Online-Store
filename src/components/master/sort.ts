@@ -77,6 +77,13 @@ class Sort extends Components {
       sortButtonList.append(li);
     }
     this.container.append(sortButtonList);
+
+    const searchInput: HTMLInputElement = document.createElement("input");
+    searchInput.type = "search";
+    searchInput.className = "search_input";
+    searchInput.placeholder = "Search";
+
+    this.container.append(searchInput);
   }
   render() {
     this.renderSort();
