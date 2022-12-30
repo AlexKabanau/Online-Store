@@ -543,6 +543,13 @@ class MainPage extends Page {
         ${sliderColor} ${(toPosition / rangeDistance) * 100}%,
         ${sliderColor} 100%)`;
     }
+
+    const buttonReset: HTMLButtonElement | null = document.querySelector(
+      ".reset-button"
+    );
+    buttonReset?.addEventListener("click", () => {
+      this.reRender(this._data);
+    });
   }
 
   reRender(arr: Array<ProductItemData>) {
