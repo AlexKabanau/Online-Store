@@ -7,12 +7,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 20px;
 }
 .copyright__info {
   width: 50%;
   display: flex;
   justify-content: space-evenly;
 }
-.copyright img {
-  width: 120px;
+.rss-logo {
+  background-image: url(../img/rs_school_js.svg);
+  background-size: contain;
+  background-repeat: no-repeat; 
+  width: 150px;
+  height: 35px;
+}
+.rss-logo:hover {
+  background-image: url(../img/rss-hover.svg);
+}
+.copyright__info__link {
+  text-align: center;
+}
+.copyright__info__link:hover {
+  color: $basic-greylight;
 }
