@@ -1,10 +1,10 @@
 import { ProductItemData } from "../../types/index";
 import Page from "../templates/page";
 import ProductCardPage from "../product-page/productPage";
-import Footer from "../details/footer";
-import PopupMaxGoods from "../details/popupMaxGoods";
-let idAboutProd: ProductItemData;
+import Header from "../details/header";
+
 class ProductPage extends Page {
+  header: Header;
   productCardPage: ProductCardPage;
   footer: Footer;
   popupMaxGoods: PopupMaxGoods;
@@ -14,17 +14,7 @@ class ProductPage extends Page {
 
   constructor(id: string) {
     super(id);
-    //let idAboutProd;
-    const aboutProd: string | null = localStorage.getItem("about");
-    if (aboutProd) {
-      idAboutProd = JSON.parse(aboutProd);
-      console.log(idAboutProd.id);
-    }
-    /*const cart: string | null = localStorage.getItem("cart");
-          let arrCart = [];
-          if (cart) {
-            arrCart = JSON.parse(cart);
-          }*/
+    this.header = new Header("header", "header");
     this.productCardPage = new ProductCardPage(
       "div",
       "prodpage-container",
@@ -37,6 +27,7 @@ class ProductPage extends Page {
   renderProductPage() {
     const mainProdPage: HTMLElement = document.createElement("main");
     mainProdPage.classList.add("main_prodpage");
+    this.container.append(this.header.render());
     mainProdPage.append(this.productCardPage.render());
     this.container.append(mainProdPage);
     this.container.append(this.footer.render());
