@@ -1,11 +1,13 @@
-.main-header {
+.header {
   // padding-bottom: 60px;
   background-color: $basic-grey;
   color: $basic-black;
   @extend %font-add;
   @include font(1.8rem, 2.4rem);
 }
-
+.container {
+  padding: 5px 0;
+}
 .header-logo {
   width: 220px;
   height: 47px;
@@ -101,9 +103,9 @@ a.full-cart {
 }
 
 .header-inner {
-  height: 158px;
+  height: 118px;
   box-sizing: border-box;
-  padding-top: 46px;
+  padding-top: 26px;
   display: flex;
   justify-content: space-between;
 }

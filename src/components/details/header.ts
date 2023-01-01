@@ -1,19 +1,12 @@
 class Header {
-/*container: HTMLElement;
-    constructor(
-      tageName: string,
-      className: string,
-    ) {
-        this.container = document.createElement(tageName);
-        this.container.classList.add(className);
-    }*/
-
+  container: HTMLElement;
+  constructor(tageName: string, className: string) {
+    this.container = document.createElement(tageName);
+    this.container.classList.add(className);
+  }
   createHeader() {
-    const header = document.createElement("header");
-    header.classList.add("main-header");
     const headerContainer: HTMLElement = document.createElement("div");
     headerContainer.className = "order-nav-wrapper";
-    header.append(headerContainer);
     const containerTop: HTMLElement = document.createElement("div");
     containerTop.className = "container";
     headerContainer.append(containerTop);
@@ -21,7 +14,7 @@ class Header {
     nav.className = "order-nav";
     containerTop.append(nav);
     const logo: HTMLAnchorElement = document.createElement("a");
-    logo.classList.add("logo header-logo");
+    logo.className = "logo header-logo";
     logo.href = "index.html";
     logo.innerText = "LOGO";
     nav.append(logo);
@@ -32,9 +25,9 @@ class Header {
     liFullCart.className = "order-info-item";
     orderInfo.append(liFullCart);
     const fullCart: HTMLAnchorElement = document.createElement("a");
-    fullCart.classList.add("cart full-cart");
+    fullCart.className = "cart full-cart";
     fullCart.href = "#";
-    fullCart.innerText = "Cart total:"
+    fullCart.innerText = "Cart total:";
     liFullCart.append(fullCart);
     const fullCartText: HTMLSpanElement = document.createElement("span");
     fullCartText.className = "full-cart-text";
@@ -44,13 +37,12 @@ class Header {
     liMakeOrder.className = "order-info-item";
     orderInfo.append(liMakeOrder);
     const makeOrder: HTMLAnchorElement = document.createElement("a");
-    makeOrder.classList.add("cart full-cart");
+    makeOrder.className = "cart full-cart";
     makeOrder.href = "#";
-    makeOrder.innerText = "Buy now"
+    makeOrder.innerText = "Buy now";
     liMakeOrder.append(makeOrder);
     const containerBottom: HTMLElement = document.createElement("div");
     containerBottom.className = "container";
-    headerContainer.append(containerBottom);
     const headerInner: HTMLElement = document.createElement("div");
     headerInner.className = "header-inner";
     headerInner.innerHTML = `
@@ -61,17 +53,15 @@ class Header {
         <p>Minsk, Belarus</p>
       </div>
     `;
-
-      containerBottom.append(headerInner);
-  
-      //this.container.append(header);
-    }
-
-    /*render() {
-      this.createHeader();
-      return this.container;
-    }*/
+    containerBottom.append(headerInner);
+    this.container.append(headerContainer);
+    this.container.append(containerBottom);
   }
-  
-  export default Header;
-  
+
+  render() {
+    this.createHeader();
+    return this.container;
+  }
+}
+
+export default Header;

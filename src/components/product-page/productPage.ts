@@ -1,9 +1,5 @@
 import productsData from "../data";
-//import ICreateElement from "../templates/createElement";
 
-/*function changeProduct(event) {
-
-}*/
 let n: number;
 class ProductCardPage {
   container: HTMLElement;
@@ -89,7 +85,7 @@ class ProductCardPage {
     const imagesSliderCatalog: HTMLElement = document.createElement("div");
     imagesSliderCatalog.className = "images-product__catalog";
     productImages.append(imagesSliderCatalog);
-    const imagesCatalog = [...productsData[n].images].slice(0, -1);
+    const imagesCatalog = [...productsData[n].images].slice(0, -1).slice(0, 5);
     console.log(imagesCatalog);
     for (let i = 0; i < imagesCatalog.length; i++) {
       const imageItemWrapper: HTMLElement = document.createElement("div");
@@ -102,18 +98,6 @@ class ProductCardPage {
       imageItem.alt = "photo";
       imageItemWrapper.append(imageItem);
     }
-    /*imagesCatalog.forEach((el: string) => {
-      let elem = Number(el);
-      const imageItemWrapper: HTMLElement = document.createElement("div");
-      imageItemWrapper.className = "images-product__wrapper";
-      imagesSliderCatalog.append(imageItemWrapper);
-      const imageItem: HTMLImageElement = document.createElement("img");
-      imageItem.classList.add("images-product__item");
-      imageItem.src = `${imagesCatalog[elem]}`;
-      console.log(imagesCatalog[elem]);
-      imageItem.alt = "photo";
-      imageItemWrapper.append(imageItem);
-    });*/
     const bodyProduct: HTMLElement = document.createElement("div");
     bodyProduct.className = "product__to-card body-product";
     productContainer.append(bodyProduct);
@@ -158,6 +142,7 @@ class ProductCardPage {
     const titleInfoBrand: HTMLHeadingElement = document.createElement("h3");
     titleInfoBrand.className = "title-info__brand";
     titleInfoBrand.innerText = "Brand:";
+    productInfoBrand.append(titleInfoBrand);
     const valueInfoBrand: HTMLParagraphElement = document.createElement("p");
     valueInfoBrand.className = "value-info__brand";
     valueInfoBrand.innerText = `${productsData[n].brand}`;
