@@ -10,6 +10,7 @@ class Footer {
     const rssLogo: HTMLAnchorElement = document.createElement("a");
     rssLogo.className = "rss-logo";
     rssLogo.href = "https://rs.school/js/";
+    rssLogo.setAttribute("target", "_blank");
     footerContainer.append(rssLogo);
     const imageRss: HTMLImageElement = document.createElement("img");
     imageRss.classList.add("rss-logo-img");
@@ -19,11 +20,11 @@ class Footer {
     const footerInfo: HTMLElement = document.createElement("div");
     footerInfo.className = "copyright__info";
     footerInfo.innerHTML = `
-      <a class="copyright__info__link" href="https://github.com/AlexKabanau">
+      <a class="copyright__info__link" href="https://github.com/AlexKabanau" target="_blank">
       RSSchool#2022 <br>
       Alexandr Kabanau
       </a>
-      <a class="copyright__info__link" href="https://github.com/oxana988">
+      <a class="copyright__info__link" href="https://github.com/oxana988" target="_blank">
       RSSchool#2022 <br>
       Oxana Savianok
       </a>

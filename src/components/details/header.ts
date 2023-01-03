@@ -31,7 +31,14 @@ class Header {
     logo.href = "index.html";
     logo.innerText = "LOGO";
     nav.append(logo);
->>>>>>> 46184f0 (feat: add layout of the header)
+    const priceCart: HTMLElement = document.createElement("div");
+    priceCart.className = "price-cart";
+    priceCart.innerText = "Cart total: ";
+    nav.append(priceCart);
+    const valuePriceCart: HTMLSpanElement = document.createElement("span");
+    valuePriceCart.className = "value-price-cart";
+    valuePriceCart.innerText = "0";
+    priceCart.append(valuePriceCart);
     const orderInfo: HTMLElement = document.createElement("ul");
     orderInfo.className = "order-info";
     nav.append(orderInfo);
@@ -39,22 +46,22 @@ class Header {
     liFullCart.className = "order-info-item";
     orderInfo.append(liFullCart);
     const fullCart: HTMLAnchorElement = document.createElement("a");
-    fullCart.className = "cart full-cart";
+    fullCart.className = "cart full-cart header-cart";
     fullCart.href = "#";
-    fullCart.innerText = "Cart total:";
+    /*fullCart.innerText = "Cart total:";*/
     liFullCart.append(fullCart);
     const fullCartText: HTMLSpanElement = document.createElement("span");
     fullCartText.className = "full-cart-text";
     fullCartText.innerText = "0";
     fullCart.append(fullCartText);
-    const liMakeOrder: HTMLLIElement = document.createElement("li");
+    /*const liMakeOrder: HTMLLIElement = document.createElement("li");
     liMakeOrder.className = "order-info-item";
     orderInfo.append(liMakeOrder);
     const makeOrder: HTMLAnchorElement = document.createElement("a");
     makeOrder.className = "cart full-cart";
     makeOrder.href = "#";
     makeOrder.innerText = "Buy now";
-    liMakeOrder.append(makeOrder);
+    liMakeOrder.append(makeOrder);*/
     const containerBottom: HTMLElement = document.createElement("div");
     containerBottom.className = "container";
     const headerInner: HTMLElement = document.createElement("div");
