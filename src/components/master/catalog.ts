@@ -36,18 +36,18 @@ class Catalog extends Components {
         const buttonContainer: HTMLElement = document.createElement("div");
         buttonContainer.className = "button-container";
 
-        const aBuy: HTMLAnchorElement = document.createElement("a");
-        //aBuy.href = "#";
-        aBuy.className = "buy-button";
-        aBuy.innerText = "Buy!";
-        buttonContainer.append(aBuy);
+      const aBuy: HTMLAnchorElement = document.createElement("a");
+      //aBuy.href = "#";
+      aBuy.className = "buy-button";
+      aBuy.innerText = "Buy!";
+      buttonContainer.append(aBuy);
 
-        const aAbout: HTMLAnchorElement = document.createElement("a");
-        //aAbout.href = "#";
-        aAbout.className = "about-button";
-        aAbout.innerText = "About";
-        buttonContainer.append(aAbout);
-        li.append(buttonContainer);
+      const aAbout: HTMLAnchorElement = document.createElement("a");
+      //aAbout.href = "#";
+      aAbout.className = "about-button";
+      aAbout.innerText = "About";
+      buttonContainer.append(aAbout);
+      li.append(buttonContainer);
 
         const imageContainer: HTMLElement = document.createElement("div");
         imageContainer.className = "img-container";

@@ -548,7 +548,6 @@ class MainPage extends Page {
         ${sliderColor} 100%)`;
     }
 
-    const popupMaxGoods = document.querySelector(".popup-max-goods__wrap");
     const productList: HTMLElement | null = document.querySelector(
       ".product-list"
     );
@@ -556,104 +555,15 @@ class MainPage extends Page {
     productList?.addEventListener("click", (event) => {
       const target = event.target as HTMLElement;
       const toCard = (event.target as HTMLElement).closest(".buy-button");
-      const clickAbout = (event.target as HTMLAnchorElement).closest(
-        ".about-button"
-      );
+      const clickAbout = (event.target as HTMLElement).closest(".about-button");
       const itemID = target.closest(".product-card")?.id;
-      //const arrCart = [];
       // console.log(event);
       if (toCard) {
         console.log("клик на кнопке В КОРЗИНУ", itemID);
-        if (itemID) {
-          const currentProduct = productsData.find(
-            (item) => item.id == +itemID
-          );
-          console.log(currentProduct);
-          const cart: string | null = localStorage.getItem("cart");
-          let arrCart = [];
-          if (cart) {
-            arrCart = JSON.parse(cart);
-          }
-          if (arrCart.length === 10) {
-            popupMaxGoods?.classList.add("open");
-            document.body.style.overflowY = "hidden";
-          } else {
-            arrCart.push(currentProduct);
-            localStorage.setItem("cart", JSON.stringify(arrCart));
-            const fullCartText: HTMLSpanElement | null = document.querySelector(
-              ".full-cart-text"
-            );
-            if (fullCartText) {
-              fullCartText.innerText = `${arrCart.length}`;
-            }
-            const valuePriceCart: HTMLSpanElement | null = document.querySelector(
-              ".value-price-cart"
-            );
-            if (valuePriceCart) {
-              const sum: number = arrCart.reduce(
-                (sum: number, item: ProductItemData) => sum + item.price,
-                0
-              );
-              valuePriceCart.innerText = `${sum}`;
-            }
-          }
-        }
       }
-      if (clickAbout instanceof HTMLAnchorElement) {
+      if (clickAbout) {
         console.log("клик на кнопке ABOUT", itemID);
-        clickAbout.href = "#goods-page";
-        if (itemID) {
-          const currentAboutProduct = productsData.find(
-            (item) => item.id == +itemID
-          );
-          console.log(currentAboutProduct);
-          localStorage.setItem("about", JSON.stringify(currentAboutProduct));
-        }
-        //localStorage.clear();
       }
-    });
-    popupMaxGoods?.addEventListener("click", (event) => {
-      const popupWrap = (event.target as HTMLElement).closest(
-        ".popup-max-goods"
-      );
-      const btnClose = (event.target as HTMLElement).closest(".btn__close");
-      if (!popupWrap || btnClose) {
-        popupMaxGoods.classList.remove("open");
-        document.body.style.overflowY = "auto";
-      }
-    });
-
-    const buttonReset: HTMLButtonElement | null = document.querySelector(
-      ".reset-button"
-    );
-    buttonReset?.addEventListener("click", () => {
-      this.reRender(this._data);
-    });
-
-    const search = document.querySelector(".search_input") as HTMLInputElement;
-    search.addEventListener("input", () => {
-      const searchValue = search.value.trim().toLocaleLowerCase();
-      if (searchValue && searchValue != "") {
-        result = this._data.filter((item) => {
-          if (
-            item.title.toLowerCase().includes(searchValue) ||
-            `${item.price}`.includes(searchValue) ||
-            `${item.discountPercentage}`.includes(searchValue) ||
-            `${item.rating}`.includes(searchValue) ||
-            `${item.stock}`.includes(searchValue) ||
-            item.brand.toLowerCase().includes(searchValue) ||
-            item.category.toLowerCase().includes(searchValue) ||
-            item.description.toLowerCase().includes(searchValue)
-          ) {
-            return true;
-          } else {
-            return false;
-          }
-        });
-      } else {
-        result = this._data;
-      }
-      this.reRender(result);
     });
   }
 
