@@ -109,7 +109,7 @@ class Modal extends Components {
     );
     paymentCardNumberLabel.htmlFor = "payment-card-number-input";
     const paymentCardImg: HTMLImageElement = document.createElement("img");
-    paymentCardImg.src = "./img/2443.webp";
+    paymentCardImg.src = "../2443.webp";
     paymentCardImg.alt = "";
     paymentCardNumberLabel.append(paymentCardImg);
     paymentCardNumber.append(paymentCardNumberLabel);
@@ -140,7 +140,7 @@ class Modal extends Components {
     paymentCardValidInput.name = "card-valid";
     paymentCardValidInput.type = "text";
     paymentCardValidInput.id = "payment-card-valid-input";
-    paymentCardValidInput.placeholder = "Valid";
+    paymentCardValidInput.placeholder = "00/00";
     paymentCardValid.append(paymentCardValidInput);
     paymentCardInfo.append(paymentCardValid);
 
@@ -160,7 +160,7 @@ class Modal extends Components {
     paymentCardCVVInput.name = "card-valid";
     paymentCardCVVInput.type = "text";
     paymentCardCVVInput.id = "payment-card-valid-input";
-    paymentCardCVVInput.placeholder = "Valid";
+    paymentCardCVVInput.placeholder = "CVV";
     paymentCardCVV.append(paymentCardCVVInput);
     paymentCardInfo.append(paymentCardCVV);
     paymentInfo.append(paymentCardInfo);
