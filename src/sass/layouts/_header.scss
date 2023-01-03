@@ -1,5 +1,4 @@
 .header {
-  // padding-bottom: 60px;
   background-color: $basic-grey;
   color: $basic-black;
   @extend %font-add;
@@ -9,8 +8,7 @@
   padding: 5px 0;
 }
 .header-logo {
-  width: 220px;
-  height: 47px;
+  width: 120px;
   padding: 12px 0 17px 0;
   
 }
@@ -21,14 +19,19 @@
 
 .order-nav {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 42px;
-  // grid-template-columns: min-content 1fr max-content;
-  &:not(.make-order):hover::before {
+  &:hover::before {
     opacity: 1;
   }
-  &:not(.make-order):focus::before {
+  &:focus::before {
     opacity: 1;
   }
+}
+
+.price-cart {
+  color: $basic-white;
 }
 
 .cart:active {
@@ -40,11 +43,9 @@
 }
 
 .order-info {
-  margin-left: auto;
   display: flex;
   align-items: stretch;
 }
-
 
 .order-info-item a {
   position: relative;
@@ -53,6 +54,10 @@
   width: 150px;
   box-sizing: border-box;
   padding: 9px 0;
+}
+
+.cart:hover {
+  background: #CA2C37;
 }
 
 a.cart {
@@ -65,8 +70,7 @@ a.full-cart {
   padding-left: 35px;
   margin-left: 14px;
 }
-
-.order-info-item:not(:last-child) a::before {
+.order-info-item a::before {
   content: "";
   background-position: 0 0;
   background-repeat: no-repeat;
@@ -76,14 +80,14 @@ a.full-cart {
 }
 
 .cart::before {
-  width: 15px;
-  height: 15px;
+  width: 30px;
+  height: 30px;
   left: 26px;
   background-image: url("../img/icon-cart.svg")
 }
 
 .full-cart::before {
-  left: 12px;
+  left: 30px;
 }
 
 .make-order {
@@ -102,6 +106,9 @@ a.full-cart {
 
 }
 
+.full-cart-text {
+  padding-left: 32px;
+}
 .header-inner {
   height: 118px;
   box-sizing: border-box;
