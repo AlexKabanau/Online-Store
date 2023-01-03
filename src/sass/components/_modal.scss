@@ -1,31 +1,58 @@
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  border-top: 7px solid $basic-red;
-  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
-  box-sizing: border-box;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0 auto;
+  transform: translate(-50%, -50%);
+  background-color: $basic-white;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+}
+.modal-show {
+  display: block;
+  animation: bounce 0.6s;
+}
+.modal-error {
+  animation: shake 0.6s;
 }
 
 .modal-close {
+  position: absolute;
+  top: 10px;
+  right: 11px;
   width: 21px;
   height: 21px;
-  border: none;
-  background: 0 0 url(../img/modal-close.svg) no-repeat;
-  position: absolute;
-  top: 21px;
-  right: 11px;
+  background-color: transparent;
+  border: 0;
   cursor: pointer;
+  padding: 0;
+}
+
+.modal-close::before,
+.modal-close::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: 2px;
+  width: 19px;
+  height: 3px;
+  background-color: $basic-red;
+}
+
+.modal-close::before {
+  transform: rotate(45deg);
+}
+
+.modal-close::after {
+  transform: rotate(-45deg);
 }
 
 .modal-payment {
+  position: fixed;
   width: 620px;
   height: 568px;
-  background-color: $basic-white;
-  display: none;
+  border-top: 7px solid $basic-red;
+  // display: none;
   // display: block;
 }
 
@@ -103,3 +130,42 @@
   padding: 37px 0;
 }
 
+@keyframes bounce {
+  0% {
+    transform: translate(-50%, -50%) translateY(-1000px);
+  }
+
+  70% {
+    transform: translate(-50%, -50%) translateY(30px);
+  }
+
+  90% {
+    transform: translate(-50%, -50%) translateY(-10px);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate(-50%, -50%) translateX(-10px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate(-50%, -50%) translateX(10px);
+  }
+}
