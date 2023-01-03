@@ -543,6 +543,39 @@ class MainPage extends Page {
         ${sliderColor} ${(toPosition / rangeDistance) * 100}%,
         ${sliderColor} 100%)`;
     }
+
+    const buttonReset: HTMLButtonElement | null = document.querySelector(
+      ".reset-button"
+    );
+    buttonReset?.addEventListener("click", () => {
+      this.reRender(this._data);
+    });
+
+    const search = document.querySelector(".search_input") as HTMLInputElement;
+    search.addEventListener("input", () => {
+      const searchValue = search.value.trim().toLocaleLowerCase();
+      if (searchValue && searchValue != "") {
+        result = this._data.filter((item) => {
+          if (
+            item.title.toLowerCase().includes(searchValue) ||
+            `${item.price}`.includes(searchValue) ||
+            `${item.discountPercentage}`.includes(searchValue) ||
+            `${item.rating}`.includes(searchValue) ||
+            `${item.stock}`.includes(searchValue) ||
+            item.brand.toLowerCase().includes(searchValue) ||
+            item.category.toLowerCase().includes(searchValue) ||
+            item.description.toLowerCase().includes(searchValue)
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+      } else {
+        result = this._data;
+      }
+      this.reRender(result);
+    });
   }
 
   reRender(arr: Array<ProductItemData>) {

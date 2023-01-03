@@ -161,7 +161,7 @@ fieldset.property-filter {
   border-radius: 50%;
 }
 
-.filter-button {
+.reset-button {
   box-sizing: border-box;
   width: 100%;
   height: 38px;
@@ -333,7 +333,8 @@ fieldset.property-filter {
   justify-content: space-between;
 }
 
-.price-controls input {
+.price-controls input,
+.search_input {
   background: #F7F3EC;
   width: 95px;
   height: 38px;
@@ -342,6 +343,9 @@ fieldset.property-filter {
   padding: 10px;
   font: inherit;
   text-align: center;
+}
+.search_input {
+  background-color: $basic-white;
 }
 
 .price-controls span {
