@@ -543,6 +543,24 @@ class MainPage extends Page {
         ${sliderColor} ${(toPosition / rangeDistance) * 100}%,
         ${sliderColor} 100%)`;
     }
+
+    const productList: HTMLElement | null = document.querySelector(
+      ".product-list"
+    );
+    // console.log(productList);
+    productList?.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement;
+      const toCard = (event.target as HTMLElement).closest(".buy-button");
+      const clickAbout = (event.target as HTMLElement).closest(".about-button");
+      const itemID = target.closest(".product-card")?.id;
+      // console.log(event);
+      if (toCard) {
+        console.log("клик на кнопке В КОРЗИНУ", itemID);
+      }
+      if (clickAbout) {
+        console.log("клик на кнопке ABOUT", itemID);
+      }
+    });
   }
 
   reRender(arr: Array<ProductItemData>) {

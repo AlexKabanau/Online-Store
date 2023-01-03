@@ -17,7 +17,7 @@ class ProductPage extends Page {
     this.productCardPage = new ProductCardPage(
       "div",
       "prodpage-container",
-      "item3Id"
+      "tem3Id"
     );
     this.footer = new Footer("footer", "footer");
   }
