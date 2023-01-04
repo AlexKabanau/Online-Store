@@ -551,7 +551,9 @@ class MainPage extends Page {
     productList?.addEventListener("click", (event) => {
       const target = event.target as HTMLElement;
       const toCard = (event.target as HTMLElement).closest(".buy-button");
-      const clickAbout = (event.target as HTMLElement).closest(".about-button");
+      const clickAbout = (event.target as HTMLAnchorElement).closest(
+        ".about-button"
+      );
       const itemID = target.closest(".product-card")?.id;
       //const arrCart = [];
       // console.log(event);
@@ -575,8 +577,17 @@ class MainPage extends Page {
           //}
         }
       }
-      if (clickAbout) {
+      if (clickAbout instanceof HTMLAnchorElement) {
         console.log("клик на кнопке ABOUT", itemID);
+        clickAbout.href = "#goods-page";
+        if (itemID) {
+          const currentAboutProduct = productsData.find(
+            (item) => item.id == +itemID
+          );
+          console.log(currentAboutProduct);
+          localStorage.setItem("about", JSON.stringify(currentAboutProduct));
+        }
+        //localStorage.clear();
       }
     });
 
