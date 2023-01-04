@@ -42,6 +42,7 @@ class CartPage extends Page {
         }
       });
     }
+
     function modalCheck() {
       const modalPayment: HTMLElement | null = document.querySelector(
         ".modal-payment"
@@ -70,7 +71,8 @@ class CartPage extends Page {
       const paymentCardCVV = document.getElementById(
         "payment-card-CVV-input"
       ) as HTMLInputElement;
-      paymentForm?.addEventListener("submit", () => {
+      paymentForm?.addEventListener("submit", (event) => {
+        event.preventDefault();
         if (
           !paymentName?.value ||
           !paymentEmail?.value ||
@@ -86,8 +88,99 @@ class CartPage extends Page {
       });
     }
 
+    function cardNumberMask() {
+      const input: HTMLInputElement | null = document.querySelector(
+        "#payment-card-number-input"
+      );
+      function dateInputMask(elm: HTMLInputElement) {
+        elm.addEventListener("keypress", function (event) {
+          if (event.keyCode < 47 || event.keyCode > 57 || event.keyCode == 32) {
+            event.preventDefault();
+          }
+
+          const length = elm.value.length;
+
+          // if (length !== 1) {
+          //   if (event.keyCode == 32) {
+          //     event.preventDefault();
+          //   }
+          // }
+          // if (length !== 3) {
+          //   if (event.keyCode == 47) {
+          //     event.preventDefault();
+          //   }
+          // }
+          if (length === 4 || length === 9 || length === 14) {
+            elm.value += " ";
+          }
+        });
+      }
+      if (input) {
+        dateInputMask(input);
+      }
+    }
+
+    function cardValidMask() {
+      // console.log(1);
+      const input: HTMLInputElement | null = document.querySelector(
+        "#payment-card-valid-input"
+      );
+      if (input) {
+        input?.addEventListener("keypress", function (event) {
+          // elm.addEventListener("keypress", function (event) {
+          if (event.keyCode <= 47 || event.keyCode > 57) {
+            event.preventDefault();
+          }
+
+          const length = input.value.length;
+
+          // if (length !== 1) {
+          //   if (event.keyCode == 47) {
+          //     event.preventDefault();
+          //   }
+          // }
+          // if (length !== 3) {
+          //   if (event.keyCode == 47) {
+          //     event.preventDefault();
+          //   }
+          // }
+          if (length === 2) {
+            input.value += "/";
+          }
+          // console.log(elm.value);
+        });
+        const x = input.value;
+        console.log(x);
+      }
+      // }
+      // if (input) {
+      //   dateInputMask(input);
+      // if (input?.value) {
+      // }
+      // }
+    }
+
+    function cardCVVMask() {
+      const input: HTMLInputElement | null = document.querySelector(
+        "#payment-card-CVV-input"
+      );
+      function dateInputMask(elm: HTMLInputElement) {
+        elm.addEventListener("keypress", function (event) {
+          if (event.keyCode < 47 || event.keyCode > 57) {
+            event.preventDefault();
+          }
+        });
+      }
+      if (input) {
+        dateInputMask(input);
+      }
+    }
+
     modalPopUp();
     modalCheck();
+    cardNumberMask();
+    cardValidMask();
+    cardCVVMask();
   }
 
   render() {
@@ -98,6 +191,7 @@ class CartPage extends Page {
     cardInfoButton.className = "checkButton";
     // cardInfoButton.href = "#";
     cardInfoButton.innerText = "click for show";
+    cardInfoButton.style.color = "red";
     this.container.append(cardInfoButton);
     //modal popUp
     this.container.append(this.modal.render());
