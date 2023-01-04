@@ -15,10 +15,22 @@ class ProductPage extends Page {
   constructor(id: string) {
     super(id);
     this.header = new Header("header", "header");
+    let idAboutProd;
+    const aboutProd: string | null = localStorage.getItem("about");
+    if (aboutProd) {
+      idAboutProd = JSON.parse(aboutProd);
+      console.log(idAboutProd.id);
+    }
+    /*const cart: string | null = localStorage.getItem("cart");
+          let arrCart = [];
+          if (cart) {
+            arrCart = JSON.parse(cart);
+          }*/
     this.productCardPage = new ProductCardPage(
       "div",
       "prodpage-container",
-      "tem3Id"
+      `tem${idAboutProd.id}Id`
+      //"tem3Id"
     );
     this.footer = new Footer("footer", "footer");
   }

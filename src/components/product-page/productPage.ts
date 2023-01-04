@@ -10,6 +10,12 @@ class ProductCardPage {
     this.container = document.createElement(tageName);
     this.container.classList.add(className);
     this.id = id;
+<<<<<<< HEAD
+=======
+    console.log(id);
+    n = Number(id.slice(3, -2));
+    console.log(n);
+>>>>>>> 1a3cc3a (feat: pull id for cardProduct)
   }
 
   renderBreadcrumbs() {
