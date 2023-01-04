@@ -37,7 +37,17 @@ class Header {
     nav.append(priceCart);
     const valuePriceCart: HTMLSpanElement = document.createElement("span");
     valuePriceCart.className = "value-price-cart";
-    valuePriceCart.innerText = "0";
+    const cart: string | null = localStorage.getItem("cart");
+    let arrCart = [];
+    if (cart) {
+      arrCart = JSON.parse(cart);
+    }
+    const sum: number = arrCart.reduce(
+      (sum: number, item: ProductItemData) => sum + item.price,
+      0
+    );
+    //console.log(sum);
+    valuePriceCart.innerText = `${sum}`;
     priceCart.append(valuePriceCart);
     const orderInfo: HTMLElement = document.createElement("ul");
     orderInfo.className = "order-info";
@@ -52,7 +62,7 @@ class Header {
     liFullCart.append(fullCart);
     const fullCartText: HTMLSpanElement = document.createElement("span");
     fullCartText.className = "full-cart-text";
-    fullCartText.innerText = "0";
+    fullCartText.innerText = `${arrCart.length}`;
     fullCart.append(fullCartText);
     /*const liMakeOrder: HTMLLIElement = document.createElement("li");
     liMakeOrder.className = "order-info-item";
