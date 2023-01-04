@@ -267,9 +267,9 @@ class Filter extends Components {
 
     /* button */
     const filterButton: HTMLButtonElement = document.createElement("button");
-    filterButton.innerText = "Показать";
-    filterButton.className = "filter-button";
-    filterButton.type = "submit";
+    filterButton.innerText = "Сбросить";
+    filterButton.className = "reset-button";
+    filterButton.type = "reset";
     form.append(filterButton);
 
     this.container.append(form);
