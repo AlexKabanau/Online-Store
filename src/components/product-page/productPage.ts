@@ -10,7 +10,7 @@ class ProductCardPage {
     this.container.classList.add(className);
     this.id = id;
     console.log(id);
-    n = Number(id.slice(4, -2));
+    n = Number(id.slice(3, -2));
     console.log(n);
   }
 
