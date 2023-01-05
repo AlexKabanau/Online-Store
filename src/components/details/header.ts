@@ -57,7 +57,7 @@ class Header {
     orderInfo.append(liFullCart);
     const fullCart: HTMLAnchorElement = document.createElement("a");
     fullCart.className = "cart full-cart header-cart";
-    fullCart.href = "#";
+    fullCart.href = "#cart-page";
     /*fullCart.innerText = "Cart total:";*/
     liFullCart.append(fullCart);
     const fullCartText: HTMLSpanElement = document.createElement("span");
