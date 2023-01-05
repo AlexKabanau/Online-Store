@@ -17,7 +17,7 @@ class Header {
     containerTop.append(nav);
     const logo: HTMLAnchorElement = document.createElement("a");
     logo.className = "logo header-logo";
-    logo.href = "index.html";
+    logo.href = "#main-page";
     logo.innerText = "LOGO";
     nav.append(logo);
     const priceCart: HTMLElement = document.createElement("div");
