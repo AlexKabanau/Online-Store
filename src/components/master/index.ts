@@ -578,6 +578,22 @@ class MainPage extends Page {
           //} else {
           arrCart.push(currentProduct);
           localStorage.setItem("cart", JSON.stringify(arrCart));
+          const fullCartText: HTMLSpanElement | null = document.querySelector(
+            ".full-cart-text"
+          );
+          if (fullCartText) {
+            fullCartText.innerText = `${arrCart.length}`;
+          }
+          const valuePriceCart: HTMLSpanElement | null = document.querySelector(
+            ".value-price-cart"
+          );
+          if (valuePriceCart) {
+            const sum: number = arrCart.reduce(
+              (sum: number, item: ProductItemData) => sum + item.price,
+              0
+            );
+            valuePriceCart.innerText = `${sum}`;
+          }
           //}
         }
       }
