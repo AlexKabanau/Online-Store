@@ -548,6 +548,7 @@ class MainPage extends Page {
         ${sliderColor} 100%)`;
     }
 
+    const popupMaxGoods = document.querySelector(".popup-max-goods__wrap");
     const productList: HTMLElement | null = document.querySelector(
       ".product-list"
     );
@@ -573,28 +574,29 @@ class MainPage extends Page {
           if (cart) {
             arrCart = JSON.parse(cart);
           }
-          //if (arrCart.length === 10) {
-          //`Sorry, maximum 10 items in the cart...`
-          //} else {
-          arrCart.push(currentProduct);
-          localStorage.setItem("cart", JSON.stringify(arrCart));
-          const fullCartText: HTMLSpanElement | null = document.querySelector(
-            ".full-cart-text"
-          );
-          if (fullCartText) {
-            fullCartText.innerText = `${arrCart.length}`;
-          }
-          const valuePriceCart: HTMLSpanElement | null = document.querySelector(
-            ".value-price-cart"
-          );
-          if (valuePriceCart) {
-            const sum: number = arrCart.reduce(
-              (sum: number, item: ProductItemData) => sum + item.price,
-              0
+          if (arrCart.length === 10) {
+            popupMaxGoods?.classList.add("open");
+            document.body.style.overflowY = "hidden";
+          } else {
+            arrCart.push(currentProduct);
+            localStorage.setItem("cart", JSON.stringify(arrCart));
+            const fullCartText: HTMLSpanElement | null = document.querySelector(
+              ".full-cart-text"
             );
-            valuePriceCart.innerText = `${sum}`;
+            if (fullCartText) {
+              fullCartText.innerText = `${arrCart.length}`;
+            }
+            const valuePriceCart: HTMLSpanElement | null = document.querySelector(
+              ".value-price-cart"
+            );
+            if (valuePriceCart) {
+              const sum: number = arrCart.reduce(
+                (sum: number, item: ProductItemData) => sum + item.price,
+                0
+              );
+              valuePriceCart.innerText = `${sum}`;
+            }
           }
-          //}
         }
       }
       if (clickAbout instanceof HTMLAnchorElement) {
@@ -608,6 +610,16 @@ class MainPage extends Page {
           localStorage.setItem("about", JSON.stringify(currentAboutProduct));
         }
         //localStorage.clear();
+      }
+    });
+    popupMaxGoods?.addEventListener("click", (event) => {
+      const popupWrap = (event.target as HTMLElement).closest(
+        ".popup-max-goods"
+      );
+      const btnClose = (event.target as HTMLElement).closest(".btn__close");
+      if (!popupWrap || btnClose) {
+        popupMaxGoods.classList.remove("open");
+        document.body.style.overflowY = "auto";
       }
     });
 
