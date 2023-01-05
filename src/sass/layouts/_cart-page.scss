@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ._cart {
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -9,6 +10,14 @@
 
 .section-cart__header {
   // margin-bottom: 40px;
+=======
+.section-cart {
+  padding: 70px 0 90px;
+}
+
+.section-cart__header {
+  margin-bottom: 40px;
+>>>>>>> fb505ba (add: add basic layout)
   text-align: center;
 }
 
@@ -22,7 +31,11 @@
 /////////////////////////
 .cart-header {
   display: grid;
+<<<<<<< HEAD
   grid-template-columns: repeat(2, 2fr) repeat(2, 1fr) 0.5fr;
+=======
+  grid-template-columns: 2fr repeat(3, 3fr) 1fr;
+>>>>>>> fb505ba (add: add basic layout)
   column-gap: 30px;
 
   padding: 22px;
@@ -43,6 +56,7 @@
 /////////////////////////
 /// product
 /////////////////////////
+<<<<<<< HEAD
 ._product {
   display: grid;
   grid-template-columns: repeat(2, 2fr) repeat(2, 1fr) 0.5fr;
@@ -50,11 +64,21 @@
   @extend %font-add;
   @include font(1.8rem, 2.2rem, bold);
   padding: 20px 19px;
+=======
+.product {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 3fr) 1fr;
+  column-gap: 30px;
+  @extend %font-add;
+  @include font(1.8rem, 2.2rem, bold);
+  padding: 20px 0;
+>>>>>>> fb505ba (add: add basic layout)
   border-bottom: 1px solid $special-gold;
   & > * {
     align-self: center;
   }
 }
+<<<<<<< HEAD
 ._product__title {
   padding-left: 15px;
   height: 40px;
@@ -66,6 +90,8 @@
 .product__description {
   font-size: 0.8rem;
 }
+=======
+>>>>>>> fb505ba (add: add basic layout)
 .product__img {
   justify-self: center;
 }
@@ -93,7 +119,11 @@
 }
 .count__input {
   min-width: 100%;
+<<<<<<< HEAD
   // padding-top: 4px;
+=======
+  padding-top: 4px;
+>>>>>>> fb505ba (add: add basic layout)
   background: transparent;
   text-align: center;
   @include font(1.8rem, 2.2rem, bold);
@@ -110,6 +140,7 @@
     display: block;
   }
 }
+<<<<<<< HEAD
 .button_image_down,
 .button_image_up {
   background: top center no-repeat url(../img/icon-right-small.svg);
@@ -135,15 +166,28 @@
   width: 20px;
   height: 20px;
   cursor: pointer;
+=======
+.count__up {
+  // display: block;
+}
+.count__down {
+  // display: block;
+>>>>>>> fb505ba (add: add basic layout)
 }
 
 /// /////////////////////
 /// cart-footer
 /////////////////////////
 .cart-footer {
+<<<<<<< HEAD
   padding: 19px 22px;
   display: grid;
   grid-template-columns: 4fr 1fr 1.5fr;
+=======
+  padding: 19px 0;
+  display: grid;
+  grid-template-columns: 5fr 3fr 4fr;
+>>>>>>> fb505ba (add: add basic layout)
   column-gap: 30px;
 
   @extend %font-add;
@@ -155,6 +199,7 @@
   grid-column-start: 2;
 }
 .cart-footer__price {}
+<<<<<<< HEAD
 .order {
   padding-top: 20px;
   display: flex;
@@ -190,4 +235,6 @@
   padding: 5px;
   text-align: center;
 }
+=======
+>>>>>>> fb505ba (add: add basic layout)
 
