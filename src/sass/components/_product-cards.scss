@@ -131,6 +131,10 @@ a.price {
   border-color: $basic-darkgrey;
   opacity: 0.5;
 }
+.buy-button,
+.about-button {
+  cursor: pointer;
+}
 
 .button-container {
   height: 170px;

@@ -1,0 +1,122 @@
+.section-cart {
+  padding: 70px 0 90px;
+}
+
+.section-cart__header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.section-cart__body {
+
+}
+
+
+/////////////////////////
+/// cart-header
+/////////////////////////
+.cart-header {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 3fr) 1fr;
+  column-gap: 30px;
+
+  padding: 22px;
+  background-color: $special-gold;
+  @extend %font-add;
+  @include font(1.3rem, 1.6rem);
+  text-transform: uppercase;
+}
+
+.cart-header__title {
+  grid-column-start: 2;
+  
+
+}
+.cart-header__count {}
+.cart-header__cost {}
+
+/////////////////////////
+/// product
+/////////////////////////
+.product {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 3fr) 1fr;
+  column-gap: 30px;
+  @extend %font-add;
+  @include font(1.8rem, 2.2rem, bold);
+  padding: 20px 0;
+  border-bottom: 1px solid $special-gold;
+  & > * {
+    align-self: center;
+  }
+}
+.product__img {
+  justify-self: center;
+}
+.product__title {
+
+}
+.product__count {
+  
+}
+.product__price {}
+.product__controls {
+  justify-self: center;
+}
+
+.count {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+}
+.count__box {
+  width: 40px;
+  height: 30px;
+  border-radius: 3px;
+  background-color: $special-gold;
+}
+.count__input {
+  min-width: 100%;
+  padding-top: 4px;
+  background: transparent;
+  text-align: center;
+  @include font(1.8rem, 2.2rem, bold);
+}
+.count__input::-webkit-inner-spin-button,
+.count__input::-webkit-outer-spin-button {
+  appearance: none;
+}
+.count__controls {
+  display: flex;
+  flex-direction: column;
+  row-gap: 9px;
+  & img {
+    display: block;
+  }
+}
+.count__up {
+  // display: block;
+}
+.count__down {
+  // display: block;
+}
+
+/// /////////////////////
+/// cart-footer
+/////////////////////////
+.cart-footer {
+  padding: 19px 0;
+  display: grid;
+  grid-template-columns: 5fr 3fr 4fr;
+  column-gap: 30px;
+
+  @extend %font-add;
+  @include font(1.3rem, 1.6rem, bold);
+  // text-transform: uppercase;
+  background-color: $special-gold;
+}
+.cart-footer__count {
+  grid-column-start: 2;
+}
+.cart-footer__price {}
+
