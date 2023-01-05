@@ -104,7 +104,7 @@ class Modal extends Components {
     const paymentCardNumber: HTMLElement = document.createElement("div");
     paymentCardNumber.className = "payment-card-number";
     paymentCardNumber.innerHTML =
-      '<label for="payment-card-number-input"><img src="../2443.webp" alt="Logo of Credit Card"></label><input name="card-number" type="text" id="payment-card-number-input" data-mask = "____ ____ ____ ____" maxlength = "19" placeholder="XXXX XXXX XXXX XXXX">';
+      '<label for="payment-card-number-input"><img class= "card-logo"></label><input name="card-number" type="text" id="payment-card-number-input" data-mask = "____ ____ ____ ____" maxlength = "19" placeholder="XXXX XXXX XXXX XXXX">';
 
     // const paymentCardNumberLabel: HTMLLabelElement = document.createElement(
     //   "label"

@@ -97,9 +97,32 @@ class CartPage extends Page {
           if (event.keyCode < 47 || event.keyCode > 57 || event.keyCode == 32) {
             event.preventDefault();
           }
-
           const length = elm.value.length;
-
+          const image: HTMLImageElement | null = document.querySelector(
+            ".card-logo"
+          );
+          if (image) {
+            if (length === 0) {
+              image.classList.remove("american");
+              image.classList.remove("visa");
+              image.classList.remove("mastercart");
+              image.classList.remove("unionpay");
+            }
+            if (length === 1) {
+              if (elm.value === "3") {
+                image.classList.add("american");
+              }
+              if (elm.value === "4") {
+                image.classList.add("visa");
+              }
+              if (elm.value === "5") {
+                image.classList.add("mastercart");
+              }
+              if (elm.value === "6") {
+                image.classList.add("unionpay");
+              }
+            }
+          }
           // if (length !== 1) {
           //   if (event.keyCode == 32) {
           //     event.preventDefault();
@@ -149,8 +172,8 @@ class CartPage extends Page {
           }
           // console.log(elm.value);
         });
-        const x = input.value;
-        console.log(x);
+        // const x = input.value;
+        // console.log(x);
       }
       // }
       // if (input) {
