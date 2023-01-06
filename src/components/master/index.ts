@@ -6,6 +6,7 @@ import Catalog from "./catalog";
 import Sort from "./sort";
 import productsData from "../data";
 import { ProductItemData } from "../../types";
+import PopupMaxGoods from "../details/popupMaxGoods";
 // import Components from "../Components";
 
 class MainPage extends Page {
@@ -24,6 +25,7 @@ class MainPage extends Page {
     minStock: number;
     maxStock: number;
   };
+  popupMaxGoods: PopupMaxGoods;
 
   constructor(id: string) {
     super(id);
@@ -44,6 +46,7 @@ class MainPage extends Page {
       minStock: 0,
       maxStock: 0,
     };
+    this.popupMaxGoods = new PopupMaxGoods("div", "popup-max-goods__wrap");
   }
   renderMain(_data: Array<ProductItemData>) {
     const catalogPage: HTMLElement = document.createElement("section");
@@ -63,6 +66,7 @@ class MainPage extends Page {
     catalogPage.append(catalogGrid);
 
     this.container.append(catalogPage);
+    this.container.append(this.popupMaxGoods.render());
   }
   afterRender() {
     //HANDLERS
@@ -544,6 +548,7 @@ class MainPage extends Page {
         ${sliderColor} 100%)`;
     }
 
+    const popupMaxGoods = document.querySelector(".popup-max-goods__wrap");
     const productList: HTMLElement | null = document.querySelector(
       ".product-list"
     );
@@ -569,12 +574,29 @@ class MainPage extends Page {
           if (cart) {
             arrCart = JSON.parse(cart);
           }
-          //if (arrCart.length === 10) {
-          //`Sorry, maximum 10 items in the cart...`
-          //} else {
-          arrCart.push(currentProduct);
-          localStorage.setItem("cart", JSON.stringify(arrCart));
-          //}
+          if (arrCart.length === 10) {
+            popupMaxGoods?.classList.add("open");
+            document.body.style.overflowY = "hidden";
+          } else {
+            arrCart.push(currentProduct);
+            localStorage.setItem("cart", JSON.stringify(arrCart));
+            const fullCartText: HTMLSpanElement | null = document.querySelector(
+              ".full-cart-text"
+            );
+            if (fullCartText) {
+              fullCartText.innerText = `${arrCart.length}`;
+            }
+            const valuePriceCart: HTMLSpanElement | null = document.querySelector(
+              ".value-price-cart"
+            );
+            if (valuePriceCart) {
+              const sum: number = arrCart.reduce(
+                (sum: number, item: ProductItemData) => sum + item.price,
+                0
+              );
+              valuePriceCart.innerText = `${sum}`;
+            }
+          }
         }
       }
       if (clickAbout instanceof HTMLAnchorElement) {
@@ -588,6 +610,16 @@ class MainPage extends Page {
           localStorage.setItem("about", JSON.stringify(currentAboutProduct));
         }
         //localStorage.clear();
+      }
+    });
+    popupMaxGoods?.addEventListener("click", (event) => {
+      const popupWrap = (event.target as HTMLElement).closest(
+        ".popup-max-goods"
+      );
+      const btnClose = (event.target as HTMLElement).closest(".btn__close");
+      if (!popupWrap || btnClose) {
+        popupMaxGoods.classList.remove("open");
+        document.body.style.overflowY = "auto";
       }
     });
 
