@@ -1,5 +1,5 @@
 .section-cart {
-  padding: 70px 0 90px;
+  // padding: 70px 0 90px;
 }
 
 .section-cart__header {
@@ -108,16 +108,17 @@
 
 
 .count__up {
-  // display: block;
+  display: block;
 }
 .count__down {
-  // display: block;
+  display: block;
 }
 
 .button_image {
   background: top center no-repeat url(../img/modal-close.svg);
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 /// /////////////////////
