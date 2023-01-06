@@ -1,11 +1,15 @@
 import Page from "../templates/page";
 import Cart_Page from "./cart";
 import { ProductItemData } from "../../types";
+import Header from "../details/header";
+import Footer from "../details/footer";
 
-import productsData from "../data";
+// import productsData from "../data";
 
 class CartPage extends Page {
+  header: Header;
   cart_Page: Cart_Page;
+  footer: Footer;
   _data: Array<ProductItemData>;
   static TextObject = {
     MainTitle: "Cart Page",
@@ -20,10 +24,17 @@ class CartPage extends Page {
     }
     // this._data = this._data = productsData.sort(() => Math.random() - 0.5);
     this._data = arrCart;
-    this.cart_Page = new Cart_Page("section", "section-cart", "", productsData);
+
+    this.header = new Header("header", "header");
+
+    this.cart_Page = new Cart_Page("section", "section-cart", "", arrCart);
+
+    this.footer = new Footer("footer", "footer");
   }
   renderMain(_data: Array<ProductItemData>) {
+    this.container.append(this.header.render());
     this.container.append(this.cart_Page.render(_data));
+    this.container.append(this.footer.render());
   }
 
   render() {
