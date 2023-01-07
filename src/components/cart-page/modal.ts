@@ -9,7 +9,7 @@ class Modal extends Components {
     modal.className = "modal modal-payment";
 
     const modalTitle: HTMLHeadingElement = document.createElement("h2");
-    modalTitle.innerText = "Форма для оплаты";
+    modalTitle.innerText = "Pay form";
     modalTitle.className = "visually-hidden";
     modal.append(modalTitle);
 
@@ -28,14 +28,14 @@ class Modal extends Components {
 
     const paymentNameLabel: HTMLLabelElement = document.createElement("label");
     paymentNameLabel.htmlFor = "payment-name-input";
-    paymentNameLabel.innerText = "Ваше имя:";
+    paymentNameLabel.innerText = "Name:";
     paymentName.append(paymentNameLabel);
 
     const paymentNameInput: HTMLInputElement = document.createElement("input");
     paymentNameInput.name = "name";
     paymentNameInput.type = "text";
     paymentNameInput.id = "payment-name-input";
-    paymentNameInput.placeholder = "Имя Фамилия";
+    paymentNameInput.placeholder = "FirstName LastName";
     paymentName.append(paymentNameInput);
     paymentInfo.append(paymentName);
 
@@ -44,7 +44,7 @@ class Modal extends Components {
 
     const paymentEmailLabel: HTMLLabelElement = document.createElement("label");
     paymentEmailLabel.htmlFor = "payment-email-input";
-    paymentEmailLabel.innerText = "Ваш e-mail:";
+    paymentEmailLabel.innerText = "E-mail:";
     paymentEmail.append(paymentEmailLabel);
 
     const paymentEmailInput: HTMLInputElement = document.createElement("input");
@@ -62,7 +62,7 @@ class Modal extends Components {
       "label"
     );
     paymentAddressLabel.htmlFor = "payment-address-input";
-    paymentAddressLabel.innerText = "Адрес:";
+    paymentAddressLabel.innerText = "Address:";
     paymentAddress.append(paymentAddressLabel);
 
     const paymentAddressInput: HTMLInputElement = document.createElement(
@@ -71,7 +71,7 @@ class Modal extends Components {
     paymentAddressInput.name = "address";
     paymentAddressInput.type = "text";
     paymentAddressInput.id = "payment-address-input";
-    paymentAddressInput.placeholder = "Ваш адрес:";
+    paymentAddressInput.placeholder = "Address:";
     paymentAddress.append(paymentAddressInput);
     paymentInfo.append(paymentAddress);
 
@@ -80,7 +80,7 @@ class Modal extends Components {
 
     const paymentPhoneLabel: HTMLLabelElement = document.createElement("label");
     paymentPhoneLabel.htmlFor = "payment-phone-input";
-    paymentPhoneLabel.innerText = "Телефон:";
+    paymentPhoneLabel.innerText = "Phone:";
     paymentPhone.append(paymentPhoneLabel);
 
     const paymentPhoneInput: HTMLInputElement = document.createElement("input");
@@ -185,7 +185,7 @@ class Modal extends Components {
     const submitButton: HTMLButtonElement = document.createElement("button");
     submitButton.className = "button";
     submitButton.type = "submit";
-    submitButton.innerText = "Оплатить";
+    submitButton.innerText = "Pay";
     modalContainer.append(submitButton);
     modalWrapper.append(modalContainer);
     paymentForm.append(modalWrapper);
@@ -197,7 +197,7 @@ class Modal extends Components {
 
     const spanButton: HTMLSpanElement = document.createElement("span");
     spanButton.className = "visually-hidden";
-    spanButton.innerText = "Закрыть";
+    spanButton.innerText = "Close";
     closeButton.append(spanButton);
     modal.append(closeButton);
 
