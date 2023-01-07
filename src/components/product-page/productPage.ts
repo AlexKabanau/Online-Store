@@ -69,17 +69,12 @@ class ProductCardPage {
       const productImages: HTMLElement = document.createElement("div");
       productImages.className = "product__images images-product";
       productContainer.append(productImages);
-      //const imagesSlider: HTMLElement = document.createElement("div");
-      //imagesSlider.className = "images-product__slider";
-      //productImages.append(imagesSlider);
       const inputBtnFirst: HTMLInputElement = document.createElement("input");
       inputBtnFirst.setAttribute("type", "radio");
       inputBtnFirst.setAttribute("name", "btn");
       inputBtnFirst.id = "btn0";
       inputBtnFirst.setAttribute("checked", "");
       productImages.append(inputBtnFirst);
-      //imagesSlider.append(inputBtnFirst);
-
       const imagesCatalog = [...curProduct.images].slice(0, 5);
       console.log(imagesCatalog);
       for (let i = 1; i < imagesCatalog.length; i++) {
@@ -88,25 +83,21 @@ class ProductCardPage {
         inputBtn.setAttribute("name", "btn");
         inputBtn.id = `btn${i}`;
         productImages.append(inputBtn);
-        //imagesSlider.append(inputBtn);
       }
       const productSale: HTMLElement = document.createElement("div");
       productSale.className = "images-product__sale";
       productSale.innerText = `${curProduct.discountPercentage} %`;
       productImages.append(productSale);
-      //imagesSlider.append(productSale);
       const imageMainSlider: HTMLElement = document.createElement("div");
       imageMainSlider.className = "images-product__mainslide";
       imageMainSlider.id = "slides";
       productImages.append(imageMainSlider);
-      //imagesSlider.append(imageMainSlider);
       const mainSliderWrap: HTMLElement = document.createElement("div");
       mainSliderWrap.className = "mainslide__wrap";
       imageMainSlider.append(mainSliderWrap);
       const imagesSliderCatalog: HTMLElement = document.createElement("div");
       imagesSliderCatalog.className = "images-product__catalog";
       imagesSliderCatalog.id = "imgnav";
-      //imagesSlider.append(imagesSliderCatalog);
       productImages.append(imagesSliderCatalog);
       for (let i = 0; i < imagesCatalog.length; i++) {
         const itemSlider: HTMLElement = document.createElement("div");
@@ -122,9 +113,6 @@ class ProductCardPage {
         imageItemWrapper.className = "sticker";
         imageItemWrapper.setAttribute("for", `btn${i}`);
         imagesSliderCatalog.append(imageItemWrapper);
-        /*const imageItemWrap: HTMLElement = document.createElement("div");
-        imageItemWrap.className = "img-label";
-        imageItemWrapper.append(imageItemWrap);*/
         const imageItem: HTMLImageElement = document.createElement("img");
         imageItem.classList.add("images-product__item");
         imageItem.src = `${imagesCatalog[i]}`;

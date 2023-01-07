@@ -2,28 +2,29 @@ import { ProductItemData } from "../types/index";
 const productsData: Array<ProductItemData> = [
   {
     id: 1,
-    title: "iPhone 9",
-    description: "An apple mobile which is nothing like apple",
-    price: 549,
+    title: "Apple iPhone SE",
+    description:
+      'Apple iOS, экран 4.7" IPS (750x1334) 60 Гц, Apple A13 Bionic, ОЗУ 3 ГБ, память 64 ГБ, камера 12 Мп, аккумулятор 1820 мАч, 1 SIM, влагозащита IP67',
+    price: 461,
     discountPercentage: 10,
     rating: 4.69,
     stock: 94,
     brand: "Apple",
     category: "smartphones",
-    thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+    thumbnail:
+      "https://content2.onliner.by/catalog/device/main/5967975d9c930761f16487f8b690eb9a.jpeg",
     images: [
-      "https://i.dummyjson.com/data/products/1/1.jpg",
-      "https://i.dummyjson.com/data/products/1/2.jpg",
-      "https://i.dummyjson.com/data/products/1/3.jpg",
-      "https://i.dummyjson.com/data/products/1/4.jpg",
-      "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+      "https://content2.onliner.by/catalog/device/main/5967975d9c930761f16487f8b690eb9a.jpeg",
+      "https://content2.onliner.by/catalog/device/main/7671e54f1a7d8bd196e367aa4e24aea9.jpeg",
+      "https://content2.onliner.by/catalog/device/main/d9aa5ee1266dd3c2a62ff599e73e3cdc.jpeg",
+      "https://content2.onliner.by/catalog/device/main/789ec1f44a610cbc72f9217a86c6addd.jpeg",
     ],
   },
   {
     id: 2,
     title: "iPhone X",
     description:
-      "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      'Apple iOS, экран 5.8" AMOLED (1125x2436), Apple A11 Bionic, ОЗУ 3 ГБ, память 64 ГБ, камера 12 Мп, аккумулятор 2716 мАч, 1 SIM, влагозащита IP67',
     price: 899,
     discountPercentage: 20,
     rating: 4.44,
@@ -32,25 +33,31 @@ const productsData: Array<ProductItemData> = [
     category: "smartphones",
     thumbnail: "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
     images: [
+      "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
       "https://i.dummyjson.com/data/products/2/1.jpg",
       "https://i.dummyjson.com/data/products/2/2.jpg",
       "https://i.dummyjson.com/data/products/2/3.jpg",
-      "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
     ],
   },
   {
     id: 3,
-    title: "Samsung Universe 9",
+    title: "Samsung Galaxy S22 Ultra",
     description:
-      "Samsung's new variant which goes beyond Galaxy to the Universe",
-    price: 1249,
+      'Android, экран 6.8" AMOLED (1440x3088) 120 Гц, Exynos 2200, ОЗУ 12 ГБ, память 512 ГБ, камера 108 Мп, аккумулятор 5000 мАч, 2 SIM, влагозащита IP68',
+    price: 1660,
     discountPercentage: 15,
     rating: 4.09,
     stock: 36,
     brand: "Samsung",
     category: "smartphones",
-    thumbnail: "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
-    images: ["https://i.dummyjson.com/data/products/3/1.jpg"],
+    thumbnail:
+      "https://content2.onliner.by/catalog/device/main/744fbcbfa42e67147fc17995eae160dc.jpeg",
+    images: [
+      "https://content2.onliner.by/catalog/device/main/744fbcbfa42e67147fc17995eae160dc.jpeg",
+      "https://content2.onliner.by/catalog/device/main/d74ad84efd23e48f69175358c3a060b4.jpeg",
+      "https://content2.onliner.by/catalog/device/main/07fb31304852257a5e953076036d7238.jpeg",
+      "https://content2.onliner.by/catalog/device/main/cc221cc5408338927ca41b6d78d4761b.jpeg",
+    ],
   },
   {
     id: 4,
@@ -64,18 +71,18 @@ const productsData: Array<ProductItemData> = [
     category: "smartphones",
     thumbnail: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
     images: [
+      "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
       "https://i.dummyjson.com/data/products/4/1.jpg",
       "https://i.dummyjson.com/data/products/4/2.jpg",
       "https://i.dummyjson.com/data/products/4/3.jpg",
       "https://i.dummyjson.com/data/products/4/4.jpg",
-      "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
     ],
   },
   {
     id: 5,
     title: "Huawei P30",
     description:
-      "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+      'Android, экран 6.1" OLED (1080x2340), HiSilicon Kirin 980, ОЗУ 6 ГБ, память 128 ГБ, поддержка карт памяти, камера 40 Мп, аккумулятор 3650 мАч, 2 SIM, влагозащита IP53',
     price: 499,
     discountPercentage: 10,
     rating: 4.09,
@@ -84,7 +91,7 @@ const productsData: Array<ProductItemData> = [
     category: "smartphones",
     thumbnail: "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
     images: [
-      "https://i.dummyjson.com/data/products/5/1.jpg",
+      "https://i.dummyjson.com/data/products/5/thumbnail.jpg",
       "https://i.dummyjson.com/data/products/5/2.jpg",
       "https://i.dummyjson.com/data/products/5/3.jpg",
     ],
@@ -93,7 +100,7 @@ const productsData: Array<ProductItemData> = [
     id: 6,
     title: "MacBook Pro",
     description:
-      "MacBook Pro 2021 with mini-LED display may launch between September, November",
+      'Ноутбук 14.2" 3024 x 1964 IPS 120 Гц, Apple M1 Pro (8 ядер), 16 ГБ, SSD 512 ГБ, видеокарта встроенная, Mac OS, цвет крышки серебристый',
     price: 1749,
     discountPercentage: 10,
     rating: 4.57,
@@ -102,7 +109,7 @@ const productsData: Array<ProductItemData> = [
     category: "laptops",
     thumbnail: "https://i.dummyjson.com/data/products/6/thumbnail.png",
     images: [
-      "https://i.dummyjson.com/data/products/6/1.png",
+      "https://i.dummyjson.com/data/products/6/thumbnail.png",
       "https://i.dummyjson.com/data/products/6/2.jpg",
       "https://i.dummyjson.com/data/products/6/3.png",
       "https://i.dummyjson.com/data/products/6/4.jpg",
@@ -121,10 +128,10 @@ const productsData: Array<ProductItemData> = [
     category: "laptops",
     thumbnail: "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
     images: [
+      "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
       "https://i.dummyjson.com/data/products/7/1.jpg",
       "https://i.dummyjson.com/data/products/7/2.jpg",
       "https://i.dummyjson.com/data/products/7/3.jpg",
-      "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
     ],
   },
   {
@@ -140,11 +147,11 @@ const productsData: Array<ProductItemData> = [
     category: "laptops",
     thumbnail: "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
     images: [
+      "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
       "https://i.dummyjson.com/data/products/8/1.jpg",
       "https://i.dummyjson.com/data/products/8/2.jpg",
       "https://i.dummyjson.com/data/products/8/3.jpg",
       "https://i.dummyjson.com/data/products/8/4.jpg",
-      "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
     ],
   },
   {
@@ -160,11 +167,11 @@ const productsData: Array<ProductItemData> = [
     category: "laptops",
     thumbnail: "https://i.dummyjson.com/data/products/9/thumbnail.jpg",
     images: [
+      "https://i.dummyjson.com/data/products/9/thumbnail.jpg",
       "https://i.dummyjson.com/data/products/9/1.jpg",
       "https://i.dummyjson.com/data/products/9/2.png",
       "https://i.dummyjson.com/data/products/9/3.png",
       "https://i.dummyjson.com/data/products/9/4.jpg",
-      "https://i.dummyjson.com/data/products/9/thumbnail.jpg",
     ],
   },
   {
@@ -180,10 +187,9 @@ const productsData: Array<ProductItemData> = [
     category: "laptops",
     thumbnail: "https://i.dummyjson.com/data/products/10/thumbnail.jpeg",
     images: [
-      "https://i.dummyjson.com/data/products/10/1.jpg",
+      "https://i.dummyjson.com/data/products/10/thumbnail.jpeg",
       "https://i.dummyjson.com/data/products/10/2.jpg",
       "https://i.dummyjson.com/data/products/10/3.jpg",
-      "https://i.dummyjson.com/data/products/10/thumbnail.jpeg",
     ],
   },
   {
@@ -200,9 +206,9 @@ const productsData: Array<ProductItemData> = [
     thumbnail:
       "https://content2.onliner.by/catalog/device/main/d68e83aa99a0b98f2990da108fdd3eec.jpeg",
     images: [
+      "https://content2.onliner.by/catalog/device/main/d68e83aa99a0b98f2990da108fdd3eec.jpeg",
       "https://content2.onliner.by/catalog/device/main/6ecd489aa80e26bb60e39394911d53c5.jpeg",
       "https://content2.onliner.by/catalog/device/main/681c395ac5bba0bd17df80ffb89e4620.jpeg",
-      "https://content2.onliner.by/catalog/device/main/d68e83aa99a0b98f2990da108fdd3eec.jpeg",
     ],
   },
   {
@@ -219,11 +225,11 @@ const productsData: Array<ProductItemData> = [
     thumbnail:
       "https://content2.onliner.by/catalog/device/main/b9fefc8c8f96dbc21492792f3a1a502d.jpeg",
     images: [
+      "https://content2.onliner.by/catalog/device/main/b9fefc8c8f96dbc21492792f3a1a502d.jpeg",
       "https://content2.onliner.by/catalog/device/main/e54ce5dd0bfe235d1915a0ef4c2817bc.jpeg",
       "https://content2.onliner.by/catalog/device/main/1a20f6e6ebfcdc6a3af05353b5261fb7.jpeg",
       "https://content2.onliner.by/catalog/device/main/4d891ae089200bee9d6fe705b0c39ae1.jpeg",
       "https://content2.onliner.by/catalog/device/main/7463b27f998be03a47590efdb2ef21b1.jpeg",
-      "https://content2.onliner.by/catalog/device/main/b9fefc8c8f96dbc21492792f3a1a502d.jpeg",
     ],
   },
   {
@@ -240,9 +246,9 @@ const productsData: Array<ProductItemData> = [
     thumbnail:
       "https://content2.onliner.by/catalog/device/main/ad1fd08115cc6e1b4c289d580d79b406.jpeg",
     images: [
+      "https://content2.onliner.by/catalog/device/main/ad1fd08115cc6e1b4c289d580d79b406.jpeg",
       "https://content2.onliner.by/catalog/device/main/df459906858715887018ff1f211426a2.jpeg",
       "https://content2.onliner.by/catalog/device/main/961b668da5301e767862ceabbdeda3a1.jpeg",
-      "https://content2.onliner.by/catalog/device/main/ad1fd08115cc6e1b4c289d580d79b406.jpeg",
     ],
   },
   {
@@ -259,13 +265,13 @@ const productsData: Array<ProductItemData> = [
     thumbnail:
       "https://content2.onliner.by/catalog/device/main/e2189f90f9088975c553ec33431fc186.jpeg",
     images: [
+      "https://content2.onliner.by/catalog/device/main/e2189f90f9088975c553ec33431fc186.jpeg",
       "https://content2.onliner.by/catalog/device/main/0c875f5256364427b295041067c503a0.jpeg",
       "https://content2.onliner.by/catalog/device/main/23580a0d8d0da4adeea070aa2ef567a0.jpeg",
       "https://content2.onliner.by/catalog/device/main/4e428e447e1f2b0bddaa81c0429e9367.jpeg",
       "https://content2.onliner.by/catalog/device/main/c248eadf4dac90d61b39f86718b06026.jpeg",
       "https://content2.onliner.by/catalog/device/main/f426a6b414587652e6f11ec0bb952494.jpeg",
       "https://content2.onliner.by/catalog/device/main/009a71bc60d3c707080f4fdbfce276ef.jpeg",
-      "https://content2.onliner.by/catalog/device/main/e2189f90f9088975c553ec33431fc186.jpeg",
     ],
   },
   {
@@ -397,6 +403,25 @@ const productsData: Array<ProductItemData> = [
       "https://content2.onliner.by/catalog/device/main/cfee3ab4429a6cd2b5815f6c8e814221.jpeg",
       "https://content2.onliner.by/catalog/device/main/63590032f153a03cb9a88b836188839d.jpeg",
       "https://content2.onliner.by/catalog/device/main/25dced53990d60a7b809badb7463db0f.jpeg",
+    ],
+  },
+  {
+    id: 21,
+    title: "Huawei P50 Pro",
+    description:
+      'Android, экран 6.6" OLED (1228x2700) 120 Гц, Qualcomm Snapdragon 888, ОЗУ 8 ГБ, память 256 ГБ, поддержка карт памяти, камера 50 Мп, аккумулятор 4360 мАч, 2 SIM, влагозащита IP68',
+    price: 948,
+    discountPercentage: 10,
+    rating: 4.09,
+    stock: 32,
+    brand: "Huawei",
+    category: "smartphones",
+    thumbnail:
+      "https://content2.onliner.by/catalog/device/main/111cf0cf9fa64abb627fba8b5fbed791.jpeg",
+    images: [
+      "https://content2.onliner.by/catalog/device/main/111cf0cf9fa64abb627fba8b5fbed791.jpeg",
+      "https://content2.onliner.by/catalog/device/main/4b174c917a21d30b7d8e811c65e82ecd.jpeg",
+      "https://content2.onliner.by/catalog/device/main/79fcce7605818324fea22ab14ccb989b.jpeg",
     ],
   },
 ];
