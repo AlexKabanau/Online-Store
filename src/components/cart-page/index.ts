@@ -60,7 +60,7 @@ class CartPage extends Page {
       window.addEventListener("keydown", (event) => {
         if (event.keyCode === 27) {
           modalPayment?.classList.remove("modal-show");
-          modalPayment?.classList.remove("modal-error");
+          // modalPayment?.classList.remove("modal-error");
         }
       });
     }
@@ -106,6 +106,9 @@ class CartPage extends Page {
         ) {
           console.log("submit");
           modalPayment?.classList.add("modal-error");
+          setTimeout(() => {
+            modalPayment?.classList.remove("modal-error");
+          }, 500);
         }
       });
     }
