@@ -1,3 +1,4 @@
+import { ProductItemData } from "../../types/index";
 import productsData from "../data";
 
 class ProductCardPage {
@@ -128,7 +129,7 @@ class ProductCardPage {
       bodyProduct.append(bodyTopProduct);
       const bodyProductStock: HTMLElement = document.createElement("div");
       bodyProductStock.className = "body-product__stock";
-      bodyProductStock.innerText = "In stock";
+      bodyProductStock.innerText = `In stock ${curProduct.stock}`;
       bodyTopProduct.append(bodyProductStock);
       const bodyProductPrice: HTMLElement = document.createElement("div");
       bodyProductPrice.className = "body-product__price";
@@ -148,7 +149,19 @@ class ProductCardPage {
       bodyProduct.append(bodyBottomProduct);
       const btnProductToCart: HTMLElement = document.createElement("button");
       btnProductToCart.className = "button product-to-cart";
-      btnProductToCart.innerText = "Add to cart";
+
+      const shopCart: string | null = localStorage.getItem("cart");
+      let availCart = [];
+      if (shopCart) {
+        availCart = JSON.parse(shopCart);
+      }
+      if (availCart.find((item: ProductItemData) => item.id == curProduct.id)) {
+        btnProductToCart.className = "button product-to-cart drop";
+        btnProductToCart.innerText = "Drop from cart";
+      } else {
+        btnProductToCart.innerText = "Add to cart";
+      }
+      //btnProductToCart.innerText = "Add to cart";
       bodyBottomProduct.append(btnProductToCart);
       const btnProductBuyNow: HTMLAnchorElement = document.createElement("a");
       btnProductBuyNow.className = "button product-buy-now";

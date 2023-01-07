@@ -52,6 +52,12 @@ class ProductPage extends Page {
     const btnToCart: HTMLElement | null = document.querySelector(
       ".product-to-cart"
     );
+    const fullCartText: HTMLSpanElement | null = document.querySelector(
+      ".full-cart-text"
+    );
+    const valuePriceCart: HTMLSpanElement | null = document.querySelector(
+      ".value-price-cart"
+    );
     btnToCart?.addEventListener("click", () => {
       //console.log(idAboutProd);
       const cart: string | null = localStorage.getItem("cart");
@@ -59,27 +65,47 @@ class ProductPage extends Page {
       if (cart) {
         arrCart = JSON.parse(cart);
       }
-      if (arrCart.length === 10) {
+      if (btnToCart.classList.contains("drop")) {
+        btnToCart.classList.remove("drop");
+        const arrCartFilt = arrCart.filter(
+          (elem: ProductItemData) => elem.id != idAboutProd.id
+        );
+        localStorage.setItem("cart", JSON.stringify(arrCartFilt));
+        btnToCart.innerText = "Add to cart";
+        if (fullCartText) {
+          fullCartText.textContent = `${arrCartFilt.length}`;
+        }
+        if (valuePriceCart) {
+          const sum: number = arrCartFilt.reduce(
+            (sum: number, item: ProductItemData) => sum + item.price,
+            0
+          );
+          valuePriceCart.textContent = `${sum}`;
+        }
+        //console.log(arrCartFilt);
+      } else if (arrCart.length === 10) {
         popupMaxGoods?.classList.add("open");
         document.body.style.overflowY = "hidden";
       } else {
         arrCart.push(idAboutProd);
         localStorage.setItem("cart", JSON.stringify(arrCart));
-        const fullCartText: HTMLSpanElement | null = document.querySelector(
+        /*const fullCartText: HTMLSpanElement | null = document.querySelector(
           ".full-cart-text"
-        );
+        );*/
+        btnToCart.innerText = "Drop from cart";
+        btnToCart.classList.add("drop");
         if (fullCartText) {
-          fullCartText.innerText = `${arrCart.length}`;
+          fullCartText.textContent = `${arrCart.length}`;
         }
-        const valuePriceCart: HTMLSpanElement | null = document.querySelector(
+        /*const valuePriceCart: HTMLSpanElement | null = document.querySelector(
           ".value-price-cart"
-        );
+        );*/
         if (valuePriceCart) {
           const sum: number = arrCart.reduce(
             (sum: number, item: ProductItemData) => sum + item.price,
             0
           );
-          valuePriceCart.innerText = `${sum}`;
+          valuePriceCart.textContent = `${sum}`;
         }
       }
       //localStorage.clear();
