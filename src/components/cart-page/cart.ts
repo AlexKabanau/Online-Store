@@ -12,17 +12,17 @@ class Cart_Page extends Components {
   ) {
     super(tagName, className, id, data);
   }
-  renderCatalog(data: Array<ProductItemData>) {
+  renderCart(data: Array<ProductItemData>) {
     const header: HTMLElement = document.createElement("header");
     header.className = "section-cart__header";
 
     const container: HTMLElement = document.createElement("div");
     container.className = "container";
 
-    const sectionTitle: HTMLElement = document.createElement("h2");
-    sectionTitle.className = "section-cart__title";
-    sectionTitle.innerText = "Корзина товаров";
-    container.append(sectionTitle);
+    // const sectionTitle: HTMLElement = document.createElement("h2");
+    // sectionTitle.className = "section-cart__title";
+    // sectionTitle.innerText = "Корзина товаров";
+    // container.append(sectionTitle);
     header.append(container);
     this.container.append(header);
 
@@ -36,21 +36,22 @@ class Cart_Page extends Components {
     cartHeader.className = "cart-header";
     const cartHeaderTitle: HTMLElement = document.createElement("div");
     cartHeaderTitle.className = "cart-header__title";
-    cartHeaderTitle.innerText = "Наименование";
+    cartHeaderTitle.innerText = "Title";
     cartHeader.append(cartHeaderTitle);
     const cartHeaderCount: HTMLElement = document.createElement("div");
     cartHeaderCount.className = "cart-header__count";
-    cartHeaderCount.innerText = "Количество";
+    cartHeaderCount.innerText = "Amount";
     cartHeader.append(cartHeaderCount);
     const cartHeaderCost: HTMLElement = document.createElement("div");
     cartHeaderCost.className = "cart-header__cost";
-    cartHeaderCost.innerText = "Стоимость";
+    cartHeaderCost.innerText = "Cost";
     cartHeader.append(cartHeaderCost);
     cartSection.append(cartHeader);
 
     for (let i = 0; i < data.length; i++) {
       const cartProduct: HTMLElement = document.createElement("section");
       cartProduct.className = "_product";
+      cartProduct.id = `_${data[i].id}`;
 
       const divImg: HTMLElement = document.createElement("div");
       divImg.className = "product__img";
@@ -101,6 +102,7 @@ class Cart_Page extends Components {
       divControls.className = "product__controls";
       const button: HTMLButtonElement = document.createElement("button");
       button.type = "button";
+      button.className = "del-item";
       const buttonImage: HTMLImageElement = document.createElement("img");
       buttonImage.className = "button_image";
       button.append(buttonImage);
@@ -114,7 +116,7 @@ class Cart_Page extends Components {
     cartFooter.className = "cart-footer";
     const cartFooterCount: HTMLElement = document.createElement("div");
     cartFooterCount.className = "cart-footer__count";
-    cartFooterCount.innerText = `${data.length} ед.`;
+    cartFooterCount.innerText = `${data.length}`;
     cartFooter.append(cartFooterCount);
     const cartFooterPrice: HTMLElement = document.createElement("div");
     cartFooterPrice.className = "cart-footer__price";
@@ -141,7 +143,7 @@ class Cart_Page extends Components {
   }
 
   render(data: Array<ProductItemData>) {
-    this.renderCatalog(data);
+    this.renderCart(data);
     return this.container;
   }
 }
