@@ -69,30 +69,62 @@ class ProductCardPage {
       const productImages: HTMLElement = document.createElement("div");
       productImages.className = "product__images images-product";
       productContainer.append(productImages);
-      const imagesSlider: HTMLElement = document.createElement("div");
-      imagesSlider.className = "images-product__slider";
-      productImages.append(imagesSlider);
+      //const imagesSlider: HTMLElement = document.createElement("div");
+      //imagesSlider.className = "images-product__slider";
+      //productImages.append(imagesSlider);
+      const inputBtnFirst: HTMLInputElement = document.createElement("input");
+      inputBtnFirst.setAttribute("type", "radio");
+      inputBtnFirst.setAttribute("name", "btn");
+      inputBtnFirst.id = "btn0";
+      inputBtnFirst.setAttribute("checked", "");
+      productImages.append(inputBtnFirst);
+      //imagesSlider.append(inputBtnFirst);
+
+      const imagesCatalog = [...curProduct.images].slice(0, 5);
+      console.log(imagesCatalog);
+      for (let i = 1; i < imagesCatalog.length; i++) {
+        const inputBtn: HTMLInputElement = document.createElement("input");
+        inputBtn.setAttribute("type", "radio");
+        inputBtn.setAttribute("name", "btn");
+        inputBtn.id = `btn${i}`;
+        productImages.append(inputBtn);
+        //imagesSlider.append(inputBtn);
+      }
       const productSale: HTMLElement = document.createElement("div");
       productSale.className = "images-product__sale";
       productSale.innerText = `${curProduct.discountPercentage} %`;
-      imagesSlider.append(productSale);
+      productImages.append(productSale);
+      //imagesSlider.append(productSale);
       const imageMainSlider: HTMLElement = document.createElement("div");
       imageMainSlider.className = "images-product__mainslide";
-      imagesSlider.append(imageMainSlider);
-      const imageMain: HTMLImageElement = document.createElement("img");
-      imageMain.classList.add("mainslide__img");
-      imageMain.src = `${curProduct.images[curProduct.images.length - 1]}`;
-      imageMain.alt = "photo";
-      imageMainSlider.append(imageMain);
+      imageMainSlider.id = "slides";
+      productImages.append(imageMainSlider);
+      //imagesSlider.append(imageMainSlider);
+      const mainSliderWrap: HTMLElement = document.createElement("div");
+      mainSliderWrap.className = "mainslide__wrap";
+      imageMainSlider.append(mainSliderWrap);
       const imagesSliderCatalog: HTMLElement = document.createElement("div");
       imagesSliderCatalog.className = "images-product__catalog";
+      imagesSliderCatalog.id = "imgnav";
+      //imagesSlider.append(imagesSliderCatalog);
       productImages.append(imagesSliderCatalog);
-      const imagesCatalog = [...curProduct.images].slice(0, -1).slice(0, 5);
-      console.log(imagesCatalog);
       for (let i = 0; i < imagesCatalog.length; i++) {
-        const imageItemWrapper: HTMLElement = document.createElement("div");
-        imageItemWrapper.className = "images-product__wrapper";
+        const itemSlider: HTMLElement = document.createElement("div");
+        itemSlider.className = `slider-item slide${i}`;
+        const imgSlide: HTMLImageElement = document.createElement("img");
+        imgSlide.className = "img-slide";
+        imgSlide.src = `${imagesCatalog[i]}`;
+        itemSlider.append(imgSlide);
+        mainSliderWrap.append(itemSlider);
+        const imageItemWrapper: HTMLLabelElement = document.createElement(
+          "label"
+        );
+        imageItemWrapper.className = "sticker";
+        imageItemWrapper.setAttribute("for", `btn${i}`);
         imagesSliderCatalog.append(imageItemWrapper);
+        /*const imageItemWrap: HTMLElement = document.createElement("div");
+        imageItemWrap.className = "img-label";
+        imageItemWrapper.append(imageItemWrap);*/
         const imageItem: HTMLImageElement = document.createElement("img");
         imageItem.classList.add("images-product__item");
         imageItem.src = `${imagesCatalog[i]}`;
