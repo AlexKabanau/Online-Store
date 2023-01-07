@@ -21,7 +21,19 @@ class CartPage extends Page {
 
   constructor(id: string) {
     super(id);
+    const cart: string | null = localStorage.getItem("cart");
+    let arrCart = [];
+    if (cart) {
+      arrCart = JSON.parse(cart);
+    }
+    // this._data = this._data = productsData.sort(() => Math.random() - 0.5);
+    this._data = arrCart;
 
+    this.header = new Header("header", "header");
+
+    this.cart_Page = new Cart_Page("section", "section-cart", "", arrCart);
+
+    this.footer = new Footer("footer", "footer");
     //modal popUp
     this.modal = new Modal("section", "", "modal");
   }
@@ -209,32 +221,6 @@ class CartPage extends Page {
       }
     }
 
-    modalPopUp();
-    modalCheck();
-    cardNumberMask();
-    cardValidMask();
-    cardCVVMask();
-    const cart: string | null = localStorage.getItem("cart");
-    let arrCart = [];
-    if (cart) {
-      arrCart = JSON.parse(cart);
-    }
-    // this._data = this._data = productsData.sort(() => Math.random() - 0.5);
-    this._data = arrCart;
-
-    this.header = new Header("header", "header");
-
-    this.cart_Page = new Cart_Page("section", "section-cart", "", arrCart);
-
-    this.footer = new Footer("footer", "footer");
-  }
-  renderMain(_data: Array<ProductItemData>) {
-    this.container.append(this.header.render());
-    this.container.append(this.cart_Page.render(_data));
-    this.container.append(this.footer.render());
-  }
-
-  afterRender() {
     function deleteItem() {
       const sections: NodeListOf<HTMLElement> | null = document.querySelectorAll(
         "._product"
@@ -293,20 +279,36 @@ class CartPage extends Page {
       }
     }
 
+    modalPopUp();
+    modalCheck();
+    cardNumberMask();
+    cardValidMask();
+    cardCVVMask();
     deleteItem();
-  }
+    // const cart: string | null = localStorage.getItem("cart");
+    // let arrCart = [];
+    // if (cart) {
+    //   arrCart = JSON.parse(cart);
+    // }
+    // this._data = this._data = productsData.sort(() => Math.random() - 0.5);
+    // this._data = arrCart;
 
-  reRender(_data: Array<ProductItemData>) {
-    const section: HTMLElement | null = document.querySelector(".section-cart");
-    if (section) {
-      section.innerHTML = "";
-    }
-    section?.append(this.cart_Page.render(_data));
+    // this.header = new Header("header", "header");
+
+    // this.cart_Page = new Cart_Page("section", "section-cart", "", arrCart);
+
+    // this.footer = new Footer("footer", "footer");
+  }
+  renderMain(_data: Array<ProductItemData>) {
+    this.container.append(this.header.render());
+    this.container.append(this.cart_Page.render(_data));
+    this.container.append(this.footer.render());
   }
 
   render() {
     const title = this.createHeaderTitle(CartPage.TextObject.MainTitle);
     this.container.append(title);
+    this.renderMain(this._data);
     // кнопка-заглушка
     const cardInfoButton: HTMLAnchorElement = document.createElement("a");
     cardInfoButton.className = "checkButton";
@@ -316,10 +318,6 @@ class CartPage extends Page {
     this.container.append(cardInfoButton);
     //modal popUp
     this.container.append(this.modal.render());
-    setTimeout(() => {
-      this.afterRender();
-    }, 0);
-    this.renderMain(this._data);
     setTimeout(() => {
       this.afterRender();
     }, 0);
