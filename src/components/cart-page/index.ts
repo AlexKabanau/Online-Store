@@ -234,6 +234,76 @@ class CartPage extends Page {
     this.container.append(this.footer.render());
   }
 
+  afterRender() {
+    function deleteItem() {
+      const sections: NodeListOf<HTMLElement> | null = document.querySelectorAll(
+        "._product"
+      );
+      if (sections) {
+        for (const section of sections) {
+          section.addEventListener("click", (event) => {
+            const target = event.target as HTMLElement;
+            const delButton = target.closest(".del-item");
+            const itemId = Number(target.closest("._product")?.id.slice(1));
+            console.log(itemId);
+            console.log(delButton);
+            const cart: string | null = localStorage.getItem("cart");
+            let arrCart = [];
+            if (cart) {
+              arrCart = JSON.parse(cart);
+              // console.log(arrCart);
+            }
+            if (delButton) {
+              for (let i = 0; i < arrCart.length; i++) {
+                if (arrCart[i].id === itemId) {
+                  arrCart.splice(i, 1);
+                  console.log(arrCart);
+                  localStorage.setItem("cart", JSON.stringify(arrCart));
+                  section.classList.add("visually-hidden");
+                  const fullCartText: HTMLSpanElement | null = document.querySelector(
+                    ".full-cart-text"
+                  );
+                  const cartFooterCount: HTMLElement | null = document.querySelector(
+                    ".cart-footer__count"
+                  );
+                  if (fullCartText && cartFooterCount) {
+                    fullCartText.innerText = `${arrCart.length}`;
+                    cartFooterCount.innerText = `${arrCart.length}`;
+                  }
+                  const valuePriceCart: HTMLSpanElement | null = document.querySelector(
+                    ".value-price-cart"
+                  );
+                  const cartFooterPrice: HTMLElement | null = document.querySelector(
+                    ".cart-footer__price"
+                  );
+                  if (valuePriceCart && cartFooterPrice) {
+                    const sum: number = arrCart.reduce(
+                      (sum: number, item: ProductItemData) => sum + item.price,
+                      0
+                    );
+                    valuePriceCart.innerText = `${sum}`;
+                    cartFooterPrice.innerText = `${sum}`;
+                  }
+                }
+              }
+            }
+            // this.reRender(arrCart);
+          });
+        }
+      }
+    }
+
+    deleteItem();
+  }
+
+  reRender(_data: Array<ProductItemData>) {
+    const section: HTMLElement | null = document.querySelector(".section-cart");
+    if (section) {
+      section.innerHTML = "";
+    }
+    section?.append(this.cart_Page.render(_data));
+  }
+
   render() {
     const title = this.createHeaderTitle(CartPage.TextObject.MainTitle);
     this.container.append(title);
@@ -250,6 +320,9 @@ class CartPage extends Page {
       this.afterRender();
     }, 0);
     this.renderMain(this._data);
+    setTimeout(() => {
+      this.afterRender();
+    }, 0);
     return this.container;
   }
 }
