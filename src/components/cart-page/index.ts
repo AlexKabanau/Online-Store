@@ -4,6 +4,7 @@ import Cart_Page from "./cart";
 import { ProductItemData } from "../../types";
 import Header from "../details/header";
 import Footer from "../details/footer";
+import productsData from "../data";
 
 // import productsData from "../data";
 
@@ -12,6 +13,8 @@ class CartPage extends Page {
   cart_Page: Cart_Page;
   footer: Footer;
   _data: Array<ProductItemData>;
+  // _clearData: Array<ProductItemData>;
+  _numbers: Array<number>;
   static TextObject = {
     MainTitle: "Cart Page",
   };
@@ -22,16 +25,46 @@ class CartPage extends Page {
   constructor(id: string) {
     super(id);
     const cart: string | null = localStorage.getItem("cart");
-    let arrCart = [];
+    let arrCart: Array<ProductItemData> = [];
     if (cart) {
       arrCart = JSON.parse(cart);
     }
     // this._data = this._data = productsData.sort(() => Math.random() - 0.5);
+    this._numbers = [];
     this._data = arrCart;
+
+    const idsArr: Array<number> = arrCart.map((el) => el.id);
+    // const clearData: Array<number> = Array.from(
+    //   new Set(this._data.map((el) => el.id))
+    // );
+    // console.log(clearData);
+
+    function getDatas(data: Array<number>, numbers: Array<number>) {
+      let count = 1;
+      for (let i = 0; i < data.length; i++) {
+        if (data.indexOf(data[i]) === data.lastIndexOf(data[i])) {
+          numbers[i] = count;
+          count = 1;
+        } else {
+          data.splice(i, 1);
+          count++;
+          i--;
+        }
+      }
+    }
+    getDatas(idsArr, this._numbers);
+    console.log(idsArr);
+    console.log(this._numbers);
 
     this.header = new Header("header", "header");
 
-    this.cart_Page = new Cart_Page("section", "section-cart", "", arrCart);
+    this.cart_Page = new Cart_Page(
+      "section",
+      "section-cart",
+      "",
+      this._data,
+      this._numbers
+    );
 
     this.footer = new Footer("footer", "footer");
     //modal popUp
@@ -233,17 +266,45 @@ class CartPage extends Page {
           section.addEventListener("click", (event) => {
             const target = event.target as HTMLElement;
             const delButton = target.closest(".del-item");
-            const itemId = Number(target.closest("._product")?.id.slice(1));
+            const increaseButton = target.closest(".button_image_up");
+            const decriseButton = target.closest(".button_image_down");
+            const itemId = Number(target.closest("._product")?.id);
             console.log(itemId);
             console.log(delButton);
             const cart: string | null = localStorage.getItem("cart");
+            function setPrice(price: number) {
+              const valuePriceCart: HTMLSpanElement | null = document.querySelector(
+                ".value-price-cart"
+              );
+              const cartFooterPrice: HTMLElement | null = document.querySelector(
+                ".cart-footer__price"
+              );
+              if (valuePriceCart && cartFooterPrice) {
+                const sum: number = price;
+                valuePriceCart.innerText = `${sum}`;
+                cartFooterPrice.innerText = `${sum}`;
+              }
+            }
+            function setAmount(amount: number) {
+              const fullCartText: HTMLSpanElement | null = document.querySelector(
+                ".full-cart-text"
+              );
+              const cartFooterCount: HTMLElement | null = document.querySelector(
+                ".cart-footer__count"
+              );
+              if (fullCartText && cartFooterCount) {
+                fullCartText.innerText = `${amount}`;
+                cartFooterCount.innerText = `${amount}`;
+              }
+            }
             let arrCart = [];
             if (cart) {
               arrCart = JSON.parse(cart);
-              // console.log(arrCart);
+              console.log(arrCart);
             }
             if (delButton) {
               for (let i = 0; i < arrCart.length; i++) {
+                // while (arrCart[i].id === itemId) {
                 if (arrCart[i].id === itemId) {
                   arrCart.splice(i, 1);
                   console.log(arrCart);
@@ -273,6 +334,55 @@ class CartPage extends Page {
                     valuePriceCart.innerText = `${sum}`;
                     cartFooterPrice.innerText = `${sum}`;
                   }
+                  i--;
+                }
+              }
+            }
+
+            if (increaseButton) {
+              const currentProduct = productsData.find(
+                (item) => item.id === itemId
+              );
+              arrCart.push(currentProduct);
+              localStorage.setItem("cart", JSON.stringify(arrCart));
+              const input: HTMLInputElement | null = section.querySelector(
+                ".count__input"
+              );
+              if (input) {
+                input.value = String(Number(input.value) + 1);
+              }
+              const sum: number = arrCart.reduce(
+                (sum: number, item: ProductItemData) => sum + item.price,
+                0
+              );
+              const amount: number = arrCart.length;
+              setPrice(sum);
+              setAmount(amount);
+            }
+            if (decriseButton) {
+              for (let i = 0; i < arrCart.length; i++) {
+                // while (arrCart[i].id === itemId) {
+                if (arrCart[i].id === itemId) {
+                  arrCart.splice(i, 1);
+                  console.log(arrCart);
+                  const input: HTMLInputElement | null = section.querySelector(
+                    ".count__input"
+                  );
+                  if (input) {
+                    if (+input.value > 0) {
+                      input.value = String(Number(input.value) - 1);
+                    } else {
+                      section.classList.add("visually-hidden");
+                    }
+                  }
+                  const sum: number = arrCart.reduce(
+                    (sum: number, item: ProductItemData) => sum + item.price,
+                    0
+                  );
+                  const amount: number = arrCart.length;
+                  setPrice(sum);
+                  setAmount(amount);
+                  break;
                 }
               }
             }
@@ -302,16 +412,16 @@ class CartPage extends Page {
 
     // this.footer = new Footer("footer", "footer");
   }
-  renderMain(_data: Array<ProductItemData>) {
+  renderMain(_data: Array<ProductItemData>, _numbers: Array<number>) {
     this.container.append(this.header.render());
-    this.container.append(this.cart_Page.render(_data));
+    this.container.append(this.cart_Page.render(_data, _numbers));
     this.container.append(this.footer.render());
   }
 
   render() {
     const title = this.createHeaderTitle(CartPage.TextObject.MainTitle);
     this.container.append(title);
-    this.renderMain(this._data);
+    this.renderMain(this._data, this._numbers);
     // кнопка-заглушка
     const cardInfoButton: HTMLAnchorElement = document.createElement("a");
     cardInfoButton.className = "checkButton";

@@ -1,18 +1,20 @@
 import Components from "../Components";
 import { ProductItemData } from "../../types";
 // import handlers from "./handlers";
-// import data from "../data";
+import productsData from "../data";
 
 class Cart_Page extends Components {
   constructor(
     tagName: string,
     className: string,
     id: string,
-    data: Array<ProductItemData>
+    data: Array<ProductItemData>,
+    numbers: Array<number>
   ) {
-    super(tagName, className, id, data);
+    super(tagName, className, id, data, numbers);
   }
-  renderCart(data: Array<ProductItemData>) {
+  renderCart(data: Array<ProductItemData>, numbers: Array<number>) {
+    const idArray: Array<number> = Array.from(new Set(data.map((el) => el.id)));
     const header: HTMLElement = document.createElement("header");
     header.className = "section-cart__header";
 
@@ -48,68 +50,71 @@ class Cart_Page extends Components {
     cartHeader.append(cartHeaderCost);
     cartSection.append(cartHeader);
 
-    for (let i = 0; i < data.length; i++) {
-      const cartProduct: HTMLElement = document.createElement("section");
-      cartProduct.className = "_product";
-      cartProduct.id = `_${data[i].id}`;
+    for (let i = 0; i < idArray.length; i++) {
+      const curProduct = productsData.find((item) => item.id == idArray[i]);
+      if (curProduct) {
+        const cartProduct: HTMLElement = document.createElement("section");
+        cartProduct.className = "_product";
+        cartProduct.id = `${curProduct.id}`;
 
-      const divImg: HTMLElement = document.createElement("div");
-      divImg.className = "product__img";
-      const image: HTMLImageElement = document.createElement("img");
-      image.src = data[i].thumbnail;
-      image.alt = data[i].title;
-      divImg.append(image);
-      cartProduct.append(divImg);
+        const divImg: HTMLElement = document.createElement("div");
+        divImg.className = "product__img";
+        const image: HTMLImageElement = document.createElement("img");
+        image.src = curProduct.thumbnail;
+        image.alt = curProduct.title;
+        divImg.append(image);
+        cartProduct.append(divImg);
 
-      const divTitle: HTMLElement = document.createElement("div");
-      divTitle.className = "product__title";
-      divTitle.innerHTML = data[i].title;
-      cartProduct.append(divTitle);
+        const divTitle: HTMLElement = document.createElement("div");
+        divTitle.className = "product__title";
+        divTitle.innerHTML = curProduct.title;
+        cartProduct.append(divTitle);
 
-      const divCount: HTMLElement = document.createElement("div");
-      divCount.className = "product__count";
-      const div_Count: HTMLElement = document.createElement("div");
-      div_Count.className = "count";
-      const divCountBox: HTMLElement = document.createElement("div");
-      divCountBox.className = "count__box";
-      divCountBox.innerHTML = `<input type="number" class="count__input" max="100" min="1" value="1">`;
-      div_Count.append(divCountBox);
-      const divCountControls: HTMLElement = document.createElement("div");
-      divCountControls.className = "count__controls";
-      const buttonUp: HTMLButtonElement = document.createElement("button");
-      buttonUp.type = "button";
-      const buttonUpImage: HTMLImageElement = document.createElement("img");
-      buttonUpImage.className = "button_image_up";
-      buttonUp.append(buttonUpImage);
-      divCountControls.append(buttonUp);
-      const buttonDown: HTMLButtonElement = document.createElement("button");
-      buttonDown.type = "button";
-      const buttonDownImage: HTMLImageElement = document.createElement("img");
-      buttonDownImage.className = "button_image_down";
-      buttonDown.append(buttonDownImage);
-      divCountControls.append(buttonDown);
-      div_Count.append(divCountControls);
+        const divCount: HTMLElement = document.createElement("div");
+        divCount.className = "product__count";
+        const div_Count: HTMLElement = document.createElement("div");
+        div_Count.className = "count";
+        const divCountBox: HTMLElement = document.createElement("div");
+        divCountBox.className = "count__box";
+        divCountBox.innerHTML = `<input type="number" class="count__input" max="100" min="1" value="${numbers[i]}">`;
+        div_Count.append(divCountBox);
+        const divCountControls: HTMLElement = document.createElement("div");
+        divCountControls.className = "count__controls";
+        const buttonUp: HTMLButtonElement = document.createElement("button");
+        buttonUp.type = "button";
+        const buttonUpImage: HTMLImageElement = document.createElement("img");
+        buttonUpImage.className = "button_image_up";
+        buttonUp.append(buttonUpImage);
+        divCountControls.append(buttonUp);
+        const buttonDown: HTMLButtonElement = document.createElement("button");
+        buttonDown.type = "button";
+        const buttonDownImage: HTMLImageElement = document.createElement("img");
+        buttonDownImage.className = "button_image_down";
+        buttonDown.append(buttonDownImage);
+        divCountControls.append(buttonDown);
+        div_Count.append(divCountControls);
 
-      divCount.append(div_Count);
-      cartProduct.append(divCount);
+        divCount.append(div_Count);
+        cartProduct.append(divCount);
 
-      const divPrice: HTMLElement = document.createElement("div");
-      divPrice.className = "product__price";
-      divPrice.innerHTML = `${data[i].price}`;
-      cartProduct.append(divPrice);
+        const divPrice: HTMLElement = document.createElement("div");
+        divPrice.className = "product__price";
+        divPrice.innerHTML = `${curProduct.price}`;
+        cartProduct.append(divPrice);
 
-      const divControls: HTMLElement = document.createElement("div");
-      divControls.className = "product__controls";
-      const button: HTMLButtonElement = document.createElement("button");
-      button.type = "button";
-      button.className = "del-item";
-      const buttonImage: HTMLImageElement = document.createElement("img");
-      buttonImage.className = "button_image";
-      button.append(buttonImage);
-      divControls.append(button);
-      cartProduct.append(divControls);
+        const divControls: HTMLElement = document.createElement("div");
+        divControls.className = "product__controls";
+        const button: HTMLButtonElement = document.createElement("button");
+        button.type = "button";
+        button.className = "del-item";
+        const buttonImage: HTMLImageElement = document.createElement("img");
+        buttonImage.className = "button_image";
+        button.append(buttonImage);
+        divControls.append(button);
+        cartProduct.append(divControls);
 
-      cartSection.append(cartProduct);
+        cartSection.append(cartProduct);
+      }
     }
 
     const cartFooter: HTMLElement = document.createElement("header");
@@ -142,8 +147,8 @@ class Cart_Page extends Components {
     this.container.append(sectionCartBody);
   }
 
-  render(data: Array<ProductItemData>) {
-    this.renderCart(data);
+  render(data: Array<ProductItemData>, numbers: Array<number>) {
+    this.renderCart(data, numbers);
     return this.container;
   }
 }
