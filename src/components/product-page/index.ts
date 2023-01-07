@@ -1,12 +1,10 @@
 import { ProductItemData } from "../../types/index";
 import Page from "../templates/page";
 import ProductCardPage from "../product-page/productPage";
-import Header from "../details/header";
 import Footer from "../details/footer";
 import PopupMaxGoods from "../details/popupMaxGoods";
 let idAboutProd: ProductItemData;
 class ProductPage extends Page {
-  header: Header;
   productCardPage: ProductCardPage;
   footer: Footer;
   popupMaxGoods: PopupMaxGoods;
@@ -16,7 +14,6 @@ class ProductPage extends Page {
 
   constructor(id: string) {
     super(id);
-    this.header = new Header("header", "header");
     //let idAboutProd;
     const aboutProd: string | null = localStorage.getItem("about");
     if (aboutProd) {
@@ -40,7 +37,6 @@ class ProductPage extends Page {
   renderProductPage() {
     const mainProdPage: HTMLElement = document.createElement("main");
     mainProdPage.classList.add("main_prodpage");
-    this.container.append(this.header.render());
     mainProdPage.append(this.productCardPage.render());
     this.container.append(mainProdPage);
     this.container.append(this.footer.render());
@@ -52,6 +48,12 @@ class ProductPage extends Page {
     const btnToCart: HTMLElement | null = document.querySelector(
       ".product-to-cart"
     );
+    const fullCartText: HTMLSpanElement | null = document.querySelector(
+      ".full-cart-text"
+    );
+    const valuePriceCart: HTMLSpanElement | null = document.querySelector(
+      ".value-price-cart"
+    );
     btnToCart?.addEventListener("click", () => {
       //console.log(idAboutProd);
       const cart: string | null = localStorage.getItem("cart");
@@ -59,27 +61,41 @@ class ProductPage extends Page {
       if (cart) {
         arrCart = JSON.parse(cart);
       }
-      if (arrCart.length === 10) {
+      if (btnToCart.classList.contains("drop")) {
+        btnToCart.classList.remove("drop");
+        const arrCartFilt = arrCart.filter(
+          (elem: ProductItemData) => elem.id != idAboutProd.id
+        );
+        localStorage.setItem("cart", JSON.stringify(arrCartFilt));
+        btnToCart.innerText = "Add to cart";
+        if (fullCartText) {
+          fullCartText.textContent = `${arrCartFilt.length}`;
+        }
+        if (valuePriceCart) {
+          const sum: number = arrCartFilt.reduce(
+            (sum: number, item: ProductItemData) => sum + item.price,
+            0
+          );
+          valuePriceCart.textContent = `${sum}`;
+        }
+        //console.log(arrCartFilt);
+      } else if (arrCart.length === 10) {
         popupMaxGoods?.classList.add("open");
         document.body.style.overflowY = "hidden";
       } else {
         arrCart.push(idAboutProd);
         localStorage.setItem("cart", JSON.stringify(arrCart));
-        const fullCartText: HTMLSpanElement | null = document.querySelector(
-          ".full-cart-text"
-        );
+        btnToCart.innerText = "Drop from cart";
+        btnToCart.classList.add("drop");
         if (fullCartText) {
-          fullCartText.innerText = `${arrCart.length}`;
+          fullCartText.textContent = `${arrCart.length}`;
         }
-        const valuePriceCart: HTMLSpanElement | null = document.querySelector(
-          ".value-price-cart"
-        );
         if (valuePriceCart) {
           const sum: number = arrCart.reduce(
             (sum: number, item: ProductItemData) => sum + item.price,
             0
           );
-          valuePriceCart.innerText = `${sum}`;
+          valuePriceCart.textContent = `${sum}`;
         }
       }
       //localStorage.clear();

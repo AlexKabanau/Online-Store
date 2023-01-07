@@ -1,3 +1,4 @@
+import { ProductItemData } from "../../types/index";
 import productsData from "../data";
 
 class ProductCardPage {
@@ -69,29 +70,49 @@ class ProductCardPage {
       const productImages: HTMLElement = document.createElement("div");
       productImages.className = "product__images images-product";
       productContainer.append(productImages);
-      const imagesSlider: HTMLElement = document.createElement("div");
-      imagesSlider.className = "images-product__slider";
-      productImages.append(imagesSlider);
+      const inputBtnFirst: HTMLInputElement = document.createElement("input");
+      inputBtnFirst.setAttribute("type", "radio");
+      inputBtnFirst.setAttribute("name", "btn");
+      inputBtnFirst.id = "btn0";
+      inputBtnFirst.setAttribute("checked", "");
+      productImages.append(inputBtnFirst);
+      const imagesCatalog = [...curProduct.images].slice(0, 5);
+      console.log(imagesCatalog);
+      for (let i = 1; i < imagesCatalog.length; i++) {
+        const inputBtn: HTMLInputElement = document.createElement("input");
+        inputBtn.setAttribute("type", "radio");
+        inputBtn.setAttribute("name", "btn");
+        inputBtn.id = `btn${i}`;
+        productImages.append(inputBtn);
+      }
       const productSale: HTMLElement = document.createElement("div");
       productSale.className = "images-product__sale";
       productSale.innerText = `${curProduct.discountPercentage} %`;
-      imagesSlider.append(productSale);
+      productImages.append(productSale);
       const imageMainSlider: HTMLElement = document.createElement("div");
       imageMainSlider.className = "images-product__mainslide";
-      imagesSlider.append(imageMainSlider);
-      const imageMain: HTMLImageElement = document.createElement("img");
-      imageMain.classList.add("mainslide__img");
-      imageMain.src = `${curProduct.images[curProduct.images.length - 1]}`;
-      imageMain.alt = "photo";
-      imageMainSlider.append(imageMain);
+      imageMainSlider.id = "slides";
+      productImages.append(imageMainSlider);
+      const mainSliderWrap: HTMLElement = document.createElement("div");
+      mainSliderWrap.className = "mainslide__wrap";
+      imageMainSlider.append(mainSliderWrap);
       const imagesSliderCatalog: HTMLElement = document.createElement("div");
       imagesSliderCatalog.className = "images-product__catalog";
+      imagesSliderCatalog.id = "imgnav";
       productImages.append(imagesSliderCatalog);
-      const imagesCatalog = [...curProduct.images].slice(0, -1).slice(0, 5);
-      console.log(imagesCatalog);
       for (let i = 0; i < imagesCatalog.length; i++) {
-        const imageItemWrapper: HTMLElement = document.createElement("div");
-        imageItemWrapper.className = "images-product__wrapper";
+        const itemSlider: HTMLElement = document.createElement("div");
+        itemSlider.className = `slider-item slide${i}`;
+        const imgSlide: HTMLImageElement = document.createElement("img");
+        imgSlide.className = "img-slide";
+        imgSlide.src = `${imagesCatalog[i]}`;
+        itemSlider.append(imgSlide);
+        mainSliderWrap.append(itemSlider);
+        const imageItemWrapper: HTMLLabelElement = document.createElement(
+          "label"
+        );
+        imageItemWrapper.className = "sticker";
+        imageItemWrapper.setAttribute("for", `btn${i}`);
         imagesSliderCatalog.append(imageItemWrapper);
         const imageItem: HTMLImageElement = document.createElement("img");
         imageItem.classList.add("images-product__item");
@@ -108,7 +129,7 @@ class ProductCardPage {
       bodyProduct.append(bodyTopProduct);
       const bodyProductStock: HTMLElement = document.createElement("div");
       bodyProductStock.className = "body-product__stock";
-      bodyProductStock.innerText = "In stock";
+      bodyProductStock.innerText = `In stock ${curProduct.stock}`;
       bodyTopProduct.append(bodyProductStock);
       const bodyProductPrice: HTMLElement = document.createElement("div");
       bodyProductPrice.className = "body-product__price";
@@ -128,7 +149,19 @@ class ProductCardPage {
       bodyProduct.append(bodyBottomProduct);
       const btnProductToCart: HTMLElement = document.createElement("button");
       btnProductToCart.className = "button product-to-cart";
-      btnProductToCart.innerText = "Add to cart";
+
+      const shopCart: string | null = localStorage.getItem("cart");
+      let availCart = [];
+      if (shopCart) {
+        availCart = JSON.parse(shopCart);
+      }
+      if (availCart.find((item: ProductItemData) => item.id == curProduct.id)) {
+        btnProductToCart.className = "button product-to-cart drop";
+        btnProductToCart.innerText = "Drop from cart";
+      } else {
+        btnProductToCart.innerText = "Add to cart";
+      }
+      //btnProductToCart.innerText = "Add to cart";
       bodyBottomProduct.append(btnProductToCart);
       const btnProductBuyNow: HTMLAnchorElement = document.createElement("a");
       btnProductBuyNow.className = "button product-buy-now";

@@ -2,6 +2,7 @@ import Page from "../templates/page";
 import MainPage from "../master";
 import ProductPage from "../product-page";
 import CartPage from "../cart-page";
+import Header from "../details/header";
 import Links from "../details";
 
 export const enum PageIds {
@@ -14,6 +15,7 @@ class App {
   private static container: HTMLElement = document.body;
   private static defaultPageId = "current-page";
   private initialPage: MainPage;
+  header: Header;
   private links: Links;
 
   static renderNewPage(idPage: string) {
@@ -47,11 +49,13 @@ class App {
 
   constructor() {
     this.initialPage = new MainPage("main-page");
+    this.header = new Header("header", "header");
     this.links = new Links("links", "links");
   }
 
   run() {
-    App.container.append(this.links.render());
+    App.container.prepend(this.header.render());
+    App.container.prepend(this.links.render());
     App.renderNewPage("main-page");
     this.enableRouteChange();
   }
