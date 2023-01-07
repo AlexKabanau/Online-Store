@@ -2,6 +2,7 @@ import Page from "../templates/page";
 import MainPage from "../master";
 import ProductPage from "../product-page";
 import CartPage from "../cart-page";
+import ErrorPage from "../error-page";
 import Header from "../details/header";
 import Links from "../details";
 
@@ -9,6 +10,7 @@ export const enum PageIds {
   MainPage = "main-page",
   ProductPage = "goods-page",
   CartPage = "cart-page",
+  ErrorPage = "error-page",
 }
 
 class App {
@@ -31,6 +33,8 @@ class App {
       page = new ProductPage(idPage);
     } else if (idPage === PageIds.CartPage) {
       page = new CartPage(idPage);
+    } else if (idPage === PageIds.ErrorPage) {
+      page = new ErrorPage(idPage);
     }
 
     if (page) {

@@ -16,6 +16,10 @@ const Buttons = [
     id: PageIds.CartPage,
     text: "Cart Page",
   },
+  {
+    id: PageIds.ErrorPage,
+    text: "Error Page",
+  },
 ];
 
 class Links extends IComponent {

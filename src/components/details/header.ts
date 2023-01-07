@@ -62,7 +62,7 @@ class Header {
     makeOrder.innerText = "Buy now";
     liMakeOrder.append(makeOrder);*/
     const containerBottom: HTMLElement = document.createElement("div");
-    containerBottom.className = "container";
+    containerBottom.className = "container header-bottom";
     const headerInner: HTMLElement = document.createElement("div");
     headerInner.className = "header-inner";
     headerInner.innerHTML = `
