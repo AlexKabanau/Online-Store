@@ -60,7 +60,7 @@ class CartPage extends Page {
 
     this.cart_Page = new Cart_Page(
       "section",
-      "section-cart",
+      "_cart container",
       "",
       this._data,
       this._numbers
@@ -74,7 +74,7 @@ class CartPage extends Page {
   afterRender() {
     function modalPopUp() {
       const cardInfoButton: HTMLElement | null = document.querySelector(
-        ".checkButton"
+        ".buy-now-button"
       );
       const modalPayment: HTMLElement | null = document.querySelector(
         ".modal-payment"
@@ -279,10 +279,14 @@ class CartPage extends Page {
               const cartFooterPrice: HTMLElement | null = document.querySelector(
                 ".cart-footer__price"
               );
-              if (valuePriceCart && cartFooterPrice) {
+              const totalPrice: HTMLElement | null = document.querySelector(
+                ".total-price-span"
+              );
+              if (valuePriceCart && cartFooterPrice && totalPrice) {
                 const sum: number = price;
                 valuePriceCart.innerText = `${sum}`;
                 cartFooterPrice.innerText = `${sum}`;
+                totalPrice.innerText = `${sum}`;
               }
             }
             function setAmount(amount: number) {
@@ -292,9 +296,13 @@ class CartPage extends Page {
               const cartFooterCount: HTMLElement | null = document.querySelector(
                 ".cart-footer__count"
               );
-              if (fullCartText && cartFooterCount) {
+              const totalAmount: HTMLElement | null = document.querySelector(
+                ".total-products-span"
+              );
+              if (fullCartText && cartFooterCount && totalAmount) {
                 fullCartText.innerText = `${amount}`;
                 cartFooterCount.innerText = `${amount}`;
+                totalAmount.innerText = `${amount}`;
               }
             }
             function setItemCost(
@@ -452,12 +460,12 @@ class CartPage extends Page {
     this.container.append(title);
     this.renderMain(this._data, this._numbers);
     // кнопка-заглушка
-    const cardInfoButton: HTMLAnchorElement = document.createElement("a");
-    cardInfoButton.className = "checkButton";
-    // cardInfoButton.href = "#";
-    cardInfoButton.innerText = "click for show";
-    cardInfoButton.style.color = "red";
-    this.container.append(cardInfoButton);
+    // const cardInfoButton: HTMLAnchorElement = document.createElement("a");
+    // cardInfoButton.className = "checkButton";
+    // // cardInfoButton.href = "#";
+    // cardInfoButton.innerText = "click for show";
+    // cardInfoButton.style.color = "red";
+    // this.container.append(cardInfoButton);
     //modal popUp
     this.container.append(this.modal.render());
     setTimeout(() => {
