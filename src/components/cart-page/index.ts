@@ -428,6 +428,105 @@ class CartPage extends Page {
         }
       }
     }
+    function setPromo() {
+      const search = document.querySelector(".promo-input") as HTMLInputElement;
+      const title: HTMLHeadingElement | null = document.querySelector(
+        ".codes-title"
+      );
+      const divPromoEpm: HTMLElement | null = document.querySelector(
+        ".appl-promoEpm"
+      );
+      const divPromoRS: HTMLElement | null = document.querySelector(
+        ".appl-promoRS"
+      );
+      const promoArr: Array<string> = [];
+      search.addEventListener("change", () => {
+        const searchValue = search.value.trim();
+        if (searchValue && searchValue != "") {
+          if (searchValue === "RS") {
+            if (!promoArr.includes(searchValue)) {
+              promoArr.push(searchValue);
+              title?.classList.remove("visually-hidden");
+              divPromoRS?.classList.remove("visually-hidden");
+            }
+          }
+          if (searchValue === "EPM") {
+            if (!promoArr.includes(searchValue)) {
+              promoArr.push(searchValue);
+              title?.classList.remove("visually-hidden");
+              divPromoEpm?.classList.remove("visually-hidden");
+            }
+          }
+          console.log(promoArr);
+          changePrice();
+        }
+      });
+      const applCodes: HTMLElement | null = document.querySelector(
+        ".appl-codes"
+      );
+      applCodes?.addEventListener("click", (event) => {
+        // const target = event.target as HTMLElement;
+        const drop = (event.target as HTMLElement).closest(".drop-code");
+        const codeEpm = (event.target as HTMLElement).closest(".appl-promoEpm");
+        const codeRs = (event.target as HTMLElement).closest(".appl-promoRS");
+        console.log(drop, codeEpm);
+        if (drop && codeEpm) {
+          codeEpm.classList.add("visually-hidden");
+          const currentPromo = promoArr.find((item) => item === "EPM");
+          if (currentPromo) {
+            promoArr.splice(promoArr.indexOf(currentPromo), 1);
+          }
+          changePrice();
+        }
+        if (drop && codeRs) {
+          codeRs.classList.add("visually-hidden");
+          const currentPromo = promoArr.find((item) => item === "RS");
+          if (currentPromo) {
+            promoArr.splice(promoArr.indexOf(currentPromo), 1);
+          }
+          changePrice();
+        }
+      });
+      function changePrice() {
+        if (promoArr.length > 0) {
+          const totalPrice: HTMLElement | null = document.querySelector(
+            ".total-price"
+          );
+          totalPrice?.classList.add("blocked");
+          const newPrice: HTMLElement | null = document.querySelector(
+            ".new-price"
+          );
+          if (newPrice && totalPrice) {
+            newPrice.classList.remove("visually-hidden");
+            const totalPriceSpan: HTMLElement | null = document.querySelector(
+              ".total-price-span"
+            );
+            const newPriceSpan: HTMLElement | null = document.querySelector(
+              ".new-price-span"
+            );
+            const x = Number(totalPriceSpan?.textContent);
+            if (newPriceSpan) {
+              newPriceSpan.innerText = `${Math.round(
+                (1 - 0.1 * promoArr.length) * x
+              )}`;
+            }
+          }
+        } else {
+          const totalPrice: HTMLElement | null = document.querySelector(
+            ".total-price"
+          );
+          totalPrice?.classList.remove("blocked");
+          const newPrice: HTMLElement | null = document.querySelector(
+            ".new-price"
+          );
+          newPrice?.classList.add("visually-hidden");
+          const title: HTMLHeadingElement | null = document.querySelector(
+            ".codes-title"
+          );
+          title?.classList.add("visually-hidden");
+        }
+      }
+    }
 
     modalPopUp();
     modalCheck();
@@ -435,6 +534,7 @@ class CartPage extends Page {
     cardValidMask();
     cardCVVMask();
     manageItem();
+    setPromo();
     // const cart: string | null = localStorage.getItem("cart");
     // let arrCart = [];
     // if (cart) {
