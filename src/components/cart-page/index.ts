@@ -257,7 +257,7 @@ class CartPage extends Page {
       }
     }
 
-    function deleteItem() {
+    function manageItem() {
       const sections: NodeListOf<HTMLElement> | null = document.querySelectorAll(
         "._product"
       );
@@ -297,7 +297,18 @@ class CartPage extends Page {
                 cartFooterCount.innerText = `${amount}`;
               }
             }
-            let arrCart = [];
+            function setItemCost(
+              value: number,
+              currentProduct: ProductItemData
+            ) {
+              const divPrice: HTMLElement | null = section.querySelector(
+                ".product__price"
+              );
+              if (divPrice) {
+                divPrice.innerText = `${value * currentProduct.price}`;
+              }
+            }
+            let arrCart: Array<ProductItemData> = [];
             if (cart) {
               arrCart = JSON.parse(cart);
               console.log(arrCart);
@@ -343,13 +354,18 @@ class CartPage extends Page {
               const currentProduct = productsData.find(
                 (item) => item.id === itemId
               );
-              arrCart.push(currentProduct);
+              if (currentProduct) {
+                arrCart.push(currentProduct);
+              }
               localStorage.setItem("cart", JSON.stringify(arrCart));
               const input: HTMLInputElement | null = section.querySelector(
                 ".count__input"
               );
               if (input) {
                 input.value = String(Number(input.value) + 1);
+                if (currentProduct) {
+                  setItemCost(+input.value, currentProduct);
+                }
               }
               const sum: number = arrCart.reduce(
                 (sum: number, item: ProductItemData) => sum + item.price,
@@ -360,31 +376,44 @@ class CartPage extends Page {
               setAmount(amount);
             }
             if (decriseButton) {
-              for (let i = 0; i < arrCart.length; i++) {
-                // while (arrCart[i].id === itemId) {
-                if (arrCart[i].id === itemId) {
-                  arrCart.splice(i, 1);
-                  console.log(arrCart);
-                  const input: HTMLInputElement | null = section.querySelector(
-                    ".count__input"
-                  );
-                  if (input) {
-                    if (+input.value > 0) {
-                      input.value = String(Number(input.value) - 1);
-                    } else {
-                      section.classList.add("visually-hidden");
-                    }
-                  }
-                  const sum: number = arrCart.reduce(
-                    (sum: number, item: ProductItemData) => sum + item.price,
-                    0
-                  );
-                  const amount: number = arrCart.length;
-                  setPrice(sum);
-                  setAmount(amount);
-                  break;
+              // for (let i = 0; i < arrCart.length; i++) {
+              // while (arrCart[i].id === itemId) {
+              // if (arrCart[i].id === itemId) {
+              // const currentProduct = productsData.find(
+              //   (item) => item.id === itemId
+              // );
+              const currentProduct = productsData.find(
+                (item) => item.id === itemId
+              );
+              if (currentProduct) {
+                arrCart.splice(arrCart.indexOf(currentProduct), 1);
+                localStorage.setItem("cart", JSON.stringify(arrCart));
+              }
+              // arrCart.splice(i, 1);
+              console.log(arrCart);
+              const input: HTMLInputElement | null = section.querySelector(
+                ".count__input"
+              );
+              if (input) {
+                if (+input.value > 1) {
+                  input.value = String(Number(input.value) - 1);
+                } else {
+                  section.classList.add("visually-hidden");
+                }
+                if (currentProduct) {
+                  setItemCost(+input.value, currentProduct);
                 }
               }
+              const sum: number = arrCart.reduce(
+                (sum: number, item: ProductItemData) => sum + item.price,
+                0
+              );
+              const amount: number = arrCart.length;
+              setPrice(sum);
+              setAmount(amount);
+              // break;
+              // }
+              // }
             }
             // this.reRender(arrCart);
           });
@@ -397,7 +426,7 @@ class CartPage extends Page {
     cardNumberMask();
     cardValidMask();
     cardCVVMask();
-    deleteItem();
+    manageItem();
     // const cart: string | null = localStorage.getItem("cart");
     // let arrCart = [];
     // if (cart) {
