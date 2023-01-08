@@ -18,7 +18,7 @@ class Header {
     const logo: HTMLAnchorElement = document.createElement("a");
     logo.className = "logo header-logo";
     logo.href = "#main-page";
-    logo.innerText = "LOGO";
+    logo.innerText = "OnlineStore";
     nav.append(logo);
     const priceCart: HTMLElement = document.createElement("div");
     priceCart.className = "price-cart";
@@ -67,7 +67,7 @@ class Header {
     headerInner.className = "header-inner";
     headerInner.innerHTML = `
       <p class="description">Online Store<br>
-      Lorem, ipsum.</p>
+      of digital devices</p>
       <div class="header-contacts">
         <a class="header-tel" href="tel:+375290000000">+375 29 000-00-00</a>
         <p>Minsk, Belarus</p>
