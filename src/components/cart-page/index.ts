@@ -142,6 +142,11 @@ class CartPage extends Page {
           setTimeout(() => {
             modalPayment?.classList.remove("modal-error");
           }, 500);
+        } else {
+          setTimeout(() => {
+            localStorage.removeItem("cart");
+            window.location.href = "index.html";
+          }, 3000);
         }
       });
     }
