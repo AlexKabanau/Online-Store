@@ -1,16 +1,10 @@
 import Page from "../templates/page";
-<<<<<<< HEAD
 import Modal from "./modal";
-=======
->>>>>>> 3293588c786c151b37620cbb2f1898bf509e0d40
 import Cart_Page from "./cart";
 import { ProductItemData } from "../../types";
 import Header from "../details/header";
 import Footer from "../details/footer";
-<<<<<<< HEAD
 import productsData from "../data";
-=======
->>>>>>> 3293588c786c151b37620cbb2f1898bf509e0d40
 
 // import productsData from "../data";
 
@@ -19,11 +13,8 @@ class CartPage extends Page {
   cart_Page: Cart_Page;
   footer: Footer;
   _data: Array<ProductItemData>;
-<<<<<<< HEAD
   // _clearData: Array<ProductItemData>;
   _numbers: Array<number>;
-=======
->>>>>>> 3293588c786c151b37620cbb2f1898bf509e0d40
   static TextObject = {
     MainTitle: "Cart Page",
   };
@@ -34,16 +25,11 @@ class CartPage extends Page {
   constructor(id: string) {
     super(id);
     const cart: string | null = localStorage.getItem("cart");
-<<<<<<< HEAD
     let arrCart: Array<ProductItemData> = [];
-=======
-    let arrCart = [];
->>>>>>> 3293588c786c151b37620cbb2f1898bf509e0d40
     if (cart) {
       arrCart = JSON.parse(cart);
     }
     // this._data = this._data = productsData.sort(() => Math.random() - 0.5);
-<<<<<<< HEAD
     this._numbers = [];
     this._data = arrCart;
 
@@ -466,26 +452,12 @@ class CartPage extends Page {
   renderMain(_data: Array<ProductItemData>, _numbers: Array<number>) {
     this.container.append(this.header.render());
     this.container.append(this.cart_Page.render(_data, _numbers));
-=======
-    this._data = arrCart;
-
-    this.header = new Header("header", "header");
-
-    this.cart_Page = new Cart_Page("section", "section-cart", "", arrCart);
-
-    this.footer = new Footer("footer", "footer");
-  }
-  renderMain(_data: Array<ProductItemData>) {
-    this.container.append(this.header.render());
-    this.container.append(this.cart_Page.render(_data));
->>>>>>> 3293588c786c151b37620cbb2f1898bf509e0d40
     this.container.append(this.footer.render());
   }
 
   render() {
     const title = this.createHeaderTitle(CartPage.TextObject.MainTitle);
     this.container.append(title);
-<<<<<<< HEAD
     this.renderMain(this._data, this._numbers);
     // кнопка-заглушка
     // const cardInfoButton: HTMLAnchorElement = document.createElement("a");
@@ -499,9 +471,6 @@ class CartPage extends Page {
     setTimeout(() => {
       this.afterRender();
     }, 0);
-=======
-    this.renderMain(this._data);
->>>>>>> 3293588c786c151b37620cbb2f1898bf509e0d40
     return this.container;
   }
 }
