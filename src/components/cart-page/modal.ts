@@ -15,6 +15,7 @@ class Modal extends Components {
 
     const paymentForm: HTMLFormElement = document.createElement("form");
     paymentForm.action = "";
+    paymentForm.target = "index.html";
     paymentForm.className = "payment-form";
 
     const divContainer: HTMLElement = document.createElement("div");
