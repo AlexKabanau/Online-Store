@@ -7,6 +7,9 @@
 .container {
   padding: 5px 0;
 }
+.container {
+  padding: 5px 0;
+}
 .header-logo {
   width: 120px;
   padding: 12px 0 17px 0;
@@ -114,7 +117,9 @@ a.full-cart {
 }*/
 .header-inner {
   height: 118px;
+  height: 118px;
   box-sizing: border-box;
+  padding-top: 26px;
   padding-top: 26px;
   display: flex;
   justify-content: space-between;

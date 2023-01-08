@@ -10,7 +10,7 @@ class Components {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     data?: Array<ProductItemData>,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    handlers?: Object
+    numbers?: Array<number>
   ) {
     this.container = document.createElement(tagName);
     this.container.className = className;
@@ -18,7 +18,7 @@ class Components {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  render(data?: Array<ProductItemData>, handlers?: Object) {
+  render(data?: Array<ProductItemData>, numbers?: Array<number>) {
     return this.container;
   }
 }

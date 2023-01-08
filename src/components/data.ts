@@ -2,10 +2,9 @@ import { ProductItemData } from "../types/index";
 const productsData: Array<ProductItemData> = [
   {
     id: 1,
-    title: "Apple iPhone SE",
-    description:
-      'Apple iOS, экран 4.7" IPS (750x1334) 60 Гц, Apple A13 Bionic, ОЗУ 3 ГБ, память 64 ГБ, камера 12 Мп, аккумулятор 1820 мАч, 1 SIM, влагозащита IP67',
-    price: 461,
+    title: "iPhone 9",
+    description: "An apple mobile which is nothing like apple",
+    price: 549,
     discountPercentage: 10,
     rating: 4.69,
     stock: 94,
@@ -43,8 +42,8 @@ const productsData: Array<ProductItemData> = [
     id: 3,
     title: "Samsung Galaxy S22 Ultra",
     description:
-      'Android, экран 6.8" AMOLED (1440x3088) 120 Гц, Exynos 2200, ОЗУ 12 ГБ, память 512 ГБ, камера 108 Мп, аккумулятор 5000 мАч, 2 SIM, влагозащита IP68',
-    price: 1660,
+      "Samsung's new variant which goes beyond Galaxy to the Universe",
+    price: 1249,
     discountPercentage: 15,
     rating: 4.09,
     stock: 36,
