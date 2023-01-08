@@ -561,8 +561,8 @@ class CartPage extends Page {
   }
 
   render() {
-    const title = this.createHeaderTitle(CartPage.TextObject.MainTitle);
-    this.container.append(title);
+    // const title = this.createHeaderTitle(CartPage.TextObject.MainTitle);
+    // this.container.append(title);
     this.renderMain(this._data, this._numbers);
     // кнопка-заглушка
     // const cardInfoButton: HTMLAnchorElement = document.createElement("a");

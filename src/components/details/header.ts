@@ -1,16 +1,5 @@
-<<<<<<< HEAD
 import { ProductItemData } from "../../types/index";
 
-class Header {
-  container: HTMLElement;
-  constructor(tageName: string, className: string) {
-    this.container = document.createElement(tageName);
-    this.container.classList.add(className);
-  }
-  createHeader() {
-    const headerContainer: HTMLElement = document.createElement("div");
-    headerContainer.className = "order-nav-wrapper";
-=======
 class Header {
   container: HTMLElement;
   constructor(tageName: string, className: string) {
