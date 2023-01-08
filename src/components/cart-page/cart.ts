@@ -185,15 +185,15 @@ class Cart_Page extends Components {
     const divCodes = document.createElement("div");
     divCodes.className = "appl-codes";
     const titleCodes = document.createElement("h3");
-    titleCodes.className = "visually-hidden";
+    titleCodes.className = "codes-title visually-hidden";
     titleCodes.innerText = "Applied codes:";
     divCodes.append(titleCodes);
     const divPromoEp = document.createElement("div");
-    divPromoEp.className = "appl-promo visually-hidden";
+    divPromoEp.className = "appl-promoEpm visually-hidden";
     divPromoEp.innerHTML = `EPAM Systems - 10% - <span class="drop-code">DROP</span>`;
     divCodes.append(divPromoEp);
     const divPromoRS = document.createElement("div");
-    divPromoRS.className = "appl-promo visually-hidden";
+    divPromoRS.className = "appl-promoRS visually-hidden";
     divPromoRS.innerHTML = `Rolling Scopes School - 10% - <span class="drop-code">DROP</span>`;
     divCodes.append(divPromoRS);
     sectionOrder.append(divCodes);
