@@ -7,22 +7,8 @@ import Footer from "../details/footer";
 import productsData from "../data";
 
 // import productsData from "../data";
-import Modal from "./modal";
-import Cart_Page from "./cart";
-import { ProductItemData } from "../../types";
-// import Header from "../details/header";
-import Footer from "../details/footer";
-import productsData from "../data";
-
-// import productsData from "../data";
 
 class CartPage extends Page {
-  // header: Header;
-  cart_Page: Cart_Page;
-  footer: Footer;
-  _data: Array<ProductItemData>;
-  // _clearData: Array<ProductItemData>;
-  _numbers: Array<number>;
   // header: Header;
   cart_Page: Cart_Page;
   footer: Footer;
