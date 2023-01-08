@@ -99,7 +99,7 @@ class Cart_Page extends Components {
 
         const divPrice: HTMLElement = document.createElement("div");
         divPrice.className = "product__price";
-        divPrice.innerHTML = `${curProduct.price}`;
+        divPrice.innerHTML = `${curProduct.price * numbers[i]}`;
         cartProduct.append(divPrice);
 
         const divControls: HTMLElement = document.createElement("div");
