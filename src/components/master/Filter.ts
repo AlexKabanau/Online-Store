@@ -1,6 +1,5 @@
 import productsData from "../data";
 import Components from "../Components";
-// import handlers from "./handlers";
 
 class Filter extends Components {
   constructor(tagName: string, className: string, id: string) {
@@ -36,21 +35,6 @@ class Filter extends Components {
     sliderPriceControl.innerHTML = `<input id="fromPriceSlider" type="range" value="${minPrice}" min="${minPrice}" max="${maxPrice}"/>
     <input id="toPriceSlider" type="range" value="${maxPrice}" min="${minPrice}" max="${maxPrice}"/>`;
 
-    // const inputMinPrice: HTMLInputElement = document.createElement("input");
-    // inputMinPrice.id = "fromPriceSlider";
-    // inputMinPrice.type = "range";
-    // inputMinPrice.value = "280";
-    // inputMinPrice.min = "280";
-    // inputMinPrice.max = "1749";
-    // sliderPriceControl.append(inputMinPrice);
-
-    // const inputMaxPrice: HTMLInputElement = document.createElement("input");
-    // inputMaxPrice.id = "toPriceSlider";
-    // inputMaxPrice.type = "range";
-    // inputMaxPrice.value = "1749";
-    // inputMaxPrice.min = "280";
-    // inputMaxPrice.max = "1749";
-    // sliderPriceControl.append(inputMaxPrice);
     rangePriceContainer.append(sliderPriceControl);
 
     const formPriceControl: HTMLElement = document.createElement("div");
@@ -130,21 +114,6 @@ class Filter extends Components {
     sliderStockControl.innerHTML = `<input id="fromStockSlider" type="range" value="${minStock}" min="${minStock}" max="${maxStock}"/>
     <input id="toStockSlider" type="range" value="${maxStock}" min="${minStock}" max="${maxStock}"/>`;
 
-    // const inputMinStock: HTMLInputElement = document.createElement("input");
-    // inputMinStock.id = "fromStockSlider";
-    // inputMinStock.type = "range";
-    // inputMinStock.value = "0";
-    // inputMinStock.min = "0";
-    // inputMinStock.max = "100";
-    // sliderStockControl.append(inputMinStock);
-
-    // const inputMaxStock: HTMLInputElement = document.createElement("input");
-    // inputMaxStock.id = "toStockSlider";
-    // inputMaxStock.type = "range";
-    // inputMaxStock.value = "100";
-    // inputMaxStock.min = "0";
-    // inputMaxStock.max = "100";
-    // sliderStockControl.append(inputMaxStock);
     rangeStockContainer.append(sliderStockControl);
 
     const formStockControl: HTMLElement = document.createElement("div");
