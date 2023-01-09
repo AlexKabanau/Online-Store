@@ -14,22 +14,15 @@ class ProductPage extends Page {
 
   constructor(id: string) {
     super(id);
-    //let idAboutProd;
     const aboutProd: string | null = localStorage.getItem("about");
     if (aboutProd) {
       idAboutProd = JSON.parse(aboutProd);
       console.log(idAboutProd.id);
     }
-    /*const cart: string | null = localStorage.getItem("cart");
-          let arrCart = [];
-          if (cart) {
-            arrCart = JSON.parse(cart);
-          }*/
     this.productCardPage = new ProductCardPage(
       "div",
       "prodpage-container",
       `tem${idAboutProd.id}Id`
-      //"tem3Id"
     );
     this.footer = new Footer("footer", "footer");
     this.popupMaxGoods = new PopupMaxGoods("div", "popup-max-goods__wrap");
@@ -57,6 +50,9 @@ class ProductPage extends Page {
     const btnBuyNow: HTMLAnchorElement | null = document.querySelector(
       ".product-buy-now"
     );
+    /*const modalPayment = document.querySelector(
+      ".modal-payment"
+    ) as HTMLElement;*/
     btnToCart?.addEventListener("click", () => {
       //console.log(idAboutProd);
       const cart: string | null = localStorage.getItem("cart");
@@ -117,6 +113,7 @@ class ProductPage extends Page {
     btnBuyNow?.addEventListener("click", () => {
       window.history.replaceState({}, "", location.pathname);
       btnBuyNow.href = "#cart-page";
+      //modalPayment.classList.add("modal-show");
     });
   }
 

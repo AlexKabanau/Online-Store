@@ -17,6 +17,12 @@ class Footer {
     //imageRss.src = "../../../img/rs_school_js.svg";
     //imageRss.alt = "RS Logo";
     rssLogo.append(imageRss);
+    const yearWrap: HTMLElement = document.createElement("div");
+    yearWrap.className = "year-wrap";
+    const year: HTMLSpanElement = document.createElement("span");
+    year.innerText = "2023";
+    yearWrap.append(year);
+    footerContainer.append(yearWrap);
     const footerInfo: HTMLElement = document.createElement("div");
     footerInfo.className = "copyright__info";
     footerInfo.innerHTML = `
