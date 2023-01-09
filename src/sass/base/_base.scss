@@ -10,9 +10,12 @@ body {
   color: $basic-black;
   background-color: $basic-white;
   min-height: 100%;
-  display: grid;
-  grid-template-rows: min-content 1fr min-content;
-  align-content: start;
+  //display: grid;
+  //grid-template-rows: min-content 1fr min-content;
+  //align-content: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 h1 {
   @extend %font-add;

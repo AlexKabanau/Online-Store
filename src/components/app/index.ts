@@ -33,7 +33,12 @@ class App {
       page = new ProductPage(idPage);
     } else if (idPage === PageIds.CartPage) {
       page = new CartPage(idPage);
-    } else if (idPage === PageIds.ErrorPage || idPage !== PageIds.CartPage) {
+    } else if (
+      idPage === PageIds.ErrorPage ||
+      (idPage !== PageIds.CartPage &&
+        idPage !== PageIds.ProductPage &&
+        idPage !== PageIds.MainPage)
+    ) {
       page = new ErrorPage(idPage);
     }
 
@@ -59,7 +64,8 @@ class App {
 
   run() {
     App.container.prepend(this.header.render());
-    App.container.prepend(this.links.render());
+    //window.history.replaceState({}, "", location.pathname);
+    //App.container.prepend(this.links.render());
     App.renderNewPage("main-page");
     this.enableRouteChange();
   }
