@@ -14,8 +14,6 @@ class Footer {
     footerContainer.append(rssLogo);
     const imageRss: HTMLImageElement = document.createElement("img");
     imageRss.classList.add("rss-logo-img");
-    //imageRss.src = "../../../img/rs_school_js.svg";
-    //imageRss.alt = "RS Logo";
     rssLogo.append(imageRss);
     const yearWrap: HTMLElement = document.createElement("div");
     yearWrap.className = "year-wrap";

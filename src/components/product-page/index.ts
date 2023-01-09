@@ -17,7 +17,6 @@ class ProductPage extends Page {
     const aboutProd: string | null = localStorage.getItem("about");
     if (aboutProd) {
       idAboutProd = JSON.parse(aboutProd);
-      console.log(idAboutProd.id);
     }
     this.productCardPage = new ProductCardPage(
       "div",
@@ -50,11 +49,7 @@ class ProductPage extends Page {
     const btnBuyNow: HTMLAnchorElement | null = document.querySelector(
       ".product-buy-now"
     );
-    /*const modalPayment = document.querySelector(
-      ".modal-payment"
-    ) as HTMLElement;*/
     btnToCart?.addEventListener("click", () => {
-      //console.log(idAboutProd);
       const cart: string | null = localStorage.getItem("cart");
       let arrCart = [];
       if (cart) {
@@ -77,7 +72,6 @@ class ProductPage extends Page {
           );
           valuePriceCart.textContent = `${sum}`;
         }
-        //console.log(arrCartFilt);
       } else if (arrCart.length === 10) {
         popupMaxGoods?.classList.add("open");
         document.body.style.overflowY = "hidden";
@@ -97,7 +91,6 @@ class ProductPage extends Page {
           valuePriceCart.textContent = `${sum}`;
         }
       }
-      //localStorage.clear();
     });
     popupMaxGoods?.addEventListener("click", (event) => {
       const popupWrap = (event.target as HTMLElement).closest(
@@ -113,7 +106,6 @@ class ProductPage extends Page {
     btnBuyNow?.addEventListener("click", () => {
       window.history.replaceState({}, "", location.pathname);
       btnBuyNow.href = "#cart-page";
-      //modalPayment.classList.add("modal-show");
     });
   }
 
