@@ -24,6 +24,6 @@
   color: $basic-black;
 }
 #current-page {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr;
 }
