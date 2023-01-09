@@ -24,6 +24,7 @@ class MainPage extends Page {
     maxPrice: number;
     minStock: number;
     maxStock: number;
+    searchValue: string;
   };
   popupMaxGoods: PopupMaxGoods;
 
@@ -34,7 +35,7 @@ class MainPage extends Page {
     this.sort = new Sort("div", "sort", "sort", productsData);
     this.catalog = new Catalog(
       "ul",
-      "product-list",
+      "product-list grid3x",
       "product-list",
       productsData
     );
@@ -45,6 +46,7 @@ class MainPage extends Page {
       maxPrice: 0,
       minStock: 0,
       maxStock: 0,
+      searchValue: "",
     };
     this.popupMaxGoods = new PopupMaxGoods("div", "popup-max-goods__wrap");
   }
@@ -69,14 +71,22 @@ class MainPage extends Page {
     this.container.append(this.popupMaxGoods.render());
   }
   afterRender() {
+    function clearURL() {
+      window.history.replaceState({}, "", location.pathname);
+    }
     //HANDLERS
     //PRICE
     let result: Array<ProductItemData> = this._data;
     const sortPriceDown: HTMLElement | null = document.querySelector(
       '.sort-button[name="price_down"]'
     );
-    sortPriceDown?.addEventListener("click", () => {
-      // console.log(el.target);
+    function sortPrDown() {
+      sortPriceUp?.classList.remove("active");
+      sortPriceDown?.classList.add("active");
+      sortRatingUp?.classList.remove("active");
+      sortRatingDown?.classList.remove("active");
+      sortDiscountUp?.classList.remove("active");
+      sortDiscountDown?.classList.remove("active");
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.price) > Number(b.price)) {
           return -1;
@@ -86,6 +96,10 @@ class MainPage extends Page {
         }
         return 0;
       });
+    }
+    sortPriceDown?.addEventListener("click", () => {
+      // console.log(el.target);
+      sortPrDown();
       // console.log(result);
       this.reRender(result);
     });
@@ -93,7 +107,14 @@ class MainPage extends Page {
     const sortPriceUp: HTMLElement | null = document.querySelector(
       '.sort-button[name="price_up"]'
     );
-    sortPriceUp?.addEventListener("click", () => {
+    function sortPrUp() {
+      sortPriceUp?.classList.add("active");
+      sortPriceDown?.classList.remove("active");
+      sortRatingUp?.classList.remove("active");
+      sortRatingDown?.classList.remove("active");
+      sortDiscountUp?.classList.remove("active");
+      sortDiscountDown?.classList.remove("active");
+
       // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.price) > Number(b.price)) {
@@ -104,6 +125,9 @@ class MainPage extends Page {
         }
         return 0;
       });
+    }
+    sortPriceUp?.addEventListener("click", () => {
+      sortPrUp();
       // console.log(result);
       this.reRender(result);
     });
@@ -112,7 +136,14 @@ class MainPage extends Page {
     const sortRatingDown: HTMLElement | null = document.querySelector(
       '.sort-button[name="rating_down"]'
     );
-    sortRatingDown?.addEventListener("click", () => {
+    function sortRatDown() {
+      sortPriceUp?.classList.remove("active");
+      sortPriceDown?.classList.remove("active");
+      sortRatingUp?.classList.remove("active");
+      sortRatingDown?.classList.add("active");
+      sortDiscountUp?.classList.remove("active");
+      sortDiscountDown?.classList.remove("active");
+
       // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.rating) > Number(b.rating)) {
@@ -123,6 +154,9 @@ class MainPage extends Page {
         }
         return 0;
       });
+    }
+    sortRatingDown?.addEventListener("click", () => {
+      sortRatDown();
       // console.log(result);
       this.reRender(result);
     });
@@ -130,7 +164,14 @@ class MainPage extends Page {
     const sortRatingUp: HTMLElement | null = document.querySelector(
       '.sort-button[name="rating_up"]'
     );
-    sortRatingUp?.addEventListener("click", () => {
+    function sortRatUp() {
+      sortPriceUp?.classList.remove("active");
+      sortPriceDown?.classList.remove("active");
+      sortRatingUp?.classList.add("active");
+      sortRatingDown?.classList.remove("active");
+      sortDiscountUp?.classList.remove("active");
+      sortDiscountDown?.classList.remove("active");
+
       // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.rating) > Number(b.rating)) {
@@ -141,6 +182,9 @@ class MainPage extends Page {
         }
         return 0;
       });
+    }
+    sortRatingUp?.addEventListener("click", () => {
+      sortRatUp();
       // console.log(result);
       this.reRender(result);
     });
@@ -149,7 +193,14 @@ class MainPage extends Page {
     const sortDiscountDown: HTMLElement | null = document.querySelector(
       '.sort-button[name="discount_down"]'
     );
-    sortDiscountDown?.addEventListener("click", () => {
+    function sortDiscDown() {
+      sortPriceUp?.classList.remove("active");
+      sortPriceDown?.classList.remove("active");
+      sortRatingUp?.classList.remove("active");
+      sortRatingDown?.classList.remove("active");
+      sortDiscountUp?.classList.remove("active");
+      sortDiscountDown?.classList.add("active");
+
       // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.discountPercentage) > Number(b.discountPercentage)) {
@@ -161,13 +212,22 @@ class MainPage extends Page {
         return 0;
       });
       // console.log(result);
+    }
+    sortDiscountDown?.addEventListener("click", () => {
+      sortDiscDown();
       this.reRender(result);
     });
 
     const sortDiscountUp: HTMLElement | null = document.querySelector(
       '.sort-button[name="discount_up"]'
     );
-    sortDiscountUp?.addEventListener("click", () => {
+    function sortDiscUp() {
+      sortPriceUp?.classList.remove("active");
+      sortPriceDown?.classList.remove("active");
+      sortRatingUp?.classList.remove("active");
+      sortRatingDown?.classList.remove("active");
+      sortDiscountUp?.classList.add("active");
+      sortDiscountDown?.classList.remove("active");
       // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.discountPercentage) > Number(b.discountPercentage)) {
@@ -178,6 +238,9 @@ class MainPage extends Page {
         }
         return 0;
       });
+    }
+    sortDiscountUp?.addEventListener("click", () => {
+      sortDiscUp();
       // console.log(result);
       this.reRender(result);
     });
@@ -206,6 +269,16 @@ class MainPage extends Page {
                 //   new Set(checkboxes[i].name)
                 // );
                 arrCheckbox.push(checkboxes[i].name);
+                const url = new URL(window.location.href);
+                console.log(url);
+                // const params = new URLSearchParams(url.search);
+                // const searchValue = checkboxes[i].name;
+                // params.append("brand", searchValue);
+                // history.pushState(
+                //   {},
+                //   "",
+                //   `${window.location.href}?${params.toString()}`
+                // );
                 // this._searchProp.brandOptions.push(checkboxes[i].name);
               }
             }
@@ -354,6 +427,20 @@ class MainPage extends Page {
       // } else {
       //   result = this._data;
       // }
+      console.log(JSON.stringify(this._searchProp));
+      // console.log(this._searchProp.toString());
+      // eslint-disable-next-line no-case-declarations
+      const params = new URLSearchParams(JSON.stringify(this._searchProp));
+      // if (history.state) {
+      //   // history.state = null;
+      //   // history.replaceState({}, "", `${window.location.href}?${params}`);
+      //   history.replaceState({}, "", `${window.location.href}?321`);
+      // }
+      // history.pushState({}, "", `${window.location.href}?${params}`);
+      // window.location.search = "";
+
+      clearURL();
+      history.pushState({}, "", `${window.location.href}?${params}`);
       this.reRender(result);
       // function filterFunc(element: ProductItemData): boolean {
       //   if (element.category === this._searchProp.propOptions) {
@@ -363,7 +450,7 @@ class MainPage extends Page {
       //   }
       // }
     });
-    //duble range PRICE slider
+    //double range PRICE slider
     const fromPriceSlider: HTMLInputElement | null = document.querySelector(
       "#fromPriceSlider"
     );
@@ -559,6 +646,9 @@ class MainPage extends Page {
       const clickAbout = (event.target as HTMLAnchorElement).closest(
         ".about-button"
       );
+      const clickOnPrice = (event.target as HTMLAnchorElement).closest(
+        ".price"
+      );
       const itemID = target.closest(".product-card")?.id;
       //const arrCart = [];
       // console.log(event);
@@ -601,7 +691,21 @@ class MainPage extends Page {
       }
       if (clickAbout instanceof HTMLAnchorElement) {
         console.log("клик на кнопке ABOUT", itemID);
+        clearURL();
         clickAbout.href = "#goods-page";
+        if (itemID) {
+          const currentAboutProduct = productsData.find(
+            (item) => item.id == +itemID
+          );
+          console.log(currentAboutProduct);
+          localStorage.setItem("about", JSON.stringify(currentAboutProduct));
+        }
+        //localStorage.clear();
+      }
+      if (clickOnPrice instanceof HTMLAnchorElement) {
+        console.log("клик на кнопке ABOUT", itemID);
+        clearURL();
+        clickOnPrice.href = "#goods-page";
         if (itemID) {
           const currentAboutProduct = productsData.find(
             (item) => item.id == +itemID
@@ -627,12 +731,22 @@ class MainPage extends Page {
       ".reset-button"
     );
     buttonReset?.addEventListener("click", () => {
+      clearURL();
       this.reRender(this._data);
     });
 
     const search = document.querySelector(".search_input") as HTMLInputElement;
     search.addEventListener("input", () => {
+      // const url = new URL(window.location.href);
+      // console.log(url);
+      // const params = new URLSearchParams(url.search);
       const searchValue = search.value.trim().toLocaleLowerCase();
+      this._searchProp.searchValue = searchValue;
+      const params = new URLSearchParams(JSON.stringify(this._searchProp));
+      clearURL();
+      history.pushState({}, "", `${window.location.href}?${params}`);
+      // params.append("search", searchValue);
+      // window.location.search = params.toString();
       if (searchValue && searchValue != "") {
         result = this._data.filter((item) => {
           if (
@@ -655,6 +769,22 @@ class MainPage extends Page {
       }
       this.reRender(result);
     });
+    function gridChange() {
+      const grid1: HTMLElement | null = document.querySelector(".grid1");
+      const grid2: HTMLElement | null = document.querySelector(".grid2");
+      const productList: HTMLElement | null = document.querySelector(
+        ".product-list"
+      );
+      grid1?.addEventListener("click", () => {
+        productList?.classList.remove("grid4x");
+        productList?.classList.add("grid3x");
+      });
+      grid2?.addEventListener("click", () => {
+        productList?.classList.remove("grid3x");
+        productList?.classList.add("grid4x");
+      });
+    }
+    gridChange();
   }
 
   reRender(arr: Array<ProductItemData>) {

@@ -22,6 +22,14 @@ class Catalog extends Components {
     // this.container.append(title);
 
     if (data.length > 0) {
+      const title: HTMLHeadingElement = document.createElement("h3");
+      title.innerHTML = `<h3 class="grid-title">${data.length} items
+      <span class="grid1">
+      </span>
+      <span class="grid2">
+      </span>
+    </h3>`;
+      this.container.append(title);
       // const productList: HTMLElement = document.createElement("ul");
       // productList.className = "product-list";
       for (let i = 0; i < data.length; i++) {
