@@ -1,8 +1,5 @@
-// import productsData from "../data";
 import Components from "../Components";
 import { ProductItemData } from "../../types";
-// import handlers from "./handlers";
-// import data from "../data";
 
 class Catalog extends Components {
   constructor(
@@ -14,13 +11,6 @@ class Catalog extends Components {
     super(tagName, className, id, data);
   }
   renderCatalog(data: Array<ProductItemData>) {
-    // const section: HTMLElement = document.createElement("section");
-
-    // const title: HTMLHeadingElement = document.createElement("h2");
-    // title.className = "visually-hidden";
-    // title.innerText = "Catalog";
-    // this.container.append(title);
-
     if (data.length > 0) {
       const title: HTMLHeadingElement = document.createElement("h3");
       title.innerHTML = `<h3 class="grid-title">${data.length} items
@@ -30,8 +20,7 @@ class Catalog extends Components {
       </span>
     </h3>`;
       this.container.append(title);
-      // const productList: HTMLElement = document.createElement("ul");
-      // productList.className = "product-list";
+
       for (let i = 0; i < data.length; i++) {
         const li: HTMLLIElement = document.createElement("li");
         li.className = "product-card";
@@ -45,13 +34,11 @@ class Catalog extends Components {
         buttonContainer.className = "button-container";
 
         const aBuy: HTMLAnchorElement = document.createElement("a");
-        //aBuy.href = "#";
         aBuy.className = "buy-button";
         aBuy.innerText = "Buy!";
         buttonContainer.append(aBuy);
 
         const aAbout: HTMLAnchorElement = document.createElement("a");
-        //aAbout.href = "#";
         aAbout.className = "about-button";
         aAbout.innerText = "About";
         buttonContainer.append(aAbout);
@@ -82,8 +69,6 @@ class Catalog extends Components {
 
         this.container.append(li);
       }
-
-      // this.container.append(productList);
     } else {
       this.container.innerHTML = `<p class="no-items">Извените, совпадений не найдено</p>`;
     }

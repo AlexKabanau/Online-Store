@@ -1,13 +1,10 @@
-// import Page from "../core/templates/page";
 import Page from "../templates/page";
 import Filter from "./Filter";
-// import Filter from "./filter";
 import Catalog from "./catalog";
 import Sort from "./sort";
 import productsData from "../data";
 import { ProductItemData } from "../../types";
 import PopupMaxGoods from "../details/popupMaxGoods";
-// import Components from "../Components";
 
 class MainPage extends Page {
   filter: Filter;
@@ -98,9 +95,7 @@ class MainPage extends Page {
       });
     }
     sortPriceDown?.addEventListener("click", () => {
-      // console.log(el.target);
       sortPrDown();
-      // console.log(result);
       this.reRender(result);
     });
 
@@ -115,7 +110,6 @@ class MainPage extends Page {
       sortDiscountUp?.classList.remove("active");
       sortDiscountDown?.classList.remove("active");
 
-      // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.price) > Number(b.price)) {
           return 1;
@@ -128,7 +122,6 @@ class MainPage extends Page {
     }
     sortPriceUp?.addEventListener("click", () => {
       sortPrUp();
-      // console.log(result);
       this.reRender(result);
     });
 
@@ -144,7 +137,6 @@ class MainPage extends Page {
       sortDiscountUp?.classList.remove("active");
       sortDiscountDown?.classList.remove("active");
 
-      // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.rating) > Number(b.rating)) {
           return -1;
@@ -157,7 +149,6 @@ class MainPage extends Page {
     }
     sortRatingDown?.addEventListener("click", () => {
       sortRatDown();
-      // console.log(result);
       this.reRender(result);
     });
 
@@ -172,7 +163,6 @@ class MainPage extends Page {
       sortDiscountUp?.classList.remove("active");
       sortDiscountDown?.classList.remove("active");
 
-      // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.rating) > Number(b.rating)) {
           return 1;
@@ -185,7 +175,6 @@ class MainPage extends Page {
     }
     sortRatingUp?.addEventListener("click", () => {
       sortRatUp();
-      // console.log(result);
       this.reRender(result);
     });
 
@@ -201,7 +190,6 @@ class MainPage extends Page {
       sortDiscountUp?.classList.remove("active");
       sortDiscountDown?.classList.add("active");
 
-      // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.discountPercentage) > Number(b.discountPercentage)) {
           return -1;
@@ -211,7 +199,6 @@ class MainPage extends Page {
         }
         return 0;
       });
-      // console.log(result);
     }
     sortDiscountDown?.addEventListener("click", () => {
       sortDiscDown();
@@ -228,7 +215,6 @@ class MainPage extends Page {
       sortRatingDown?.classList.remove("active");
       sortDiscountUp?.classList.add("active");
       sortDiscountDown?.classList.remove("active");
-      // console.log(el.target);
       result.sort((a: ProductItemData, b: ProductItemData) => {
         if (Number(a.discountPercentage) > Number(b.discountPercentage)) {
           return 1;
@@ -241,7 +227,6 @@ class MainPage extends Page {
     }
     sortDiscountUp?.addEventListener("click", () => {
       sortDiscUp();
-      // console.log(result);
       this.reRender(result);
     });
 
@@ -249,71 +234,32 @@ class MainPage extends Page {
     //filters
     ////////////
     const form: HTMLFormElement | null = document.querySelector("form");
-    // console.log(form);
     form?.addEventListener("change", (el) => {
-      // console.log(el.target);
       if (el.target instanceof HTMLInputElement) {
         const input: HTMLInputElement = el.target;
         const arrCheckbox: Array<string> = [];
         switch (input.type) {
           //CHECKBOX
           case "checkbox":
-            // console.log("checkbox");
             // eslint-disable-next-line no-case-declarations
             const checkboxes: NodeListOf<HTMLInputElement> = form.querySelectorAll(
               ".filter-checkbox"
             );
             for (let i = 0; i < checkboxes.length; i++) {
               if (checkboxes[i].checked) {
-                // this._searchProp.brandOptions = Array.from(
-                //   new Set(checkboxes[i].name)
-                // );
                 arrCheckbox.push(checkboxes[i].name);
-                const url = new URL(window.location.href);
-                console.log(url);
-                // const params = new URLSearchParams(url.search);
-                // const searchValue = checkboxes[i].name;
-                // params.append("brand", searchValue);
-                // history.pushState(
-                //   {},
-                //   "",
-                //   `${window.location.href}?${params.toString()}`
-                // );
-                // this._searchProp.brandOptions.push(checkboxes[i].name);
               }
             }
-            // console.log(arrCheckbox);
-            // if (arrCheckbox.length > 0) {
-            //   result = this._data.filter((el) =>
-            //     arrCheckbox.includes(el.brand)
-            //   );
-            // } else {
-            //   result = this._data;
-            // }
-            // console.log(result);
             this._searchProp.brandOptions = arrCheckbox;
             break;
           //RADIO
           case "radio":
-            // console.log("radio");
-            // console.log(input.id.split("").splice(13).join(""));
-            // console.log(result);
             this._searchProp.propOptions = input.id
               .split("")
               .splice(13)
               .join("");
-            // console.log(this._searchProp.propOptions);
-            // result = result.filter(
-            //   (el) => el.category === input.id.split("").splice(13).join("")
-            // );
-            // console.log(result);
             break;
-          // case "range":
-          //   console.log("range");
-
-          //   break;
         }
-        // this._searchProp.brandOptions = arrCheckbox;
       }
       //value from range
       //price
@@ -338,7 +284,6 @@ class MainPage extends Page {
       if (this._searchProp.brandOptions.length > 0) {
         if (this._searchProp.propOptions.length > 0) {
           //brand and prop
-          // console.log("brand and prop");
           result = this._data.filter((element) => {
             if (
               element.price >= this._searchProp.minPrice &&
@@ -355,7 +300,6 @@ class MainPage extends Page {
           });
         } else {
           result = this._data.filter((element) => {
-            // console.log("brand");
             //only brand
             if (
               element.price >= this._searchProp.minPrice &&
@@ -372,7 +316,6 @@ class MainPage extends Page {
         }
       } else if (this._searchProp.propOptions.length > 0) {
         //only prop
-        // console.log("prop");
         result = this._data.filter((element) => {
           if (
             element.price >= this._searchProp.minPrice &&
@@ -388,7 +331,6 @@ class MainPage extends Page {
         });
       } else {
         //all
-        // console.log("all");
         result = this._data.filter((element) => {
           if (
             element.price >= this._searchProp.minPrice &&
@@ -402,53 +344,13 @@ class MainPage extends Page {
           }
         });
       }
-      // if (
-      //   this._searchProp.brandOptions.length > 0 &&
-      //   this._searchProp.propOptions.length > 0
-      // ) {
-      //   result = this._data.filter((element) => {
-      //     if (
-      //       element.category === this._searchProp.propOptions &&
-      //       this._searchProp.brandOptions.includes(element.brand)
-      //     ) {
-      //       return true;
-      //     } else {
-      //       return false;
-      //     }
-      //   });
-      // } else if (this._searchProp.propOptions.length == 0) {
-      //   result = this._data.filter((element) => {
-      //     if (element.category === this._searchProp.propOptions) {
-      //       return true;
-      //     } else {
-      //       return false;
-      //     }
-      //   });
-      // } else {
-      //   result = this._data;
-      // }
-      console.log(JSON.stringify(this._searchProp));
-      // console.log(this._searchProp.toString());
+
       // eslint-disable-next-line no-case-declarations
       const params = new URLSearchParams(JSON.stringify(this._searchProp));
-      // if (history.state) {
-      //   // history.state = null;
-      //   // history.replaceState({}, "", `${window.location.href}?${params}`);
-      //   history.replaceState({}, "", `${window.location.href}?321`);
-      // }
-      // history.pushState({}, "", `${window.location.href}?${params}`);
-      // window.location.search = "";
 
       clearURL();
       history.pushState({}, "", `${window.location.href}?${params}`);
       this.reRender(result);
-      // function filterFunc(element: ProductItemData): boolean {
-      //   if (element.category === this._searchProp.propOptions) {
-      //     return true;
-      //   } else {
-      //     return false;
-      //   }
-      // }
     });
     //double range PRICE slider
     const fromPriceSlider: HTMLInputElement | null = document.querySelector(
@@ -639,7 +541,6 @@ class MainPage extends Page {
     const productList: HTMLElement | null = document.querySelector(
       ".product-list"
     );
-    // console.log(productList);
     productList?.addEventListener("click", (event) => {
       const target = event.target as HTMLElement;
       const toCard = (event.target as HTMLElement).closest(".buy-button");
@@ -650,15 +551,13 @@ class MainPage extends Page {
         ".price"
       );
       const itemID = target.closest(".product-card")?.id;
-      //const arrCart = [];
-      // console.log(event);
+
       if (toCard) {
-        console.log("клик на кнопке В КОРЗИНУ", itemID);
+        // console.log("клик на кнопке В КОРЗИНУ", itemID);
         if (itemID) {
           const currentProduct = productsData.find(
             (item) => item.id == +itemID
           );
-          console.log(currentProduct);
           const cart: string | null = localStorage.getItem("cart");
           let arrCart = [];
           if (cart) {
@@ -690,32 +589,27 @@ class MainPage extends Page {
         }
       }
       if (clickAbout instanceof HTMLAnchorElement) {
-        console.log("клик на кнопке ABOUT", itemID);
+        // console.log("клик на кнопке ABOUT", itemID);
         clearURL();
         clickAbout.href = "#goods-page";
         if (itemID) {
           const currentAboutProduct = productsData.find(
             (item) => item.id == +itemID
           );
-          console.log(currentAboutProduct);
           localStorage.setItem("about", JSON.stringify(currentAboutProduct));
           history.pushState({}, "", `${window.location}?id=${itemID}`);
         }
-        //localStorage.clear();
       }
       if (clickOnPrice instanceof HTMLAnchorElement) {
-        console.log("клик на кнопке ABOUT", itemID);
         clearURL();
         clickOnPrice.href = "#goods-page";
         if (itemID) {
           const currentAboutProduct = productsData.find(
             (item) => item.id == +itemID
           );
-          console.log(currentAboutProduct);
           localStorage.setItem("about", JSON.stringify(currentAboutProduct));
           history.pushState({}, "", `${window.location}?id=${itemID}`);
         }
-        //localStorage.clear();
       }
     });
     popupMaxGoods?.addEventListener("click", (event) => {
@@ -739,16 +633,12 @@ class MainPage extends Page {
 
     const search = document.querySelector(".search_input") as HTMLInputElement;
     search.addEventListener("input", () => {
-      // const url = new URL(window.location.href);
-      // console.log(url);
-      // const params = new URLSearchParams(url.search);
       const searchValue = search.value.trim().toLocaleLowerCase();
       this._searchProp.searchValue = searchValue;
       const params = new URLSearchParams(JSON.stringify(this._searchProp));
       clearURL();
       history.pushState({}, "", `${window.location.href}?${params}`);
-      // params.append("search", searchValue);
-      // window.location.search = params.toString();
+
       if (searchValue && searchValue != "") {
         result = this._data.filter((item) => {
           if (
@@ -797,7 +687,6 @@ class MainPage extends Page {
     if (productList) {
       productList.innerHTML = "";
     }
-    // console.log(productList);
     section?.append(this.catalog.render(arr));
   }
 

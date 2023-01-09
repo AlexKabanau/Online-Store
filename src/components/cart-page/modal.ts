@@ -107,49 +107,13 @@ class Modal extends Components {
     paymentCardNumber.innerHTML =
       '<label for="payment-card-number-input"><img class= "card-logo"></label><input name="card-number" type="text" id="payment-card-number-input" data-mask = "____ ____ ____ ____" maxlength = "19" placeholder="XXXX XXXX XXXX XXXX">';
 
-    // const paymentCardNumberLabel: HTMLLabelElement = document.createElement(
-    //   "label"
-    // );
-    // paymentCardNumberLabel.htmlFor = "payment-card-number-input";
-    // const paymentCardImg: HTMLImageElement = document.createElement("img");
-    // paymentCardImg.src = "../2443.webp";
-    // paymentCardImg.alt = "";
-    // paymentCardNumberLabel.append(paymentCardImg);
-    // paymentCardNumber.append(paymentCardNumberLabel);
-
-    // const paymentCardNumberInput: HTMLInputElement = document.createElement(
-    //   "input"
-    // );
-    // paymentCardNumberInput.name = "card-number masked";
-    // paymentCardNumberInput.type = "tel";
-    // paymentCardNumberInput.id = "payment-card-number-input";
-    // paymentCardNumberInput.placeholder = "XXXX XXXX XXXX XXXX";
-    // paymentCardNumberInput.pattern = "/d{4} /d{4} /d{4} /d{4}";
-    // paymentCardNumber.append(paymentCardNumberInput);
     paymentCardInfo.append(paymentCardNumber);
 
     const paymentCardValid: HTMLElement = document.createElement("div");
     paymentCardValid.className = "payment-card-valid";
-
-    // const paymentCardValidLabel: HTMLLabelElement = document.createElement(
-    //   "label"
-    // );
-    // paymentCardValidLabel.htmlFor = "payment-card-valid-input";
-    // paymentCardValidLabel.innerText = "Valid:";
-    // paymentCardValid.append(paymentCardValidLabel);
     paymentCardValid.innerHTML =
       '<label for="payment-card-valid-input">Valid:</label><input name="card-valid" type="text" id="payment-card-valid-input" data-mask = "__/__" maxlength = "5" placeholder="MM/YY">';
 
-    // const paymentCardValidInput: HTMLInputElement = document.createElement(
-    //   "input"
-    // );
-    // paymentCardValidInput.name = "card-valid";
-    // paymentCardValidInput.type = "text";
-    // paymentCardValidInput.id = "payment-card-valid-input";
-    // paymentCardValidInput.dataset.mask = "__/__/____";
-    // paymentCardValidInput.maxlength = 4;
-    // paymentCardValidInput.placeholder = "MM/YY";
-    // paymentCardValid.append(paymentCardValidInput);
     paymentCardInfo.append(paymentCardValid);
 
     const paymentCardCVV: HTMLElement = document.createElement("div");
@@ -157,21 +121,6 @@ class Modal extends Components {
     paymentCardCVV.innerHTML =
       '<label for="payment-CVV-valid-input">CVV code:</label><input name="card-CVV" type="text" id="payment-card-CVV-input" data-mask = "___" maxlength = "3" placeholder="000">';
 
-    // const paymentCardCVVLabel: HTMLLabelElement = document.createElement(
-    //   "label"
-    // );
-    // paymentCardCVVLabel.htmlFor = "payment-card-CVV-input";
-    // paymentCardCVVLabel.innerText = "CVV code:";
-    // paymentCardCVV.append(paymentCardCVVLabel);
-
-    // const paymentCardCVVInput: HTMLInputElement = document.createElement(
-    //   "input"
-    // );
-    // paymentCardCVVInput.name = "card-CVV";
-    // paymentCardCVVInput.type = "text";
-    // paymentCardCVVInput.id = "payment-card-valid-input";
-    // paymentCardCVVInput.placeholder = "CVV";
-    // paymentCardCVV.append(paymentCardCVVInput);
     paymentCardInfo.append(paymentCardCVV);
     paymentInfo.append(paymentCardInfo);
     divContainer.append(paymentInfo);

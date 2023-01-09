@@ -1,6 +1,5 @@
 import Components from "../Components";
 import { ProductItemData } from "../../types";
-// import handlers from "./handlers";
 import productsData from "../data";
 
 class Cart_Page extends Components {
@@ -23,10 +22,6 @@ class Cart_Page extends Components {
     const container: HTMLElement = document.createElement("div");
     container.className = "";
 
-    // const sectionTitle: HTMLElement = document.createElement("h2");
-    // sectionTitle.className = "section-cart__title";
-    // sectionTitle.innerText = "Корзина товаров";
-    // container.append(sectionTitle);
     header.append(container);
     sectionCart.append(header);
 
@@ -135,14 +130,12 @@ class Cart_Page extends Components {
     let arrCart = [];
     if (cart) {
       arrCart = JSON.parse(cart);
-      // console.log(arrCart);
     }
     const sum: number = arrCart.reduce(
       (sum: number, item: ProductItemData) => sum + item.price,
       0
     );
-    //console.log(sum);
-    // valuePriceCart.innerText = `${sum}`;
+
     cartFooterPrice.innerText = `${sum}`;
     cartFooter.append(cartFooterPrice);
     cartSection.append(cartFooter);
@@ -203,9 +196,7 @@ class Cart_Page extends Components {
     <span class="promo-ex">Promo for test: 'RS', 'EPM'</span>
     <button type="button" class="buy-now-button button">BUY NOW</button>`
     );
-    // sectionOrder.innerHTML = `<input type="text" class="promo-input" placeholder="Enter promo code">
-    // <span class="promo-ex">Promo for test: 'RS', 'EPM'</span>
-    // <button type="button" class="buy-now-button">BUY NOW</button>`;
+
     this.container.append(sectionOrder);
   }
 

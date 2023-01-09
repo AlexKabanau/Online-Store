@@ -2,24 +2,18 @@ import Page from "../templates/page";
 import Modal from "./modal";
 import Cart_Page from "./cart";
 import { ProductItemData } from "../../types";
-// import Header from "../details/header";
 import Footer from "../details/footer";
 import productsData from "../data";
 
-// import productsData from "../data";
-
 class CartPage extends Page {
-  // header: Header;
   cart_Page: Cart_Page;
   footer: Footer;
   _data: Array<ProductItemData>;
-  // _clearData: Array<ProductItemData>;
   _numbers: Array<number>;
   static TextObject = {
     MainTitle: "Cart Page",
   };
 
-  //modal popUp
   modal: Modal;
 
   constructor(id: string) {
@@ -29,15 +23,10 @@ class CartPage extends Page {
     if (cart) {
       arrCart = JSON.parse(cart);
     }
-    // this._data = this._data = productsData.sort(() => Math.random() - 0.5);
     this._numbers = [];
     this._data = arrCart;
 
     const idsArr: Array<number> = arrCart.map((el) => el.id);
-    // const clearData: Array<number> = Array.from(
-    //   new Set(this._data.map((el) => el.id))
-    // );
-    // console.log(clearData);
 
     function getDatas(data: Array<number>, numbers: Array<number>) {
       let count = 1;
@@ -53,10 +42,8 @@ class CartPage extends Page {
       }
     }
     getDatas(idsArr, this._numbers);
-    console.log(idsArr);
-    console.log(this._numbers);
-
-    // this.header = new Header("header", "header");
+    // console.log(idsArr);
+    // console.log(this._numbers);
 
     this.cart_Page = new Cart_Page(
       "section",
@@ -67,7 +54,6 @@ class CartPage extends Page {
     );
 
     this.footer = new Footer("footer", "footer");
-    //modal popUp
     this.modal = new Modal("section", "", "modal");
   }
 
@@ -83,7 +69,6 @@ class CartPage extends Page {
         ".modal-close"
       );
       cardInfoButton?.addEventListener("click", () => {
-        // event.preventDefault();
         modalPayment?.classList.add("modal-show");
       });
       modalClose?.addEventListener("click", () => {
@@ -93,7 +78,6 @@ class CartPage extends Page {
       window.addEventListener("keydown", (event) => {
         if (event.keyCode === 27) {
           modalPayment?.classList.remove("modal-show");
-          // modalPayment?.classList.remove("modal-error");
         }
       });
     }
@@ -137,7 +121,7 @@ class CartPage extends Page {
           !paymentCardValid?.value ||
           !paymentCardCVV?.value
         ) {
-          console.log("submit");
+          // console.log("submit");
           modalPayment?.classList.add("modal-error");
           setTimeout(() => {
             modalPayment?.classList.remove("modal-error");
@@ -186,16 +170,6 @@ class CartPage extends Page {
               }
             }
           }
-          // if (length !== 1) {
-          //   if (event.keyCode == 32) {
-          //     event.preventDefault();
-          //   }
-          // }
-          // if (length !== 3) {
-          //   if (event.keyCode == 47) {
-          //     event.preventDefault();
-          //   }
-          // }
           if (length === 4 || length === 9 || length === 14) {
             elm.value += " ";
           }
@@ -207,43 +181,23 @@ class CartPage extends Page {
     }
 
     function cardValidMask() {
-      // console.log(1);
       const input: HTMLInputElement | null = document.querySelector(
         "#payment-card-valid-input"
       );
       if (input) {
         input?.addEventListener("keypress", function (event) {
-          // elm.addEventListener("keypress", function (event) {
           if (event.keyCode <= 47 || event.keyCode > 57) {
             event.preventDefault();
           }
 
           const length = input.value.length;
 
-          // if (length !== 1) {
-          //   if (event.keyCode == 47) {
-          //     event.preventDefault();
-          //   }
-          // }
-          // if (length !== 3) {
-          //   if (event.keyCode == 47) {
-          //     event.preventDefault();
-          //   }
-          // }
           if (length === 2) {
             input.value += "/";
           }
           // console.log(elm.value);
         });
-        // const x = input.value;
-        // console.log(x);
       }
-      // }
-      // if (input) {
-      //   dateInputMask(input);
-      // if (input?.value) {
-      // }
-      // }
     }
 
     function cardCVVMask() {
@@ -274,8 +228,8 @@ class CartPage extends Page {
             const increaseButton = target.closest(".button_image_up");
             const decriseButton = target.closest(".button_image_down");
             const itemId = Number(target.closest("._product")?.id);
-            console.log(itemId);
-            console.log(delButton);
+            // console.log(itemId);
+            // console.log(delButton);
             const cart: string | null = localStorage.getItem("cart");
             function setPrice(price: number) {
               const valuePriceCart: HTMLSpanElement | null = document.querySelector(
@@ -324,14 +278,13 @@ class CartPage extends Page {
             let arrCart: Array<ProductItemData> = [];
             if (cart) {
               arrCart = JSON.parse(cart);
-              console.log(arrCart);
+              // console.log(arrCart);
             }
             if (delButton) {
               for (let i = 0; i < arrCart.length; i++) {
-                // while (arrCart[i].id === itemId) {
                 if (arrCart[i].id === itemId) {
                   arrCart.splice(i, 1);
-                  console.log(arrCart);
+                  // console.log(arrCart);
                   localStorage.setItem("cart", JSON.stringify(arrCart));
                   section.classList.add("visually-hidden");
                   const fullCartText: HTMLSpanElement | null = document.querySelector(
@@ -340,9 +293,14 @@ class CartPage extends Page {
                   const cartFooterCount: HTMLElement | null = document.querySelector(
                     ".cart-footer__count"
                   );
-                  if (fullCartText && cartFooterCount) {
+                  const totalAmount: HTMLElement | null = document.querySelector(
+                    ".total-products-span"
+                  );
+
+                  if (fullCartText && cartFooterCount && totalAmount) {
                     fullCartText.innerText = `${arrCart.length}`;
                     cartFooterCount.innerText = `${arrCart.length}`;
+                    totalAmount.innerText = `${arrCart.length}`;
                   }
                   const valuePriceCart: HTMLSpanElement | null = document.querySelector(
                     ".value-price-cart"
@@ -350,13 +308,18 @@ class CartPage extends Page {
                   const cartFooterPrice: HTMLElement | null = document.querySelector(
                     ".cart-footer__price"
                   );
-                  if (valuePriceCart && cartFooterPrice) {
+                  const totalPrice: HTMLElement | null = document.querySelector(
+                    ".total-price-span"
+                  );
+
+                  if (valuePriceCart && cartFooterPrice && totalPrice) {
                     const sum: number = arrCart.reduce(
                       (sum: number, item: ProductItemData) => sum + item.price,
                       0
                     );
                     valuePriceCart.innerText = `${sum}`;
                     cartFooterPrice.innerText = `${sum}`;
+                    totalPrice.innerText = `${sum}`;
                   }
                   i--;
                 }
@@ -389,12 +352,6 @@ class CartPage extends Page {
               setAmount(amount);
             }
             if (decriseButton) {
-              // for (let i = 0; i < arrCart.length; i++) {
-              // while (arrCart[i].id === itemId) {
-              // if (arrCart[i].id === itemId) {
-              // const currentProduct = productsData.find(
-              //   (item) => item.id === itemId
-              // );
               const currentProduct = productsData.find(
                 (item) => item.id === itemId
               );
@@ -402,8 +359,8 @@ class CartPage extends Page {
                 arrCart.splice(arrCart.indexOf(currentProduct), 1);
                 localStorage.setItem("cart", JSON.stringify(arrCart));
               }
-              // arrCart.splice(i, 1);
-              console.log(arrCart);
+
+              // console.log(arrCart);
               const input: HTMLInputElement | null = section.querySelector(
                 ".count__input"
               );
@@ -424,11 +381,7 @@ class CartPage extends Page {
               const amount: number = arrCart.length;
               setPrice(sum);
               setAmount(amount);
-              // break;
-              // }
-              // }
             }
-            // this.reRender(arrCart);
           });
         }
       }
@@ -462,7 +415,7 @@ class CartPage extends Page {
               divPromoEpm?.classList.remove("visually-hidden");
             }
           }
-          console.log(promoArr);
+          // console.log(promoArr);
           changePrice();
         }
       });
@@ -474,7 +427,7 @@ class CartPage extends Page {
         const drop = (event.target as HTMLElement).closest(".drop-code");
         const codeEpm = (event.target as HTMLElement).closest(".appl-promoEpm");
         const codeRs = (event.target as HTMLElement).closest(".appl-promoRS");
-        console.log(drop, codeEpm);
+        // console.log(drop, codeEpm);
         if (drop && codeEpm) {
           codeEpm.classList.add("visually-hidden");
           const currentPromo = promoArr.find((item) => item === "EPM");
@@ -540,38 +493,14 @@ class CartPage extends Page {
     cardCVVMask();
     manageItem();
     setPromo();
-    // const cart: string | null = localStorage.getItem("cart");
-    // let arrCart = [];
-    // if (cart) {
-    //   arrCart = JSON.parse(cart);
-    // }
-    // this._data = this._data = productsData.sort(() => Math.random() - 0.5);
-    // this._data = arrCart;
-
-    // this.header = new Header("header", "header");
-
-    // this.cart_Page = new Cart_Page("section", "section-cart", "", arrCart);
-
-    // this.footer = new Footer("footer", "footer");
   }
   renderMain(_data: Array<ProductItemData>, _numbers: Array<number>) {
-    // this.container.append(this.header.render());
     this.container.append(this.cart_Page.render(_data, _numbers));
     this.container.append(this.footer.render());
   }
 
   render() {
-    // const title = this.createHeaderTitle(CartPage.TextObject.MainTitle);
-    // this.container.append(title);
     this.renderMain(this._data, this._numbers);
-    // кнопка-заглушка
-    // const cardInfoButton: HTMLAnchorElement = document.createElement("a");
-    // cardInfoButton.className = "checkButton";
-    // // cardInfoButton.href = "#";
-    // cardInfoButton.innerText = "click for show";
-    // cardInfoButton.style.color = "red";
-    // this.container.append(cardInfoButton);
-    //modal popUp
     this.container.append(this.modal.render());
     setTimeout(() => {
       this.afterRender();
