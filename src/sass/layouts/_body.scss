@@ -23,3 +23,7 @@
 .link_page {
   color: $basic-black;
 }
+#current-page {
+  display: flex;
+  flex-direction: column;
+}

@@ -33,7 +33,7 @@ class App {
       page = new ProductPage(idPage);
     } else if (idPage === PageIds.CartPage) {
       page = new CartPage(idPage);
-    } else if (idPage === PageIds.ErrorPage) {
+    } else if (idPage === PageIds.ErrorPage || idPage !== PageIds.CartPage) {
       page = new ErrorPage(idPage);
     }
 

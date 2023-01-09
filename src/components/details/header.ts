@@ -17,7 +17,7 @@ class Header {
     containerTop.append(nav);
     const logo: HTMLAnchorElement = document.createElement("a");
     logo.className = "logo header-logo";
-    logo.href = "#main-page";
+    //logo.href = "#main-page";
     logo.innerText = "OnlineStore";
     nav.append(logo);
     const priceCart: HTMLElement = document.createElement("div");
@@ -46,21 +46,13 @@ class Header {
     orderInfo.append(liFullCart);
     const fullCart: HTMLAnchorElement = document.createElement("a");
     fullCart.className = "cart full-cart header-cart";
-    fullCart.href = "#cart-page";
+    //fullCart.href = "#cart-page";
     /*fullCart.innerText = "Cart total:";*/
     liFullCart.append(fullCart);
     const fullCartText: HTMLSpanElement = document.createElement("span");
     fullCartText.className = "full-cart-text";
     fullCartText.innerText = `${arrCart.length}`;
     fullCart.append(fullCartText);
-    /*const liMakeOrder: HTMLLIElement = document.createElement("li");
-    liMakeOrder.className = "order-info-item";
-    orderInfo.append(liMakeOrder);
-    const makeOrder: HTMLAnchorElement = document.createElement("a");
-    makeOrder.className = "cart full-cart";
-    makeOrder.href = "#";
-    makeOrder.innerText = "Buy now";
-    liMakeOrder.append(makeOrder);*/
     const containerBottom: HTMLElement = document.createElement("div");
     containerBottom.className = "container header-bottom";
     const headerInner: HTMLElement = document.createElement("div");
@@ -76,6 +68,15 @@ class Header {
     containerBottom.append(headerInner);
     this.container.append(headerContainer);
     this.container.append(containerBottom);
+
+    logo.addEventListener("click", () => {
+      window.history.replaceState({}, "", location.pathname);
+      logo.href = "#main-page";
+    });
+    fullCart.addEventListener("click", () => {
+      window.history.replaceState({}, "", location.pathname);
+      fullCart.href = "#cart-page";
+    });
   }
 
   render() {
