@@ -5,6 +5,7 @@ import Sort from "./sort";
 import productsData from "../data";
 import { ProductItemData } from "../../types";
 import PopupMaxGoods from "../details/popupMaxGoods";
+import Footer from "../details/footer";
 
 class MainPage extends Page {
   filter: Filter;
@@ -24,6 +25,7 @@ class MainPage extends Page {
     searchValue: string;
   };
   popupMaxGoods: PopupMaxGoods;
+  footer: Footer;
 
   constructor(id: string) {
     super(id);
@@ -46,6 +48,7 @@ class MainPage extends Page {
       searchValue: "",
     };
     this.popupMaxGoods = new PopupMaxGoods("div", "popup-max-goods__wrap");
+    this.footer = new Footer("footer", "footer");
   }
   renderMain(_data: Array<ProductItemData>) {
     const catalogPage: HTMLElement = document.createElement("section");
@@ -65,6 +68,7 @@ class MainPage extends Page {
     catalogPage.append(catalogGrid);
 
     this.container.append(catalogPage);
+    this.container.append(this.footer.render());
     this.container.append(this.popupMaxGoods.render());
   }
   afterRender() {
