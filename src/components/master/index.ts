@@ -699,6 +699,7 @@ class MainPage extends Page {
           );
           console.log(currentAboutProduct);
           localStorage.setItem("about", JSON.stringify(currentAboutProduct));
+          history.pushState({}, "", `${window.location}?id=${itemID}`);
         }
         //localStorage.clear();
       }
@@ -712,6 +713,7 @@ class MainPage extends Page {
           );
           console.log(currentAboutProduct);
           localStorage.setItem("about", JSON.stringify(currentAboutProduct));
+          history.pushState({}, "", `${window.location}?id=${itemID}`);
         }
         //localStorage.clear();
       }

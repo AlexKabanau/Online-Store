@@ -54,6 +54,9 @@ class ProductPage extends Page {
     const valuePriceCart: HTMLSpanElement | null = document.querySelector(
       ".value-price-cart"
     );
+    const btnBuyNow: HTMLAnchorElement | null = document.querySelector(
+      ".product-buy-now"
+    );
     btnToCart?.addEventListener("click", () => {
       //console.log(idAboutProd);
       const cart: string | null = localStorage.getItem("cart");
@@ -109,6 +112,11 @@ class ProductPage extends Page {
         popupMaxGoods.classList.remove("open");
         document.body.style.overflowY = "auto";
       }
+    });
+
+    btnBuyNow?.addEventListener("click", () => {
+      window.history.replaceState({}, "", location.pathname);
+      btnBuyNow.href = "#cart-page";
     });
   }
 
