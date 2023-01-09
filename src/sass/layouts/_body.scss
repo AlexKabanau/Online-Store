@@ -1,7 +1,7 @@
 .body {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  row-gap: 15px;
+  //display: grid;
+  //grid-template-rows: auto 1fr auto;
+  //row-gap: 15px;
   max-width: $content-width;
   margin: auto;
   @include media-laptop {

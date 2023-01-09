@@ -639,7 +639,6 @@ class MainPage extends Page {
     const productList: HTMLElement | null = document.querySelector(
       ".product-list"
     );
-    // console.log(productList);
     productList?.addEventListener("click", (event) => {
       const target = event.target as HTMLElement;
       const toCard = (event.target as HTMLElement).closest(".buy-button");
@@ -650,15 +649,11 @@ class MainPage extends Page {
         ".price"
       );
       const itemID = target.closest(".product-card")?.id;
-      //const arrCart = [];
-      // console.log(event);
       if (toCard) {
-        console.log("клик на кнопке В КОРЗИНУ", itemID);
         if (itemID) {
           const currentProduct = productsData.find(
             (item) => item.id == +itemID
           );
-          console.log(currentProduct);
           const cart: string | null = localStorage.getItem("cart");
           let arrCart = [];
           if (cart) {
@@ -690,21 +685,17 @@ class MainPage extends Page {
         }
       }
       if (clickAbout instanceof HTMLAnchorElement) {
-        console.log("клик на кнопке ABOUT", itemID);
         clearURL();
         clickAbout.href = "#goods-page";
         if (itemID) {
           const currentAboutProduct = productsData.find(
             (item) => item.id == +itemID
           );
-          console.log(currentAboutProduct);
           localStorage.setItem("about", JSON.stringify(currentAboutProduct));
           history.pushState({}, "", `${window.location}?id=${itemID}`);
         }
-        //localStorage.clear();
       }
       if (clickOnPrice instanceof HTMLAnchorElement) {
-        console.log("клик на кнопке ABOUT", itemID);
         clearURL();
         clickOnPrice.href = "#goods-page";
         if (itemID) {
@@ -715,7 +706,6 @@ class MainPage extends Page {
           localStorage.setItem("about", JSON.stringify(currentAboutProduct));
           history.pushState({}, "", `${window.location}?id=${itemID}`);
         }
-        //localStorage.clear();
       }
     });
     popupMaxGoods?.addEventListener("click", (event) => {
