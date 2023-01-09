@@ -77,7 +77,6 @@ class ProductCardPage {
       inputBtnFirst.setAttribute("checked", "");
       productImages.append(inputBtnFirst);
       const imagesCatalog = [...curProduct.images].slice(0, 5);
-      console.log(imagesCatalog);
       for (let i = 1; i < imagesCatalog.length; i++) {
         const inputBtn: HTMLInputElement = document.createElement("input");
         inputBtn.setAttribute("type", "radio");
@@ -117,7 +116,6 @@ class ProductCardPage {
         const imageItem: HTMLImageElement = document.createElement("img");
         imageItem.classList.add("images-product__item");
         imageItem.src = `${imagesCatalog[i]}`;
-        console.log(imagesCatalog[i]);
         imageItem.alt = "photo";
         imageItemWrapper.append(imageItem);
       }
@@ -161,7 +159,6 @@ class ProductCardPage {
       } else {
         btnProductToCart.innerText = "Add to cart";
       }
-      //btnProductToCart.innerText = "Add to cart";
       bodyBottomProduct.append(btnProductToCart);
       const btnProductBuyNow: HTMLAnchorElement = document.createElement("a");
       btnProductBuyNow.className = "button product-buy-now";
