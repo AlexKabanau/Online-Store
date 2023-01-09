@@ -259,20 +259,6 @@ fieldset.property-filter {
   fill: $basic-black;
 }
 
-// .product-list {
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   column-gap: 20px;
-//   row-gap: 18px;
-//   margin-top: 28px;
-//   &>li:nth-child(3n+1) {
-//     margin-top: -265px;
-//   }
-// }
-.grid-title {
-  display: flex;
-  align-items: center;
-}
 .grid3x {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -293,6 +279,11 @@ fieldset.property-filter {
     margin-top: -265px;
   }
 }
+
+.grid-title {
+  display: flex;
+  align-items: center;
+}
 h3 .grid1,
 h3 .grid2 {
   display: inline-block;
@@ -303,12 +294,10 @@ h3 .grid2 {
 h3 .grid1 {
   background: no-repeat url("../img/loon-icon.svg");
   background-size: contain;
-
 }
 h3 .grid2 {
   background: no-repeat url("../img/loon-icon (1).svg");
   background-size: contain;
-
 }
 
 .about-description-wrapper {
@@ -323,7 +312,6 @@ h3 .grid2 {
   font-size: 13px;
   line-height: 24px;
   text-transform: none;
-  
 }
 
 
