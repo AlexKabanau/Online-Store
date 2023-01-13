@@ -11,7 +11,7 @@ body {
   background-color: $basic-white;
   min-height: 100%;
   display: grid;
-  grid-template-rows: min-content 1fr min-content;
+  grid-template-rows: min-content 1fr;
   align-content: start;
 }
 h1 {
