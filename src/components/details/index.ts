@@ -1,21 +1,21 @@
 import IComponent from "../templates/icomponent";
-import { PageIds } from "../app/index";
+import { PageId } from "../app/index";
 
 const Buttons = [
   {
-    id: PageIds.MainPage,
+    id: PageId.Main,
     text: "Main Page",
   },
   {
-    id: PageIds.ProductPage,
+    id: PageId.Product,
     text: "Goods Page",
   },
   {
-    id: PageIds.CartPage,
+    id: PageId.Cart,
     text: "Cart Page",
   },
   {
-    id: PageIds.ErrorPage,
+    id: PageId.Error,
     text: "Error Page",
   },
 ];
