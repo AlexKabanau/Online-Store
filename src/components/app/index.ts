@@ -6,16 +6,17 @@ import ErrorPage from "../error-page";
 import Header from "../details/header";
 import Links from "../details";
 
-export const enum PageIds {
-  MainPage = "main-page",
-  ProductPage = "goods-page",
-  CartPage = "cart-page",
-  ErrorPage = "error-page",
+export const enum PageId {
+  Main = "main-page",
+  Product = "goods-page",
+  Cart = "cart-page",
+  Error = "error-page",
+  Current = "current",
 }
 
 class App {
   private static container: HTMLElement = document.body;
-  private static defaultPageId = "current-page";
+  private static defaultPageId: PageId = PageId.Current;
   private initialPage: MainPage;
   header: Header;
   private links: Links;
@@ -27,26 +28,23 @@ class App {
     }
     let page: Page | null = null;
 
-    if (idPage === PageIds.MainPage) {
-      page = new MainPage(idPage);
-    } else if (idPage === PageIds.ProductPage) {
-      page = new ProductPage(idPage);
-    } else if (idPage === PageIds.CartPage) {
-      page = new CartPage(idPage);
-    } else if (
-      idPage === PageIds.ErrorPage ||
-      (idPage !== PageIds.CartPage &&
-        idPage !== PageIds.ProductPage &&
-        idPage !== PageIds.MainPage)
-    ) {
-      page = new ErrorPage(idPage);
+    switch (idPage) {
+      case PageId.Main:
+        page = new MainPage(idPage);
+        break;
+      case PageId.Product:
+        page = new ProductPage(idPage);
+        break;
+      case PageId.Cart:
+        page = new CartPage(idPage);
+        break;
+      default:
+        page = new ErrorPage(idPage);
     }
 
-    if (page) {
-      const pageHTML = page.render();
-      pageHTML.id = App.defaultPageId;
-      App.container.append(pageHTML);
-    }
+    const pageHTML = page.render();
+    pageHTML.id = App.defaultPageId;
+    App.container.append(pageHTML);
   }
 
   private enableRouteChange() {
@@ -64,9 +62,8 @@ class App {
 
   run() {
     App.container.prepend(this.header.render());
-    //window.history.replaceState({}, "", location.pathname);
     //App.container.prepend(this.links.render());
-    App.renderNewPage("main-page");
+    App.renderNewPage(PageId.Main);
     this.enableRouteChange();
   }
 }
