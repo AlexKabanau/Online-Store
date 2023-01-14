@@ -1,3 +1,10 @@
+import {
+  SCHOOL_LINK,
+  GITHUB_ALEX,
+  GITHUB_OXANA,
+  YEAR_CREAT,
+} from "../../types/constansts";
+
 class Footer {
   container: HTMLElement;
   constructor(tageName: string, className: string) {
@@ -7,33 +14,24 @@ class Footer {
   createFooter() {
     const footerContainer: HTMLElement = document.createElement("div");
     footerContainer.className = "copyright container";
-    const rssLogo: HTMLAnchorElement = document.createElement("a");
-    rssLogo.className = "rss-logo";
-    rssLogo.href = "https://rs.school/js/";
-    rssLogo.setAttribute("target", "_blank");
-    footerContainer.append(rssLogo);
-    const imageRss: HTMLImageElement = document.createElement("img");
-    imageRss.classList.add("rss-logo-img");
-    rssLogo.append(imageRss);
-    const yearWrap: HTMLElement = document.createElement("div");
-    yearWrap.className = "year-wrap";
-    const year: HTMLSpanElement = document.createElement("span");
-    year.innerText = "2023";
-    yearWrap.append(year);
-    footerContainer.append(yearWrap);
-    const footerInfo: HTMLElement = document.createElement("div");
-    footerInfo.className = "copyright__info";
-    footerInfo.innerHTML = `
-      <a class="copyright__info__link" href="https://github.com/AlexKabanau" target="_blank">
+    footerContainer.innerHTML = `
+      <a class="rss-logo" href=${SCHOOL_LINK} target="_blank">
+        <img class="rss-logo-img">
+      </a>
+      <div class="year-wrap">
+        <span>${YEAR_CREAT}</span>
+      </div>
+      <div class="copyright__info">
+      <a class="copyright__info__link" href=${GITHUB_ALEX} target="_blank">
       RSSchool#2022 <br>
       Alexandr Kabanau
       </a>
-      <a class="copyright__info__link" href="https://github.com/oxana988" target="_blank">
+      <a class="copyright__info__link" href=${GITHUB_OXANA} target="_blank">
       RSSchool#2022 <br>
       Oxana Savianok
       </a>
-      `;
-    footerContainer.append(footerInfo);
+      </div>
+    `;
     this.container.append(footerContainer);
   }
 
