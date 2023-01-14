@@ -23,106 +23,41 @@ class Modal extends Components {
 
     const paymentInfo: HTMLElement = document.createElement("div");
     paymentInfo.className = "payment-info";
+    paymentInfo.innerHTML = `
+    <div class="payment-name">
+        <label for="payment-name-input">Name:</label>
+        <input name="name" type="text" id="payment-name-input" placeholder="FirstName LastName">
+      </div>
+      <div class="payment-email">
+        <label for="payment-email-input">E-mail:</label>
+        <input name="email" type="email" id="payment-email-input" placeholder="email@example.com">
+      </div>
+      <div class="payment-email">
+        <label for="payment-address-input">Address:</label>
+        <input name="address" type="text" id="payment-address-input" placeholder="Address:">
+      </div>
+      <div class="payment-phone">
+        <label for="payment-phone-input">Phone:</label>
+        <input name="phone" type="tel" id="payment-phone-input" placeholder="+375 (00) 000-00-00">
+      </div>
+      <div class="payment-card-info">
+        <h3 class="payment-card-info_title">Credit card</h3>
+        <div class="payment-card-number">
+          <label for="payment-card-number-input">
+            <img class="card-logo">
+          </label>
+          <input name="card-number" type="text" id="payment-card-number-input" data-mask="____ ____ ____ ____" maxlength="19" placeholder="XXXX XXXX XXXX XXXX">
+        </div>
+        <div class="payment-card-valid">
+          <label for="payment-card-valid-input">Valid:</label>
+          <input name="card-valid" type="text" id="payment-card-valid-input" data-mask="__/__" maxlength="5" placeholder="MM/YY">
+        </div>
+        <div class="payment-card-CVV">
+          <label for="payment-CVV-valid-input">CVV code:</label>
+          <input name="card-CVV" type="text" id="payment-card-CVV-input" data-mask="___" maxlength="3" placeholder="000">
+        </div>
+    `;
 
-    const paymentName: HTMLElement = document.createElement("div");
-    paymentName.className = "payment-name";
-
-    const paymentNameLabel: HTMLLabelElement = document.createElement("label");
-    paymentNameLabel.htmlFor = "payment-name-input";
-    paymentNameLabel.innerText = "Name:";
-    paymentName.append(paymentNameLabel);
-
-    const paymentNameInput: HTMLInputElement = document.createElement("input");
-    paymentNameInput.name = "name";
-    paymentNameInput.type = "text";
-    paymentNameInput.id = "payment-name-input";
-    paymentNameInput.placeholder = "FirstName LastName";
-    paymentName.append(paymentNameInput);
-    paymentInfo.append(paymentName);
-
-    const paymentEmail: HTMLElement = document.createElement("div");
-    paymentEmail.className = "payment-email";
-
-    const paymentEmailLabel: HTMLLabelElement = document.createElement("label");
-    paymentEmailLabel.htmlFor = "payment-email-input";
-    paymentEmailLabel.innerText = "E-mail:";
-    paymentEmail.append(paymentEmailLabel);
-
-    const paymentEmailInput: HTMLInputElement = document.createElement("input");
-    paymentEmailInput.name = "email";
-    paymentEmailInput.type = "email";
-    paymentEmailInput.id = "payment-email-input";
-    paymentEmailInput.placeholder = "email@example.com";
-    paymentEmail.append(paymentEmailInput);
-    paymentInfo.append(paymentEmail);
-
-    const paymentAddress: HTMLElement = document.createElement("div");
-    paymentAddress.className = "payment-email";
-
-    const paymentAddressLabel: HTMLLabelElement = document.createElement(
-      "label"
-    );
-    paymentAddressLabel.htmlFor = "payment-address-input";
-    paymentAddressLabel.innerText = "Address:";
-    paymentAddress.append(paymentAddressLabel);
-
-    const paymentAddressInput: HTMLInputElement = document.createElement(
-      "input"
-    );
-    paymentAddressInput.name = "address";
-    paymentAddressInput.type = "text";
-    paymentAddressInput.id = "payment-address-input";
-    paymentAddressInput.placeholder = "Address:";
-    paymentAddress.append(paymentAddressInput);
-    paymentInfo.append(paymentAddress);
-
-    const paymentPhone: HTMLElement = document.createElement("div");
-    paymentPhone.className = "payment-phone";
-
-    const paymentPhoneLabel: HTMLLabelElement = document.createElement("label");
-    paymentPhoneLabel.htmlFor = "payment-phone-input";
-    paymentPhoneLabel.innerText = "Phone:";
-    paymentPhone.append(paymentPhoneLabel);
-
-    const paymentPhoneInput: HTMLInputElement = document.createElement("input");
-    paymentPhoneInput.name = "phone";
-    paymentPhoneInput.type = "tel";
-    paymentPhoneInput.id = "payment-phone-input";
-    paymentPhoneInput.placeholder = "+375 (00) 000-00-00";
-    paymentPhone.append(paymentPhoneInput);
-    paymentInfo.append(paymentPhone);
-
-    const paymentCardInfo: HTMLElement = document.createElement("div");
-    paymentCardInfo.className = "payment-card-info";
-
-    const paymentCardInfoTitle: HTMLHeadingElement = document.createElement(
-      "h3"
-    );
-    paymentCardInfoTitle.className = "payment-card-info_title";
-    paymentCardInfoTitle.innerText = "Credit card";
-    paymentCardInfo.append(paymentCardInfoTitle);
-
-    const paymentCardNumber: HTMLElement = document.createElement("div");
-    paymentCardNumber.className = "payment-card-number";
-    paymentCardNumber.innerHTML =
-      '<label for="payment-card-number-input"><img class= "card-logo"></label><input name="card-number" type="text" id="payment-card-number-input" data-mask = "____ ____ ____ ____" maxlength = "19" placeholder="XXXX XXXX XXXX XXXX">';
-
-    paymentCardInfo.append(paymentCardNumber);
-
-    const paymentCardValid: HTMLElement = document.createElement("div");
-    paymentCardValid.className = "payment-card-valid";
-    paymentCardValid.innerHTML =
-      '<label for="payment-card-valid-input">Valid:</label><input name="card-valid" type="text" id="payment-card-valid-input" data-mask = "__/__" maxlength = "5" placeholder="MM/YY">';
-
-    paymentCardInfo.append(paymentCardValid);
-
-    const paymentCardCVV: HTMLElement = document.createElement("div");
-    paymentCardCVV.className = "payment-card-CVV";
-    paymentCardCVV.innerHTML =
-      '<label for="payment-CVV-valid-input">CVV code:</label><input name="card-CVV" type="text" id="payment-card-CVV-input" data-mask = "___" maxlength = "3" placeholder="000">';
-
-    paymentCardInfo.append(paymentCardCVV);
-    paymentInfo.append(paymentCardInfo);
     divContainer.append(paymentInfo);
     paymentForm.append(divContainer);
 
