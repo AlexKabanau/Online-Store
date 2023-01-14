@@ -12,7 +12,7 @@ class ProductCardPage {
   }
 
   renderBreadcrumbs() {
-    const curProduct = productsData.find(
+    const curProduct: ProductItemData | undefined = productsData.find(
       (item) => item.id == Number(this.id.slice(3, -2))
     );
     if (curProduct) {
