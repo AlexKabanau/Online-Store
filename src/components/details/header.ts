@@ -1,4 +1,6 @@
 import { ProductItemData } from "../../types/index";
+import { iCreateElement } from "../../utils/utils";
+import { PHONE, ADDRESS } from "../../types/constansts";
 
 class Header {
   container: HTMLElement;
@@ -6,25 +8,36 @@ class Header {
     this.container = document.createElement(tageName);
     this.container.classList.add(className);
   }
+
   createHeader() {
-    const headerContainer: HTMLElement = document.createElement("div");
-    headerContainer.className = "order-nav-wrapper";
-    const containerTop: HTMLElement = document.createElement("div");
-    containerTop.className = "container";
-    headerContainer.append(containerTop);
-    const nav: HTMLElement = document.createElement("div");
-    nav.className = "order-nav";
-    containerTop.append(nav);
-    const logo: HTMLAnchorElement = document.createElement("a");
-    logo.className = "logo header-logo";
-    logo.innerText = "OnlineStore";
-    nav.append(logo);
-    const priceCart: HTMLElement = document.createElement("div");
-    priceCart.className = "price-cart";
-    priceCart.innerText = "Cart total: ";
-    nav.append(priceCart);
-    const valuePriceCart: HTMLSpanElement = document.createElement("span");
-    valuePriceCart.className = "value-price-cart";
+    const headerContainer: HTMLElement = iCreateElement({
+      tag: "div",
+      classes: ["order-nav-wrapper"],
+    });
+
+    headerContainer.insertAdjacentHTML(
+      "afterbegin",
+      `
+      <div class="order-nav-wrapper">
+        <div class="container">
+          <div class="order-nav">
+            <a class="logo header-logo">OnlineStore</a>
+            <div class="price-cart">Cart total: 
+              <span class="value-price-cart">0</span>
+            </div>
+            <ul class="order-info">
+              <li class="order-info-item">
+                <a class="cart full-cart header-cart">
+                  <span class="full-cart-text">0</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    `
+    );
+
     const cart: string | null = localStorage.getItem("cart");
     let arrCart = [];
     if (cart) {
@@ -34,41 +47,45 @@ class Header {
       (sum: number, item: ProductItemData) => sum + item.price,
       0
     );
+    const valuePriceCart = headerContainer.querySelector(
+      ".value-price-cart"
+    ) as HTMLElement;
     valuePriceCart.innerText = `${sum}`;
-    priceCart.append(valuePriceCart);
-    const orderInfo: HTMLElement = document.createElement("ul");
-    orderInfo.className = "order-info";
-    nav.append(orderInfo);
-    const liFullCart: HTMLLIElement = document.createElement("li");
-    liFullCart.className = "order-info-item";
-    orderInfo.append(liFullCart);
-    const fullCart: HTMLAnchorElement = document.createElement("a");
-    fullCart.className = "cart full-cart header-cart";
-    liFullCart.append(fullCart);
-    const fullCartText: HTMLSpanElement = document.createElement("span");
-    fullCartText.className = "full-cart-text";
+    const fullCartText = headerContainer.querySelector(
+      ".full-cart-text"
+    ) as HTMLElement;
     fullCartText.innerText = `${arrCart.length}`;
-    fullCart.append(fullCartText);
-    const containerBottom: HTMLElement = document.createElement("div");
-    containerBottom.className = "container header-bottom";
-    const headerInner: HTMLElement = document.createElement("div");
-    headerInner.className = "header-inner";
-    headerInner.innerHTML = `
-      <p class="description">Online Store<br>
-      of digital devices</p>
-      <div class="header-contacts">
-        <a class="header-tel" href="tel:+375290000000">+375 29 000-00-00</a>
-        <p>Minsk, Belarus</p>
+
+    const containerBottom: HTMLElement = iCreateElement({
+      tag: "div",
+      classes: ["container", "header-bottom"],
+    });
+
+    containerBottom.insertAdjacentHTML(
+      "afterbegin",
+      `
+      <div class="header-inner">
+        <p class="description">Online Store<br>
+        of digital devices</p>
+        <div class="header-contacts">
+          <a class="header-tel" href="tel:+375290000000">${PHONE}</a>
+          <p>${ADDRESS}</p>
+        </div>
       </div>
-    `;
-    containerBottom.append(headerInner);
+      `
+    );
+
     this.container.append(headerContainer);
     this.container.append(containerBottom);
 
+    const logo = headerContainer.querySelector(".logo") as HTMLAnchorElement;
     logo.addEventListener("click", () => {
       window.history.replaceState({}, "", location.pathname);
       logo.href = "#main-page";
     });
+    const fullCart = headerContainer.querySelector(
+      ".full-cart"
+    ) as HTMLAnchorElement;
     fullCart.addEventListener("click", () => {
       window.history.replaceState({}, "", location.pathname);
       fullCart.href = "#cart-page";

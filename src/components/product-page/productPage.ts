@@ -1,5 +1,6 @@
 import { ProductItemData } from "../../types/index";
 import productsData from "../data";
+import { iCreateElement } from "../../utils/utils";
 
 class ProductCardPage {
   container: HTMLElement;
@@ -16,39 +17,30 @@ class ProductCardPage {
       (item) => item.id == Number(this.id.slice(3, -2))
     );
     if (curProduct) {
-      const breadcrumbs = document.createElement("nav");
-      breadcrumbs.className = "prodpage__breadcrumbs";
-      const breadcrumbsList: HTMLElement = document.createElement("ul");
-      breadcrumbsList.className = "breadcrumbs__list";
-      breadcrumbs.append(breadcrumbsList);
-      const liHome: HTMLLIElement = document.createElement("li");
-      liHome.className = "breadcrumbs__li";
-      breadcrumbsList.append(liHome);
-      const itemHome: HTMLAnchorElement = document.createElement("a");
-      itemHome.classList.add("breadcrumbs__home");
-      itemHome.href = "index.html";
-      liHome.append(itemHome);
-      const liCategory: HTMLLIElement = document.createElement("li");
-      liCategory.className = "breadcrumbs__li";
-      breadcrumbsList.append(liCategory);
-      const itemCategory: HTMLSpanElement = document.createElement("span");
-      itemCategory.className = "breadcrumbs__item item__category";
-      itemCategory.innerText = `${curProduct.category}`;
-      liCategory.append(itemCategory);
-      const liBrand: HTMLLIElement = document.createElement("li");
-      liBrand.className = "breadcrumbs__li";
-      breadcrumbsList.append(liBrand);
-      const itemBrand: HTMLSpanElement = document.createElement("span");
-      itemBrand.className = "breadcrumbs__item item__brand";
-      itemBrand.innerText = `${curProduct.brand}`;
-      liBrand.append(itemBrand);
-      const liTitle: HTMLLIElement = document.createElement("li");
-      liTitle.className = "breadcrumbs__li";
-      breadcrumbsList.append(liTitle);
-      const itemTitle: HTMLSpanElement = document.createElement("span");
-      itemTitle.className = "breadcrumbs__item item__title";
-      itemTitle.innerText = `${curProduct.title}`;
-      liTitle.append(itemTitle);
+      const breadcrumbs: HTMLElement = iCreateElement({
+        tag: "nav",
+        classes: ["prodpage__breadcrumbs"],
+      });
+
+      breadcrumbs.insertAdjacentHTML(
+        "afterbegin",
+        `
+        <ul class="breadcrumbs__list">
+          <li class="breadcrumbs__li">
+            <a class="breadcrumbs__home" href="index.html"></a>
+          </li>
+          <li class="breadcrumbs__li">
+            <span class="breadcrumbs__item item__category">${curProduct.category}</span>
+          </li>
+          <li class="breadcrumbs__li">
+            <span class="breadcrumbs__item item__brand">${curProduct.brand}</span>
+          </li>
+          <li class="breadcrumbs__li">
+            <span class="breadcrumbs__item item__title">${curProduct.title}</span>
+          </li>
+        </ul>
+      `
+      );
       this.container.append(breadcrumbs);
     }
   }
@@ -99,6 +91,7 @@ class ProductCardPage {
       imagesSliderCatalog.className = "images-product__catalog";
       imagesSliderCatalog.id = "imgnav";
       productImages.append(imagesSliderCatalog);
+
       for (let i = 0; i < imagesCatalog.length; i++) {
         const itemSlider: HTMLElement = document.createElement("div");
         itemSlider.className = `slider-item slide${i}`;
@@ -119,35 +112,32 @@ class ProductCardPage {
         imageItem.alt = "photo";
         imageItemWrapper.append(imageItem);
       }
-      const bodyProduct: HTMLElement = document.createElement("div");
-      bodyProduct.className = "product__to-card body-product";
+
+      const bodyProduct: HTMLElement = iCreateElement({
+        tag: "div",
+        classes: ["product__to-card", "body-product"],
+      });
+
+      bodyProduct.insertAdjacentHTML(
+        "afterbegin",
+        `
+        <div class="body-product__top">
+          <div class="body-product__stock">In stock ${curProduct.stock}</div>
+        </div>
+        <div class="body-product__price">
+          <div class="product-price__old">${Math.round(
+            (100 * curProduct.price) / (100 - curProduct.discountPercentage)
+          )} $</div>
+          <div class="product-price">${curProduct.price} $</div>
+        </div>
+        <div class="body-product__bottom">
+          <a class="button product-buy-now" href="#">Buy now</a>
+        </div>
+      `
+      );
       productContainer.append(bodyProduct);
-      const bodyTopProduct: HTMLElement = document.createElement("div");
-      bodyTopProduct.className = "body-product__top";
-      bodyProduct.append(bodyTopProduct);
-      const bodyProductStock: HTMLElement = document.createElement("div");
-      bodyProductStock.className = "body-product__stock";
-      bodyProductStock.innerText = `In stock ${curProduct.stock}`;
-      bodyTopProduct.append(bodyProductStock);
-      const bodyProductPrice: HTMLElement = document.createElement("div");
-      bodyProductPrice.className = "body-product__price";
-      bodyProduct.append(bodyProductPrice);
-      const productPriceOld: HTMLElement = document.createElement("div");
-      productPriceOld.className = "product-price__old";
-      productPriceOld.innerText = `${Math.round(
-        (100 * curProduct.price) / (100 - curProduct.discountPercentage)
-      )} $`;
-      bodyProductPrice.append(productPriceOld);
-      const productPriceCur: HTMLElement = document.createElement("div");
-      productPriceCur.className = "product-price";
-      productPriceCur.innerText = `${curProduct.price} $`;
-      bodyProductPrice.append(productPriceCur);
-      const bodyBottomProduct: HTMLElement = document.createElement("div");
-      bodyBottomProduct.className = "body-product__bottom";
-      bodyProduct.append(bodyBottomProduct);
       const btnProductToCart: HTMLElement = document.createElement("button");
       btnProductToCart.className = "button product-to-cart";
-
       const shopCart: string | null = localStorage.getItem("cart");
       let availCart = [];
       if (shopCart) {
@@ -159,53 +149,34 @@ class ProductCardPage {
       } else {
         btnProductToCart.innerText = "Add to cart";
       }
-      bodyBottomProduct.append(btnProductToCart);
-      const btnProductBuyNow: HTMLAnchorElement = document.createElement("a");
-      btnProductBuyNow.className = "button product-buy-now";
-      btnProductBuyNow.href = "#";
-      btnProductBuyNow.innerText = "Buy now";
-      bodyBottomProduct.append(btnProductBuyNow);
-      const productInfo: HTMLElement = document.createElement("div");
-      productInfo.className = "product__info";
-      productContainer.append(productInfo);
-      const productInfoBrand: HTMLElement = document.createElement("div");
-      productInfoBrand.className = "product-info__item";
-      productInfo.append(productInfoBrand);
-      const titleInfoBrand: HTMLHeadingElement = document.createElement("h3");
-      titleInfoBrand.className = "title-info__brand";
-      titleInfoBrand.innerText = "Brand:";
-      productInfoBrand.append(titleInfoBrand);
-      const valueInfoBrand: HTMLParagraphElement = document.createElement("p");
-      valueInfoBrand.className = "value-info__brand";
-      valueInfoBrand.innerText = `${curProduct.brand}`;
-      productInfoBrand.append(valueInfoBrand);
-      const productInfoRating: HTMLElement = document.createElement("div");
-      productInfoRating.className = "product-info__item";
-      productInfo.append(productInfoRating);
-      const titleInfoRating: HTMLHeadingElement = document.createElement("h3");
-      titleInfoRating.className = "title-info__rating";
-      titleInfoRating.innerText = "Rating:";
-      productInfoRating.append(titleInfoRating);
-      const valueInfoRating: HTMLParagraphElement = document.createElement("p");
-      valueInfoRating.className = "value-info__rating";
-      valueInfoRating.innerText = `${curProduct.rating}`;
-      productInfoRating.append(valueInfoRating);
-      const productInfoDescription: HTMLElement = document.createElement("div");
-      productInfoDescription.className = "product-info__item";
-      productInfo.append(productInfoDescription);
-      const titleInfoDescription: HTMLHeadingElement = document.createElement(
-        "h3"
-      );
-      titleInfoDescription.className = "title-info__description";
-      titleInfoDescription.innerText = "Description:";
-      productInfoDescription.append(titleInfoDescription);
-      const valueInfoDescription: HTMLParagraphElement = document.createElement(
-        "p"
-      );
-      valueInfoDescription.className = "value-info__description";
-      valueInfoDescription.innerText = `${curProduct.description}`;
-      productInfoDescription.append(valueInfoDescription);
+      const bodyBottomProduct = bodyProduct.querySelector(
+        ".body-product__bottom"
+      ) as HTMLElement;
+      bodyBottomProduct.prepend(btnProductToCart);
 
+      const productInfo: HTMLElement = iCreateElement({
+        tag: "div",
+        classes: ["product__info"],
+      });
+
+      productInfo.insertAdjacentHTML(
+        "afterbegin",
+        `
+        <div class="product-info__item">
+          <h3 class="title-info__brand">Brand:</h3>
+          <p class="value-info__brand">${curProduct.brand}</p>
+        </div>
+        <div class="product-info__item">
+          <h3 class="title-info__rating">Rating:</h3>
+          <p class="value-info__rating">${curProduct.rating}</p>
+        </div>
+        <div class="product-info__item">
+          <h3 class="title-info__description">Description:</h3>
+          <p class="value-info__description">${curProduct.description}</p>
+        </div>
+      `
+      );
+      productContainer.append(productInfo);
       this.container.append(productSection);
     }
   }
